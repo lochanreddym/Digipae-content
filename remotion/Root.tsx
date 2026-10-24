@@ -1,0 +1,13 @@
+import { Composition } from "remotion";
+import { LogoReveal } from "./LogoReveal";
+
+export const Root = () => (
+  <Composition
+    id="LogoReveal"
+    component={LogoReveal}
+    durationInFrames={90}
+    fps={30}
+    width={1080}
+    height={1920}
+  />
+);
