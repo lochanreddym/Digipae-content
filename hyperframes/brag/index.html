@@ -152,10 +152,18 @@
       #outro img { width: 230px; height: 230px; filter: drop-shadow(0 30px 60px rgba(20, 10, 80, 0.55)); }
       #outro h1 { margin-top: 40px; font-family: var(--display); font-size: 104px; font-weight: 700; letter-spacing: -0.03em; }
       #outro p { margin-top: 10px; font-size: 44px; font-weight: 500; color: rgba(255,255,255,0.86); }
+
+      /* ---------- captions (synced to narration) ---------- */
+      #captions { position: absolute; left: 0; right: 0; bottom: 56px; display: flex; justify-content: center; pointer-events: none; }
+      .cap { position: absolute; bottom: 0; padding: 14px 30px; border-radius: 22px; background: rgba(11, 10, 31, 0.62);
+             font-family: var(--font); font-size: 40px; font-weight: 600; letter-spacing: -0.005em; white-space: nowrap; opacity: 0; }
+      .cap span { color: rgba(255, 255, 255, 0.5); }
+      .cap span.on { color: #fff; }
+      .cap span.now { color: var(--lilac); }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="21" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="22.45" data-width="1920" data-height="1080">
       <div id="bg"></div>
       <div id="glow"></div>
       <div id="brandwash"></div>
@@ -268,6 +276,11 @@
         </div>
       </div>
 
+      <div id="captions"></div>
+
+      <!-- narration -->
+      <audio id="vo" src="assets/vo.wav" data-start="0" data-duration="22.45" data-track-index="9"></audio>
+
       <!-- outro -->
       <div id="outro">
         <img id="mark" src="assets/digipae-icon.png" />
@@ -347,7 +360,41 @@
       tl.fromTo("#mark", { scale: 0.55, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: "back.out(1.7)" }, 18.1);
       tl.fromTo("#word", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease }, 18.5);
       tl.fromTo("#tag", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease }, 18.75);
-      tl.fromTo("#outro", { scale: 1 }, { scale: 1.03, duration: 2.9, ease: "sine.out" }, 18.1);
+      tl.fromTo("#outro", { scale: 1 }, { scale: 1.03, duration: 4.0, ease: "sine.out" }, 18.1);
+
+      // Re-time scenes to the narration: each segment between anchors shifts (never stretches)
+      // so every visual beat lands on the word that names it.
+      const ANCHORS = [[0.0, 0.0], [3.0, 2.924], [3.2, 3.554], [4.3, 4.754], [5.55, 6.01], [6.65, 8.616], [7.0, 8.866], [7.2, 9.876], [7.95, 11.396], [11.65, 13.313], [12.1, 13.513], [15.65, 15.848], [16.05, 16.098], [17.7, 18.194], [18.1, 18.394], [21.0, 22.45]];
+      const remap = (t) => {
+        let i = ANCHORS.length - 1;
+        while (i > 0 && t < ANCHORS[i][0] - 1e-6) i--;
+        return t + (ANCHORS[i][1] - ANCHORS[i][0]);
+      };
+      tl.getChildren(false, true, false).forEach((c) => c.startTime(remap(c.startTime())));
+
+      // Captions: phrase pill with word-by-word highlight, timed from the narration's word timestamps.
+      // End card text is the on-screen wordmark and tagline, so it carries no caption pill.
+      const CAPTIONS = [{"words": [{"t": 0.5, "w": "Every"}, {"t": 0.82, "w": "fee,"}, {"t": 1.3, "w": "shown"}, {"t": 1.62, "w": "before"}, {"t": 1.86, "w": "you"}, {"t": 2.02, "w": "accept"}, {"t": 2.34, "w": "it."}], "s": 0.38, "e": 2.874}, {"words": [{"t": 3.074, "w": "Customers"}, {"t": 3.634, "w": "scan"}, {"t": 4.034, "w": "to"}, {"t": 4.194, "w": "pay,"}], "s": 2.954, "e": 4.314}, {"words": [{"t": 4.434, "w": "and"}, {"t": 4.594, "w": "it's"}, {"t": 4.834, "w": "confirmed"}, {"t": 5.314, "w": "right"}, {"t": 5.474, "w": "in"}, {"t": 5.634, "w": "the"}, {"t": 5.794, "w": "app."}], "s": 4.314, "e": 6.34}, {"words": [{"t": 6.46, "w": "Every"}, {"t": 6.78, "w": "sale"}, {"t": 7.18, "w": "lands"}, {"t": 7.5, "w": "in"}, {"t": 7.58, "w": "your"}, {"t": 7.74, "w": "merchant"}, {"t": 8.14, "w": "portal."}], "s": 6.34, "e": 8.816}, {"words": [{"t": 9.016, "w": "One"}, {"t": 9.336, "w": "flat"}, {"t": 9.576, "w": "rate."}, {"t": 9.976, "w": "1.29%."}], "s": 8.896, "e": 11.126}, {"words": [{"t": 11.496, "w": "No"}, {"t": 11.736, "w": "monthly"}, {"t": 12.056, "w": "fee."}, {"t": 12.536, "w": "No"}, {"t": 12.776, "w": "minimum."}], "s": 11.376, "e": 13.513}, {"words": [{"t": 13.713, "w": "Free"}, {"t": 14.033, "w": "next-day"}, {"t": 14.513, "w": "payouts."}, {"t": 15.153, "w": "Every"}, {"t": 15.393, "w": "time."}], "s": 13.593, "e": 16.098}, {"words": [{"t": 16.248, "w": "No"}, {"t": 16.568, "w": "hardware."}, {"t": 17.128, "w": "No"}, {"t": 17.288, "w": "setup"}, {"t": 17.768, "w": "fee."}], "s": 16.128, "e": 18.344}];
+      const capRoot = document.getElementById("captions");
+      CAPTIONS.forEach((c, ci) => {
+        const el = document.createElement("div");
+        el.className = "cap";
+        el.id = `cap${ci}`;
+        c.words.forEach((w, wi) => {
+          const sp = document.createElement("span");
+          sp.id = `cap${ci}w${wi}`;
+          sp.textContent = (wi ? " " : "") + w.w;
+          el.appendChild(sp);
+        });
+        capRoot.appendChild(el);
+        tl.fromTo(el, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, c.s);
+        tl.to(el, { opacity: 0, duration: 0.15 }, c.e - 0.15);
+        c.words.forEach((w, wi) => {
+          tl.set(`#cap${ci}w${wi}`, { className: "now" }, w.t);
+          const next = c.words[wi + 1];
+          tl.set(`#cap${ci}w${wi}`, { className: "on" }, next ? next.t : w.t + 0.45);
+        });
+      });
 
       window.__timelines["main"] = tl;
       tl.seek(0);
