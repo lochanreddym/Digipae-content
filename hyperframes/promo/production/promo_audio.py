@@ -158,6 +158,5 @@ meas = subprocess.run(["ffmpeg", "-hide_banner", "-i", "/tmp/_mix.wav", "-af", "
 j = json.loads(meas[meas.rindex("{"):])
 ln = (f"loudnorm=I=-16:TP=-1.5:LRA=9:measured_I={j['input_i']}:measured_TP={j['input_tp']}:measured_LRA={j['input_lra']}"
       f":measured_thresh={j['input_thresh']}:offset={j['target_offset']}:linear=true")
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", "/tmp/_mix.wav", "-af", f"{ln},alimiter=limit=0.84:level=false", "-c:a", "pcm_s16le", OUT], check=True)
-sf.write(OUT.replace(".wav", "_music.wav"), (music * 10 ** ((-16 - mu_l + 10) / 20 * 0)).astype(np.float32), SR)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", "/tmp/_mix.wav", "-af", f"{ln},alimiter=limit=0.84:level=false,aresample=48000", "-ar", "48000", "-c:a", "pcm_s16le", OUT], check=True)
 print("vo", round(vo_l, 1), "music", round(mu_l, 1), "->", OUT)
