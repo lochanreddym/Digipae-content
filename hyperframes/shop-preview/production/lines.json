@@ -1,0 +1,265 @@
+[
+ {
+  "name": "l1",
+  "spoken": "You run the shop. Checkout shouldn't steal the spotlight.",
+  "dur": 3.199,
+  "asr": [
+   {
+    "w": "You",
+    "s": 0.0
+   },
+   {
+    "w": "run",
+    "s": 0.24
+   },
+   {
+    "w": "the",
+    "s": 0.48
+   },
+   {
+    "w": "shop.",
+    "s": 0.72
+   },
+   {
+    "w": "Checkout",
+    "s": 1.2
+   },
+   {
+    "w": "shouldn't",
+    "s": 1.76
+   },
+   {
+    "w": "steal",
+    "s": 2.08
+   },
+   {
+    "w": "the",
+    "s": 2.32
+   },
+   {
+    "w": "spotlight.",
+    "s": 2.56
+   }
+  ]
+ },
+ {
+  "name": "l2",
+  "spoken": "Meet Digipay. Here's a preview of QR checkout for local shops.",
+  "dur": 4.037,
+  "asr": [
+   {
+    "w": "Meet",
+    "s": 0.08
+   },
+   {
+    "w": "DigiPay.",
+    "s": 0.4
+   },
+   {
+    "w": "Here",
+    "s": 1.28
+   },
+   {
+    "w": "is",
+    "s": 1.44
+   },
+   {
+    "w": "a",
+    "s": 1.52
+   },
+   {
+    "w": "preview",
+    "s": 1.6
+   },
+   {
+    "w": "of",
+    "s": 1.92
+   },
+   {
+    "w": "QR",
+    "s": 2.08
+   },
+   {
+    "w": "checkout",
+    "s": 2.56
+   },
+   {
+    "w": "for",
+    "s": 2.96
+   },
+   {
+    "w": "local",
+    "s": 3.12
+   },
+   {
+    "w": "shops.",
+    "s": 3.44
+   }
+  ]
+ },
+ {
+  "name": "l3",
+  "spoken": "A customer scans your code in Digipay, reviews the amount, and confirms with their wallet PIN.",
+  "dur": 5.731,
+  "asr": [
+   {
+    "w": "A",
+    "s": 0.0
+   },
+   {
+    "w": "customer",
+    "s": 0.24
+   },
+   {
+    "w": "scans",
+    "s": 0.72
+   },
+   {
+    "w": "your",
+    "s": 1.04
+   },
+   {
+    "w": "code",
+    "s": 1.2
+   },
+   {
+    "w": "in",
+    "s": 1.52
+   },
+   {
+    "w": "Digipay,",
+    "s": 1.68
+   },
+   {
+    "w": "reviews",
+    "s": 2.64
+   },
+   {
+    "w": "the",
+    "s": 3.12
+   },
+   {
+    "w": "amount",
+    "s": 3.28
+   },
+   {
+    "w": "and",
+    "s": 3.76
+   },
+   {
+    "w": "confirms",
+    "s": 4.0
+   },
+   {
+    "w": "with",
+    "s": 4.56
+   },
+   {
+    "w": "their",
+    "s": 4.72
+   },
+   {
+    "w": "wallet",
+    "s": 4.88
+   },
+   {
+    "w": "pin.",
+    "s": 5.28
+   }
+  ]
+ },
+ {
+  "name": "l4",
+  "spoken": "The payment appears in your merchant dashboard, alongside your sales activity.",
+  "dur": 4.766,
+  "asr": [
+   {
+    "w": "The",
+    "s": 0.0
+   },
+   {
+    "w": "payment",
+    "s": 0.24
+   },
+   {
+    "w": "appears",
+    "s": 0.72
+   },
+   {
+    "w": "in",
+    "s": 1.2
+   },
+   {
+    "w": "your",
+    "s": 1.28
+   },
+   {
+    "w": "merchant",
+    "s": 1.44
+   },
+   {
+    "w": "dashboard",
+    "s": 2.0
+   },
+   {
+    "w": "alongside",
+    "s": 2.88
+   },
+   {
+    "w": "your",
+    "s": 3.52
+   },
+   {
+    "w": "sales",
+    "s": 3.68
+   },
+   {
+    "w": "activity.",
+    "s": 4.08
+   }
+  ]
+ },
+ {
+  "name": "l5",
+  "spoken": "Built around everyday business. Follow Digipay for product updates.",
+  "dur": 4.558,
+  "asr": [
+   {
+    "w": "Built",
+    "s": 0.16
+   },
+   {
+    "w": "around",
+    "s": 0.48
+   },
+   {
+    "w": "everyday",
+    "s": 0.8
+   },
+   {
+    "w": "business.",
+    "s": 1.36
+   },
+   {
+    "w": "Follow",
+    "s": 2.16
+   },
+   {
+    "w": "Digipay",
+    "s": 2.48
+   },
+   {
+    "w": "for",
+    "s": 3.28
+   },
+   {
+    "w": "product",
+    "s": 3.44
+   },
+   {
+    "w": "updates.",
+    "s": 3.84
+   }
+  ]
+ }
+]
