@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.otf") format("opentype"); font-weight: 500; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.otf") format("opentype"); font-weight: 600; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-ExtraBold.otf") format("opentype"); font-weight: 800; }
+      :root {
+        --night: #0b0a1f;
+        --night-2: #15123a;
+        --purple: #5b4fe5;
+        --purple-2: #883eec;
+        --lilac: #b4a8ff;
+        --ink: #14112b;
+        --muted: #6b6790;
+        --paper: #ffffff;
+        --ok: #1fbf75;
+        --font: "Inter", sans-serif;
+        --display: "Inter Display", "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--night); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--font); color: #fff; }
+
+      /* ---------- backdrop ---------- */
+      #bg { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 50%, var(--night-2) 0%, var(--night) 70%); }
+      #glow { position: absolute; width: 1400px; height: 1400px; left: 820px; top: -160px; border-radius: 50%;
+              background: radial-gradient(circle, rgba(91, 79, 229, 0.55) 0%, rgba(91, 79, 229, 0.18) 35%, rgba(91, 79, 229, 0) 68%); }
+      #grain { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px); background-size: 6px 6px; }
+      #brandwash { position: absolute; inset: 0; opacity: 0;
+                   background: radial-gradient(90% 90% at 50% 45%, #6f62ff 0%, var(--purple) 45%, #3a2fb8 100%); }
+
+      /* ---------- headline column ---------- */
+      .head { position: absolute; left: 150px; top: 0; height: 1080px; width: 760px; display: flex; flex-direction: column; justify-content: center; opacity: 0; }
+      .eyebrow { font-size: 28px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lilac); margin-bottom: 26px; }
+      .head h2 { font-family: var(--display); font-size: 84px; line-height: 1.04; font-weight: 700; letter-spacing: -0.025em; }
+      .head h2 .dim { color: rgba(255, 255, 255, 0.55); }
+      .head h2 .acc { background: linear-gradient(90deg, #9d92ff, #c08bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .head .line { display: block; }
+      .checks { margin-top: 40px; display: flex; flex-direction: column; gap: 18px; }
+      .check { display: flex; align-items: center; gap: 18px; font-size: 34px; font-weight: 500; color: rgba(255,255,255,0.9); }
+      .check i { width: 40px; height: 40px; border-radius: 50%; background: rgba(91, 79, 229, 0.3); border: 2px solid var(--lilac); display: grid; place-items: center; }
+      .check i::after { content: ""; width: 14px; height: 8px; border-left: 3px solid #fff; border-bottom: 3px solid #fff; transform: translateY(-2px) rotate(-45deg); }
+
+      /* ---------- phone ---------- */
+      #phone { position: absolute; left: 1210px; top: 150px; width: 390px; height: 790px; border-radius: 62px;
+               background: #1a1838; border: 2px solid rgba(255,255,255,0.12);
+               box-shadow: 0 60px 120px rgba(0,0,0,0.55), 0 0 0 10px #0f0d24, 0 0 120px rgba(91,79,229,0.35); opacity: 0; }
+      #screen { position: absolute; inset: 14px; border-radius: 50px; overflow: hidden; background: #f6f4ff; }
+      .island { position: absolute; top: 14px; left: 50%; width: 112px; height: 32px; margin-left: -56px; border-radius: 20px; background: #0b0a1f; z-index: 9; }
+      .screen-layer { position: absolute; inset: 0; }
+      /* QR card on screen (hook) */
+      #s-qr { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(180deg, #f6f4ff, #ece8ff); }
+      .qrcard { width: 270px; padding: 26px; border-radius: 28px; background: #fff; box-shadow: 0 20px 50px rgba(60, 40, 160, 0.18); }
+      .qrcard img.qr { width: 218px; height: 218px; display: block; }
+      .qrcard .who { margin-top: 18px; text-align: center; font-size: 19px; font-weight: 600; color: var(--ink); }
+      .qrcard .sub { margin-top: 4px; text-align: center; font-size: 15px; color: var(--muted); }
+      /* camera viewfinder */
+      #s-cam { background: radial-gradient(80% 60% at 50% 45%, #3b3550 0%, #1b1828 70%); opacity: 0; display: flex; align-items: center; justify-content: center; }
+      #cam-qr { width: 200px; height: 200px; padding: 16px; border-radius: 16px; background: #f4f1ea; transform: rotate(-6deg); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+      #cam-qr img { width: 100%; height: 100%; }
+      #brackets { position: absolute; left: 50%; top: 50%; width: 270px; height: 270px; margin: -135px 0 0 -135px; }
+      #brackets b { position: absolute; width: 54px; height: 54px; border: 6px solid #fff; }
+      #brackets b:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; border-top-left-radius: 22px; }
+      #brackets b:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; border-top-right-radius: 22px; }
+      #brackets b:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; border-bottom-left-radius: 22px; }
+      #brackets b:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; border-bottom-right-radius: 22px; }
+      #cam-label { position: absolute; top: 80px; left: 0; right: 0; text-align: center; font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.85); }
+      #resolving { position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); padding: 14px 24px; border-radius: 30px; background: rgba(255,255,255,0.14);
+                   font-size: 17px; font-weight: 600; color: #fff; white-space: nowrap; opacity: 0; display: flex; align-items: center; gap: 12px; }
+      #spinner { width: 20px; height: 20px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.3); border-top-color: #fff; }
+      /* confirmation sheet */
+      #sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; border-radius: 40px 40px 0 0; background: #fff; padding: 56px 34px 0; text-align: center; color: var(--ink); }
+      #okdot { width: 104px; height: 104px; border-radius: 50%; background: var(--ok); margin: 0 auto; display: grid; place-items: center; }
+      #okdot::after { content: ""; width: 40px; height: 22px; border-left: 8px solid #fff; border-bottom: 8px solid #fff; transform: translateY(-5px) rotate(-45deg); }
+      #sheet .paid { margin-top: 24px; font-size: 22px; font-weight: 600; color: var(--ok); }
+      #sheet .amt { margin-top: 6px; font-family: var(--display); font-size: 64px; font-weight: 700; letter-spacing: -0.02em; }
+      #sheet .to { margin-top: 4px; font-size: 19px; color: var(--muted); }
+      #sheet .feebox { margin: 30px auto 0; padding: 16px 20px; border-radius: 18px; background: #f3f1ff; display: flex; justify-content: space-between; font-size: 18px; }
+      #sheet .feebox span:first-child { color: var(--muted); }
+      #sheet .feebox span:last-child { font-weight: 600; color: var(--purple); }
+
+      /* ---------- generic white card ---------- */
+      .card { position: absolute; background: var(--paper); color: var(--ink); border-radius: 36px; box-shadow: 0 50px 110px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06); opacity: 0; }
+      .chip { display: inline-flex; align-items: center; gap: 10px; padding: 9px 18px; border-radius: 30px; background: #efedff; color: var(--purple); font-size: 18px; font-weight: 600; }
+      .chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--purple); }
+
+      /* dashboard */
+      #dash { left: 960px; top: 170px; width: 830px; height: 740px; padding: 0; overflow: hidden; border-radius: 28px; }
+      #dash .bar { height: 64px; background: #f4f3fa; display: flex; align-items: center; gap: 10px; padding: 0 26px; border-bottom: 1px solid #e7e5f2; }
+      #dash .bar i { width: 13px; height: 13px; border-radius: 50%; background: #d9d6ea; }
+      #dash .bar span { margin-left: 18px; font-size: 16px; color: var(--muted); font-weight: 500; }
+      #dash .body { padding: 40px 44px; }
+      #dash .top { display: flex; justify-content: space-between; align-items: flex-end; }
+      #dash .label { font-size: 18px; color: var(--muted); font-weight: 500; }
+      #dash .big { margin-top: 8px; font-family: var(--display); font-size: 72px; font-weight: 700; letter-spacing: -0.02em; }
+      #spark { display: flex; align-items: flex-end; gap: 10px; height: 110px; }
+      #spark u { width: 26px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #8f84ff, var(--purple)); transform-origin: bottom; }
+      #dash h4 { margin-top: 44px; font-size: 18px; font-weight: 600; color: var(--muted); }
+      .row { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #eeecf6; font-size: 22px; }
+      .row .l { display: flex; align-items: center; gap: 18px; }
+      .row .ic { width: 46px; height: 46px; border-radius: 14px; background: #efedff; display: grid; place-items: center; }
+      .row .ic::after { content: ""; width: 18px; height: 18px; border: 3px solid var(--purple); border-radius: 4px; }
+      .row .t { font-size: 15px; color: var(--muted); margin-top: 2px; }
+      .row .r { display: flex; align-items: center; gap: 16px; font-weight: 600; }
+      .badge { font-size: 14px; font-weight: 600; color: var(--ok); background: #e3f8ee; padding: 6px 12px; border-radius: 20px; }
+
+      /* rate card */
+      #rate { left: 1010px; top: 250px; width: 760px; height: 580px; padding: 60px 64px; }
+      #rate .num { margin-top: 34px; display: flex; align-items: baseline; gap: 22px; }
+      #rate .pct { font-family: var(--display); font-size: 188px; font-weight: 800; letter-spacing: -0.045em; line-height: 0.9;
+                   background: linear-gradient(90deg, var(--purple), var(--purple-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #rate .flat { font-family: var(--display); font-size: 70px; font-weight: 700; color: var(--ink); }
+      #rate .foot { margin-top: 46px; padding-top: 30px; border-top: 1px solid #eeecf6; display: flex; gap: 46px; font-size: 24px; color: var(--muted); }
+      #rate .foot b { display: block; font-size: 30px; color: var(--ink); margin-top: 6px; }
+
+      /* payout card */
+      #payout { left: 1010px; top: 270px; width: 760px; height: 540px; padding: 58px 64px; }
+      #payout .head2 { display: flex; justify-content: space-between; align-items: center; }
+      #payout h3 { font-family: var(--display); font-size: 50px; font-weight: 700; letter-spacing: -0.02em; margin-top: 30px; }
+      #payout .amt { margin-top: 10px; font-size: 30px; color: var(--muted); }
+      #payout .amt b { color: var(--ink); }
+      #track { position: relative; margin-top: 76px; height: 120px; }
+      #rail { position: absolute; left: 30px; right: 30px; top: 22px; height: 6px; border-radius: 3px; background: #ebe9f5; }
+      #fill { position: absolute; left: 30px; top: 22px; height: 6px; width: 572px; border-radius: 3px; background: linear-gradient(90deg, var(--purple), var(--purple-2)); }
+      .node { position: absolute; top: 0; width: 160px; margin-left: -80px; text-align: center; }
+      .node .dot { width: 50px; height: 50px; margin: 0 auto; border-radius: 50%; background: #fff; border: 6px solid #ebe9f5; position: relative; }
+      .node .dot em { position: absolute; inset: -6px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--purple-2)); transform: scale(0); }
+      .node .dot em::after { content: ""; position: absolute; left: 17px; top: 15px; width: 16px; height: 9px; border-left: 4px solid #fff; border-bottom: 4px solid #fff; transform: rotate(-45deg); }
+      .node span { display: block; margin-top: 18px; font-size: 26px; font-weight: 600; color: var(--ink); }
+
+      /* tent card */
+      #tentwrap { position: absolute; left: 1060px; top: 140px; width: 660px; height: 800px; perspective: 1600px; opacity: 0; }
+      #tent { position: absolute; left: 100px; top: 40px; width: 460px; height: 640px; border-radius: 26px; background: #fff; color: var(--ink);
+              transform: rotateY(-16deg) rotateX(6deg); transform-origin: center bottom;
+              box-shadow: 30px 50px 90px rgba(0,0,0,0.5); padding: 44px 46px; text-align: center; }
+      #tent::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 16px; border-radius: 26px 26px 0 0; background: linear-gradient(90deg, var(--purple), var(--purple-2)); }
+      #tent .brand { display: flex; align-items: center; justify-content: center; gap: 14px; font-family: var(--display); font-size: 36px; font-weight: 700; }
+      #tent .brand img { width: 52px; height: 52px; }
+      #tent .qr { width: 300px; height: 300px; margin: 34px auto 0; }
+      #tent .cta { margin-top: 30px; font-size: 28px; font-weight: 700; }
+      #tent .small { margin-top: 8px; font-size: 18px; color: var(--muted); }
+      #counter { position: absolute; left: -60px; right: -60px; top: 690px; height: 140px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,0.55), transparent); }
+
+      /* outro */
+      #outro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+      #outro img { width: 230px; height: 230px; filter: drop-shadow(0 30px 60px rgba(20, 10, 80, 0.55)); }
+      #outro h1 { margin-top: 40px; font-family: var(--display); font-size: 104px; font-weight: 700; letter-spacing: -0.03em; }
+      #outro p { margin-top: 10px; font-size: 44px; font-weight: 500; color: rgba(255,255,255,0.86); }
+
+      /* ---------- captions (synced to narration) ---------- */
+      #captions { position: absolute; left: 0; right: 0; bottom: 56px; display: flex; justify-content: center; pointer-events: none; }
+      .cap { position: absolute; bottom: 0; padding: 14px 30px; border-radius: 22px; background: rgba(11, 10, 31, 0.62);
+             font-family: var(--font); font-size: 40px; font-weight: 600; letter-spacing: -0.005em; white-space: nowrap; opacity: 0; }
+      .cap span { color: rgba(255, 255, 255, 0.5); }
+      .cap span.on { color: #fff; }
+      .cap span.now { color: var(--lilac); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="22.45" data-width="1920" data-height="1080">
+      <div id="bg"></div>
+      <div id="glow"></div>
+      <div id="brandwash"></div>
+      <div id="grain"></div>
+
+      <!-- headlines -->
+      <div class="head" id="h1">
+        <div class="eyebrow">For merchants</div>
+        <h2><span class="line">Every fee,</span><span class="line acc">before you</span><span class="line acc">accept it.</span></h2>
+      </div>
+      <div class="head" id="h2">
+        <div class="eyebrow">Scan to pay</div>
+        <h2><span class="line">Scan to pay.</span><span class="line dim">Confirmed in-app.</span></h2>
+      </div>
+      <div class="head" id="h3">
+        <div class="eyebrow">Pricing</div>
+        <h2><span class="line acc">1.29% flat.</span></h2>
+        <div class="checks">
+          <div class="check"><i></i>No monthly fee</div>
+          <div class="check"><i></i>No minimum</div>
+        </div>
+      </div>
+      <div class="head" id="h4">
+        <div class="eyebrow">Payouts</div>
+        <h2><span class="line">Free next-day</span><span class="line">payouts.</span><span class="line acc">Every time.</span></h2>
+      </div>
+      <div class="head" id="h5">
+        <div class="eyebrow">Setup</div>
+        <h2><span class="line">No hardware.</span><span class="line dim">No setup fee.</span></h2>
+      </div>
+
+      <!-- phone: QR, camera scan, confirmation -->
+      <div id="phone" data-layout-ignore>
+        <div id="screen">
+          <div class="island"></div>
+          <div class="screen-layer" id="s-qr">
+            <div class="qrcard" id="qrcard">
+              <img class="qr" id="qrimg" src="assets/qr.svg" />
+              <div class="who">Corner Café</div>
+              <div class="sub">Scan to pay with Digipae</div>
+            </div>
+          </div>
+          <div class="screen-layer" id="s-cam">
+            <div id="cam-label">Scan to pay</div>
+            <div id="cam-qr"><img src="assets/qr.svg" /></div>
+            <div id="brackets"><b></b><b></b><b></b><b></b></div>
+            <div id="resolving"><div id="spinner"></div>Resolving payment…</div>
+          </div>
+          <div id="sheet">
+            <div id="okdot"></div>
+            <div class="paid">Payment confirmed</div>
+            <div class="amt">$24.00</div>
+            <div class="to">to Corner Café</div>
+            <div class="feebox"><span>Fee · 1.29% flat</span><span>$0.31</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- merchant portal -->
+      <div class="card" id="dash" data-layout-ignore>
+        <div class="bar"><i></i><i></i><i></i><span>Merchant portal · Today</span></div>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="label">Today's takings</div>
+              <div class="big">$1,284.50</div>
+            </div>
+            <div id="spark"><u style="height: 34%"></u><u style="height: 52%"></u><u style="height: 41%"></u><u style="height: 68%"></u><u style="height: 57%"></u><u style="height: 82%"></u><u style="height: 100%"></u></div>
+          </div>
+          <h4>Recent sales</h4>
+          <div class="row"><div class="l"><div class="ic"></div><div>QR payment<div class="t">2:41 PM</div></div></div><div class="r">$24.00<span class="badge">Paid</span></div></div>
+          <div class="row"><div class="l"><div class="ic"></div><div>QR payment<div class="t">2:17 PM</div></div></div><div class="r">$8.50<span class="badge">Paid</span></div></div>
+          <div class="row"><div class="l"><div class="ic"></div><div>QR payment<div class="t">1:52 PM</div></div></div><div class="r">$61.25<span class="badge">Paid</span></div></div>
+        </div>
+      </div>
+
+      <!-- rate -->
+      <div class="card" id="rate">
+        <span class="chip" data-layout-ignore>bank / wallet</span>
+        <div class="num"><span class="pct">1.29%</span><span class="flat">flat</span></div>
+        <div class="foot" data-layout-ignore>
+          <div>Monthly fee<b>$0</b></div>
+          <div>Minimum<b>None</b></div>
+          <div>Shown<b>Before you accept</b></div>
+        </div>
+      </div>
+
+      <!-- payout -->
+      <div class="card" id="payout">
+        <div class="head2" data-layout-ignore><span class="chip">Payout scheduled</span></div>
+        <h3>Next-day payout</h3>
+        <div class="amt"><b>$1,267.93</b> to your bank · Free</div>
+        <div id="track">
+          <div id="rail"></div>
+          <div id="fill"></div>
+          <div class="node" style="left: 30px"><div class="dot"><em id="d1"></em></div><span>QR paid</span></div>
+          <div class="node" style="left: 316px"><div class="dot"><em id="d2"></em></div><span>Settled</span></div>
+          <div class="node" style="left: 602px"><div class="dot"><em id="d3"></em></div><span>In your bank</span></div>
+        </div>
+      </div>
+
+      <!-- static QR tent card -->
+      <div id="tentwrap" data-layout-ignore>
+        <div id="counter"></div>
+        <div id="tent">
+          <div class="brand"><img src="assets/digipae-icon.png" />Digipae</div>
+          <img class="qr" src="assets/qr.svg" />
+          <div class="cta">Scan to pay</div>
+          <div class="small">Corner Café · bank or wallet</div>
+        </div>
+      </div>
+
+      <div id="captions"></div>
+
+      <!-- narration -->
+      <audio id="vo" src="assets/vo.wav" data-start="0" data-duration="22.45" data-track-index="9"></audio>
+
+      <!-- outro -->
+      <div id="outro">
+        <img id="mark" src="assets/digipae-icon.png" />
+        <h1 id="word">Digipae.</h1>
+        <p id="tag">See the fee. Keep the rest.</p>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const ease = "power3.out";
+      tl.set("#sheet", { y: 600 }, 0);
+      tl.set("#fill", { scaleX: 0, transformOrigin: "left center" }, 0);
+
+      // headline in/out helper: lines rise in, whole block lifts out
+      const head = (id, tin, tout) => {
+        tl.set(id, { opacity: 1 }, tin);
+        tl.fromTo(`${id} .eyebrow`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease }, tin);
+        tl.fromTo(`${id} .line`, { opacity: 0, y: 46, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease, stagger: 0.12 }, tin + 0.08);
+        if (tout != null) tl.to(id, { opacity: 0, y: -30, filter: "blur(6px)", duration: 0.35, ease: "power2.in" }, tout);
+      };
+
+      // 0–3  hook: purple glow arrives, QR resolves into focus
+      tl.fromTo("#glow", { x: 380, opacity: 0.45 }, { x: 0, opacity: 1, duration: 1.6, ease: "power2.out" }, 0);
+      tl.fromTo("#phone", { opacity: 0.55, y: 50, rotation: 3 }, { opacity: 1, y: 0, rotation: 0, duration: 1.1, ease }, 0);
+      tl.fromTo("#qrimg", { filter: "blur(14px)", scale: 0.86, opacity: 0.3 }, { filter: "blur(0px)", scale: 1, opacity: 1, duration: 1.2, ease: "power2.out" }, 0.55);
+      head("#h1", 0.7, 2.75);
+
+      // 3–7  scan-to-pay, then the merchant portal
+      tl.to("#s-qr", { opacity: 0, duration: 0.3 }, 3.0);
+      tl.fromTo("#s-cam", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.0);
+      tl.fromTo("#brackets", { scale: 1.45, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.6)" }, 3.2);
+      tl.fromTo("#cam-qr", { scale: 0.9 }, { scale: 1, rotation: 0, duration: 0.6, ease }, 3.2);
+      tl.to("#resolving", { opacity: 1, duration: 0.2 }, 3.75);
+      tl.fromTo("#spinner", { rotation: 0 }, { rotation: 540, duration: 0.6, ease: "none" }, 3.75);
+      tl.to("#sheet", { y: 0, duration: 0.55, ease: "power4.out" }, 4.3);
+      tl.fromTo("#okdot", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.2)" }, 4.55);
+      head("#h2", 3.15, null);
+      tl.to("#phone", { x: -260, opacity: 0, duration: 0.5, ease: "power2.in" }, 5.55);
+      tl.fromTo("#dash", { opacity: 0, x: 120, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease }, 5.75);
+      tl.fromTo("#spark u", { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease, stagger: 0.05 }, 5.95);
+      tl.fromTo("#dash .row", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease, stagger: 0.09 }, 6.1);
+      tl.to("#h2", { opacity: 0, y: -30, filter: "blur(6px)", duration: 0.35, ease: "power2.in" }, 6.7);
+      tl.to("#dash", { opacity: 0, x: -80, duration: 0.4, ease: "power2.in" }, 6.65);
+
+      // 7–12  the rate
+      tl.to("#glow", { x: -120, y: 80, duration: 5, ease: "sine.inOut" }, 7);
+      tl.fromTo("#rate", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease }, 7.1);
+      tl.fromTo("#rate .pct", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease }, 7.35);
+      tl.fromTo("#rate .flat", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease }, 7.6);
+      tl.fromTo("#rate .foot > div", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease, stagger: 0.12 }, 8.0);
+      head("#h3", 7.2, 11.7);
+      tl.fromTo("#h3 .check", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.45, ease, stagger: 0.25 }, 8.1);
+      tl.to("#rate", { opacity: 0, y: -40, duration: 0.4, ease: "power2.in" }, 11.65);
+
+      // 12–16  payouts: paid -> settled -> in your bank
+      tl.fromTo("#payout", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease }, 12.1);
+      tl.fromTo("#d1", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 12.75);
+      tl.to("#fill", { scaleX: 0.5, duration: 0.6, ease: "power2.inOut" }, 12.95);
+      tl.fromTo("#d2", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 13.5);
+      tl.to("#fill", { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, 13.7);
+      tl.fromTo("#d3", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 14.25);
+      head("#h4", 12.2, 15.7);
+      tl.to("#payout", { opacity: 0, y: -40, duration: 0.4, ease: "power2.in" }, 15.65);
+
+      // 16–18  static QR on the counter
+      tl.fromTo("#tentwrap", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.6, ease }, 16.05);
+      tl.fromTo("#tent", { rotationY: -38 }, { rotationY: -12, duration: 1.8, ease: "power2.out" }, 16.05);
+      head("#h5", 16.1, 17.75);
+      tl.to("#tentwrap", { opacity: 0, scale: 0.94, duration: 0.4, ease: "power2.in" }, 17.7);
+
+      // 18–21  outro on brand purple, holds an extra beat
+      tl.to("#brandwash", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 17.85);
+      tl.to("#glow, #grain", { opacity: 0, duration: 0.5 }, 17.9);
+      tl.set("#outro", { opacity: 1 }, 18.1);
+      tl.fromTo("#mark", { scale: 0.55, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: "back.out(1.7)" }, 18.1);
+      tl.fromTo("#word", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease }, 18.5);
+      tl.fromTo("#tag", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease }, 18.75);
+      tl.fromTo("#outro", { scale: 1 }, { scale: 1.03, duration: 4.0, ease: "sine.out" }, 18.1);
+
+      // Re-time scenes to the narration: each segment between anchors shifts (never stretches)
+      // so every visual beat lands on the word that names it.
+      const ANCHORS = [[0.0, 0.0], [3.0, 2.924], [3.2, 3.554], [4.3, 4.754], [5.55, 6.01], [6.65, 8.616], [7.0, 8.866], [7.2, 9.876], [7.95, 11.396], [11.65, 13.313], [12.1, 13.513], [15.65, 15.848], [16.05, 16.098], [17.7, 18.194], [18.1, 18.394], [21.0, 22.45]];
+      const remap = (t) => {
+        let i = ANCHORS.length - 1;
+        while (i > 0 && t < ANCHORS[i][0] - 1e-6) i--;
+        return t + (ANCHORS[i][1] - ANCHORS[i][0]);
+      };
+      tl.getChildren(false, true, false).forEach((c) => c.startTime(remap(c.startTime())));
+
+      // Captions: phrase pill with word-by-word highlight, timed from the narration's word timestamps.
+      // End card text is the on-screen wordmark and tagline, so it carries no caption pill.
+      const CAPTIONS = [{"words": [{"t": 0.5, "w": "Every"}, {"t": 0.82, "w": "fee,"}, {"t": 1.3, "w": "shown"}, {"t": 1.62, "w": "before"}, {"t": 1.86, "w": "you"}, {"t": 2.02, "w": "accept"}, {"t": 2.34, "w": "it."}], "s": 0.38, "e": 2.874}, {"words": [{"t": 3.074, "w": "Customers"}, {"t": 3.634, "w": "scan"}, {"t": 4.034, "w": "to"}, {"t": 4.194, "w": "pay,"}], "s": 2.954, "e": 4.314}, {"words": [{"t": 4.434, "w": "and"}, {"t": 4.594, "w": "it's"}, {"t": 4.834, "w": "confirmed"}, {"t": 5.314, "w": "right"}, {"t": 5.474, "w": "in"}, {"t": 5.634, "w": "the"}, {"t": 5.794, "w": "app."}], "s": 4.314, "e": 6.34}, {"words": [{"t": 6.46, "w": "Every"}, {"t": 6.78, "w": "sale"}, {"t": 7.18, "w": "lands"}, {"t": 7.5, "w": "in"}, {"t": 7.58, "w": "your"}, {"t": 7.74, "w": "merchant"}, {"t": 8.14, "w": "portal."}], "s": 6.34, "e": 8.816}, {"words": [{"t": 9.016, "w": "One"}, {"t": 9.336, "w": "flat"}, {"t": 9.576, "w": "rate."}, {"t": 9.976, "w": "1.29%."}], "s": 8.896, "e": 11.126}, {"words": [{"t": 11.496, "w": "No"}, {"t": 11.736, "w": "monthly"}, {"t": 12.056, "w": "fee."}, {"t": 12.536, "w": "No"}, {"t": 12.776, "w": "minimum."}], "s": 11.376, "e": 13.513}, {"words": [{"t": 13.713, "w": "Free"}, {"t": 14.033, "w": "next-day"}, {"t": 14.513, "w": "payouts."}, {"t": 15.153, "w": "Every"}, {"t": 15.393, "w": "time."}], "s": 13.593, "e": 16.098}, {"words": [{"t": 16.248, "w": "No"}, {"t": 16.568, "w": "hardware."}, {"t": 17.128, "w": "No"}, {"t": 17.288, "w": "setup"}, {"t": 17.768, "w": "fee."}], "s": 16.128, "e": 18.344}];
+      const capRoot = document.getElementById("captions");
+      CAPTIONS.forEach((c, ci) => {
+        const el = document.createElement("div");
+        el.className = "cap";
+        el.id = `cap${ci}`;
+        c.words.forEach((w, wi) => {
+          const sp = document.createElement("span");
+          sp.id = `cap${ci}w${wi}`;
+          sp.textContent = (wi ? " " : "") + w.w;
+          el.appendChild(sp);
+        });
+        capRoot.appendChild(el);
+        tl.fromTo(el, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, c.s);
+        tl.to(el, { opacity: 0, duration: 0.15 }, c.e - 0.15);
+        c.words.forEach((w, wi) => {
+          tl.set(`#cap${ci}w${wi}`, { className: "now" }, w.t);
+          const next = c.words[wi + 1];
+          tl.set(`#cap${ci}w${wi}`, { className: "on" }, next ? next.t : w.t + 0.45);
+        });
+      });
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

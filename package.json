@@ -1,0 +1,23 @@
+{
+  "name": "digipae-content",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "remotion:studio": "remotion studio remotion/index.ts",
+    "remotion:render": "remotion render remotion/index.ts",
+    "hyperframes": "hyperframes",
+    "check-tools": "bash scripts/check-tools.sh"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.538",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.538"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "gsap": "^3.14.2",
+    "hyperframes": "0.8.193",
+    "typescript": "5.9.3"
+  }
+}

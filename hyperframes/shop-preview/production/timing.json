@@ -1,0 +1,82 @@
+{
+ "end": 30.0,
+ "vo": {
+  "l1": 0.55,
+  "l2": 5.25,
+  "l3": 10.35,
+  "l4": 18.35,
+  "l5": 24.4
+ },
+ "captions": [
+  {
+   "text": "You run the shop.",
+   "s": 0.45,
+   "e": 1.65
+  },
+  {
+   "text": "Checkout shouldn't steal the spotlight.",
+   "s": 1.65,
+   "e": 4.099
+  },
+  {
+   "text": "Meet Digipae.",
+   "s": 5.23,
+   "e": 6.43
+  },
+  {
+   "text": "Here's a preview of QR checkout",
+   "s": 6.43,
+   "e": 8.11
+  },
+  {
+   "text": "for local shops.",
+   "s": 8.11,
+   "e": 9.637
+  },
+  {
+   "text": "A customer scans your code in Digipae,",
+   "s": 10.25,
+   "e": 12.89
+  },
+  {
+   "text": "reviews the amount,",
+   "s": 12.89,
+   "e": 14.01
+  },
+  {
+   "text": "and confirms with their wallet PIN.",
+   "s": 14.01,
+   "e": 16.431
+  },
+  {
+   "text": "The payment appears in your merchant dashboard,",
+   "s": 18.25,
+   "e": 21.13
+  },
+  {
+   "text": "alongside your sales activity.",
+   "s": 21.13,
+   "e": 23.466
+  },
+  {
+   "text": "Built around everyday business.",
+   "s": 24.46,
+   "e": 26.46
+  },
+  {
+   "text": "Follow Digipae for product updates.",
+   "s": 26.46,
+   "e": 29.308
+  }
+ ],
+ "beats": {
+  "scan": 10.92,
+  "review": 12.89,
+  "confirm": 14.25,
+  "pin": 15.23,
+  "done": 16.231,
+  "rowHi": 18.97,
+  "pullback": 21.03,
+  "endcard": 26.31
+ }
+}

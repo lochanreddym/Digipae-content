@@ -1,0 +1,484 @@
+[
+ {
+  "name": "intro",
+  "spoken": "Meet Digipay.",
+  "dur": 1.004,
+  "asr": [
+   {
+    "w": "Meet",
+    "s": 0.08
+   },
+   {
+    "w": "did",
+    "s": 0.4
+   },
+   {
+    "w": "you",
+    "s": 0.56
+   },
+   {
+    "w": "pay?",
+    "s": 0.64
+   }
+  ]
+ },
+ {
+  "name": "s1",
+  "spoken": "Your government-verified ID, always with you.",
+  "dur": 2.404,
+  "asr": [
+   {
+    "w": "Your",
+    "s": 0.0
+   },
+   {
+    "w": "government",
+    "s": 0.24
+   },
+   {
+    "w": "verified",
+    "s": 0.64
+   },
+   {
+    "w": "id,",
+    "s": 1.12
+   },
+   {
+    "w": "always",
+    "s": 1.68
+   },
+   {
+    "w": "with",
+    "s": 1.92
+   },
+   {
+    "w": "you.",
+    "s": 2.08
+   }
+  ]
+ },
+ {
+  "name": "s2",
+  "spoken": "Scan any QR code, confirm with Face ID, and you're done. Zero hidden fees.",
+  "dur": 4.486,
+  "asr": [
+   {
+    "w": "Scan",
+    "s": 0.0
+   },
+   {
+    "w": "any",
+    "s": 0.4
+   },
+   {
+    "w": "QR",
+    "s": 0.56
+   },
+   {
+    "w": "code,",
+    "s": 0.88
+   },
+   {
+    "w": "confirm",
+    "s": 1.28
+   },
+   {
+    "w": "with",
+    "s": 1.68
+   },
+   {
+    "w": "face",
+    "s": 1.84
+   },
+   {
+    "w": "id,",
+    "s": 2.16
+   },
+   {
+    "w": "and",
+    "s": 2.56
+   },
+   {
+    "w": "you're",
+    "s": 2.72
+   },
+   {
+    "w": "done.",
+    "s": 2.88
+   },
+   {
+    "w": "Zero",
+    "s": 3.28
+   },
+   {
+    "w": "hidden",
+    "s": 3.68
+   },
+   {
+    "w": "fees.",
+    "s": 4.0
+   }
+  ]
+ },
+ {
+  "name": "s3",
+  "spoken": "Upload a document once. It's verified, encrypted, and ready whenever you need it.",
+  "dur": 4.389,
+  "asr": [
+   {
+    "w": "Upload",
+    "s": 0.0
+   },
+   {
+    "w": "a",
+    "s": 0.48
+   },
+   {
+    "w": "document",
+    "s": 0.64
+   },
+   {
+    "w": "once,",
+    "s": 1.04
+   },
+   {
+    "w": "it's",
+    "s": 1.52
+   },
+   {
+    "w": "verified,",
+    "s": 1.76
+   },
+   {
+    "w": "encrypted,",
+    "s": 2.4
+   },
+   {
+    "w": "and",
+    "s": 3.12
+   },
+   {
+    "w": "ready",
+    "s": 3.28
+   },
+   {
+    "w": "whenever",
+    "s": 3.52
+   },
+   {
+    "w": "you",
+    "s": 3.84
+   },
+   {
+    "w": "need",
+    "s": 3.92
+   },
+   {
+    "w": "it.",
+    "s": 4.08
+   }
+  ]
+ },
+ {
+  "name": "s4",
+  "spoken": "Prove you're over twenty-one, without revealing your birthday. Share the proof, never the document.",
+  "dur": 4.792,
+  "asr": [
+   {
+    "w": "Prove",
+    "s": 0.0
+   },
+   {
+    "w": "you're",
+    "s": 0.32
+   },
+   {
+    "w": "over",
+    "s": 0.56
+   },
+   {
+    "w": "21",
+    "s": 0.72
+   },
+   {
+    "w": "without",
+    "s": 1.36
+   },
+   {
+    "w": "revealing",
+    "s": 1.68
+   },
+   {
+    "w": "your",
+    "s": 2.16
+   },
+   {
+    "w": "birthday.",
+    "s": 2.32
+   },
+   {
+    "w": "Share",
+    "s": 2.96
+   },
+   {
+    "w": "the",
+    "s": 3.2
+   },
+   {
+    "w": "proof,",
+    "s": 3.36
+   },
+   {
+    "w": "never",
+    "s": 3.84
+   },
+   {
+    "w": "the",
+    "s": 4.08
+   },
+   {
+    "w": "document.",
+    "s": 4.24
+   }
+  ]
+ },
+ {
+  "name": "s5",
+  "spoken": "Every payment, in plain sight. Search, filter and export in seconds.",
+  "dur": 3.957,
+  "asr": [
+   {
+    "w": "Every",
+    "s": 0.0
+   },
+   {
+    "w": "payment",
+    "s": 0.32
+   },
+   {
+    "w": "in",
+    "s": 0.8
+   },
+   {
+    "w": "plain",
+    "s": 1.04
+   },
+   {
+    "w": "sight.",
+    "s": 1.36
+   },
+   {
+    "w": "Search,",
+    "s": 1.84
+   },
+   {
+    "w": "filter",
+    "s": 2.24
+   },
+   {
+    "w": "and",
+    "s": 2.64
+   },
+   {
+    "w": "export",
+    "s": 2.8
+   },
+   {
+    "w": "in",
+    "s": 3.28
+   },
+   {
+    "w": "seconds.",
+    "s": 3.44
+   }
+  ]
+ },
+ {
+  "name": "s6",
+  "spoken": "Your balance, rewards and linked accounts, all in one wallet.",
+  "dur": 3.493,
+  "asr": [
+   {
+    "w": "Your",
+    "s": 0.0
+   },
+   {
+    "w": "balance,",
+    "s": 0.24
+   },
+   {
+    "w": "rewards,",
+    "s": 0.8
+   },
+   {
+    "w": "and",
+    "s": 1.28
+   },
+   {
+    "w": "linked",
+    "s": 1.44
+   },
+   {
+    "w": "accounts,",
+    "s": 1.76
+   },
+   {
+    "w": "all",
+    "s": 2.32
+   },
+   {
+    "w": "in",
+    "s": 2.56
+   },
+   {
+    "w": "one",
+    "s": 2.72
+   },
+   {
+    "w": "wallet.",
+    "s": 2.88
+   }
+  ]
+ },
+ {
+  "name": "s7",
+  "spoken": "Face ID and two-fifty-six-bit encryption, fully on your device.",
+  "dur": 3.557,
+  "asr": [
+   {
+    "w": "Face",
+    "s": 0.0
+   },
+   {
+    "w": "id",
+    "s": 0.4
+   },
+   {
+    "w": "and",
+    "s": 0.64
+   },
+   {
+    "w": "256-bit",
+    "s": 0.8
+   },
+   {
+    "w": "encryption",
+    "s": 1.76
+   },
+   {
+    "w": "fully",
+    "s": 2.32
+   },
+   {
+    "w": "on",
+    "s": 2.64
+   },
+   {
+    "w": "your",
+    "s": 2.8
+   },
+   {
+    "w": "device.",
+    "s": 2.96
+   }
+  ]
+ },
+ {
+  "name": "s8",
+  "spoken": "And you stay in control of your access, devices and privacy.",
+  "dur": 3.429,
+  "asr": [
+   {
+    "w": "and",
+    "s": 0.0
+   },
+   {
+    "w": "you",
+    "s": 0.24
+   },
+   {
+    "w": "stay",
+    "s": 0.4
+   },
+   {
+    "w": "in",
+    "s": 0.56
+   },
+   {
+    "w": "control",
+    "s": 0.72
+   },
+   {
+    "w": "of",
+    "s": 1.04
+   },
+   {
+    "w": "your",
+    "s": 1.2
+   },
+   {
+    "w": "access,",
+    "s": 1.36
+   },
+   {
+    "w": "devices",
+    "s": 2.0
+   },
+   {
+    "w": "and",
+    "s": 2.64
+   },
+   {
+    "w": "privacy.",
+    "s": 2.8
+   }
+  ]
+ },
+ {
+  "name": "outro",
+  "spoken": "Digipay. Your identity. Your money. One secure app.",
+  "dur": 3.12,
+  "asr": [
+   {
+    "w": "Did",
+    "s": 0.0
+   },
+   {
+    "w": "you",
+    "s": 0.24
+   },
+   {
+    "w": "pay",
+    "s": 0.32
+   },
+   {
+    "w": "your",
+    "s": 0.64
+   },
+   {
+    "w": "identity?",
+    "s": 0.8
+   },
+   {
+    "w": "Your",
+    "s": 1.52
+   },
+   {
+    "w": "money",
+    "s": 1.68
+   },
+   {
+    "w": "one",
+    "s": 2.08
+   },
+   {
+    "w": "secure",
+    "s": 2.4
+   },
+   {
+    "w": "app.",
+    "s": 2.72
+   }
+  ]
+ }
+]
