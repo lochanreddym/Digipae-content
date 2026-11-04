@@ -1,0 +1,529 @@
+[
+ {
+  "name": "v1",
+  "spoken": "Every time you apply for a public service, you may be asked for the same information again.",
+  "dur": 5.113,
+  "asr": [
+   {
+    "w": "Every",
+    "s": 0.0
+   },
+   {
+    "w": "time",
+    "s": 0.4
+   },
+   {
+    "w": "you",
+    "s": 0.64
+   },
+   {
+    "w": "apply",
+    "s": 0.8
+   },
+   {
+    "w": "for",
+    "s": 1.2
+   },
+   {
+    "w": "a",
+    "s": 1.36
+   },
+   {
+    "w": "public",
+    "s": 1.52
+   },
+   {
+    "w": "service,",
+    "s": 1.92
+   },
+   {
+    "w": "you",
+    "s": 2.64
+   },
+   {
+    "w": "may",
+    "s": 2.8
+   },
+   {
+    "w": "be",
+    "s": 2.96
+   },
+   {
+    "w": "asked",
+    "s": 3.12
+   },
+   {
+    "w": "for",
+    "s": 3.44
+   },
+   {
+    "w": "the",
+    "s": 3.68
+   },
+   {
+    "w": "same",
+    "s": 3.84
+   },
+   {
+    "w": "information",
+    "s": 4.08
+   },
+   {
+    "w": "again.",
+    "s": 4.64
+   }
+  ]
+ },
+ {
+  "name": "v2",
+  "spoken": "Identity. Address. Income. Documents. Over and over.",
+  "dur": 3.872,
+  "asr": [
+   {
+    "w": "Identity,",
+    "s": 0.16
+   },
+   {
+    "w": "address,",
+    "s": 0.72
+   },
+   {
+    "w": "income,",
+    "s": 1.28
+   },
+   {
+    "w": "documents,",
+    "s": 2.08
+   },
+   {
+    "w": "over",
+    "s": 2.88
+   },
+   {
+    "w": "and",
+    "s": 3.2
+   },
+   {
+    "w": "over.",
+    "s": 3.44
+   }
+  ]
+ },
+ {
+  "name": "v3",
+  "spoken": "Digipay is exploring a consent-based connection layer for government data.",
+  "dur": 4.532,
+  "asr": [
+   {
+    "w": "Digipay",
+    "s": 0.0
+   },
+   {
+    "w": "is",
+    "s": 0.8
+   },
+   {
+    "w": "exploring",
+    "s": 1.04
+   },
+   {
+    "w": "consent-based",
+    "s": 1.76
+   },
+   {
+    "w": "connection",
+    "s": 2.64
+   },
+   {
+    "w": "layer",
+    "s": 3.12
+   },
+   {
+    "w": "for",
+    "s": 3.52
+   },
+   {
+    "w": "government",
+    "s": 3.68
+   },
+   {
+    "w": "data.",
+    "s": 4.08
+   }
+  ]
+ },
+ {
+  "name": "v4",
+  "spoken": "You see what information is requested. You decide what can be shared.",
+  "dur": 4.061,
+  "asr": [
+   {
+    "w": "You",
+    "s": 0.0
+   },
+   {
+    "w": "see",
+    "s": 0.24
+   },
+   {
+    "w": "what",
+    "s": 0.48
+   },
+   {
+    "w": "information",
+    "s": 0.64
+   },
+   {
+    "w": "is",
+    "s": 1.28
+   },
+   {
+    "w": "requested.",
+    "s": 1.52
+   },
+   {
+    "w": "You",
+    "s": 2.4
+   },
+   {
+    "w": "decide",
+    "s": 2.64
+   },
+   {
+    "w": "what",
+    "s": 3.04
+   },
+   {
+    "w": "can",
+    "s": 3.28
+   },
+   {
+    "w": "be",
+    "s": 3.44
+   },
+   {
+    "w": "shared.",
+    "s": 3.52
+   }
+  ]
+ },
+ {
+  "name": "v5",
+  "spoken": "The vision is simple: verified information that can be reused when you choose, instead of starting from zero every time.",
+  "dur": 7.235,
+  "asr": [
+   {
+    "w": "The",
+    "s": 0.0
+   },
+   {
+    "w": "vision",
+    "s": 0.24
+   },
+   {
+    "w": "is",
+    "s": 0.64
+   },
+   {
+    "w": "simple,",
+    "s": 0.8
+   },
+   {
+    "w": "verified",
+    "s": 1.44
+   },
+   {
+    "w": "information",
+    "s": 2.08
+   },
+   {
+    "w": "that",
+    "s": 2.64
+   },
+   {
+    "w": "can",
+    "s": 2.8
+   },
+   {
+    "w": "be",
+    "s": 2.96
+   },
+   {
+    "w": "reused",
+    "s": 3.12
+   },
+   {
+    "w": "when",
+    "s": 3.68
+   },
+   {
+    "w": "you",
+    "s": 3.84
+   },
+   {
+    "w": "choose,",
+    "s": 4.08
+   },
+   {
+    "w": "instead",
+    "s": 4.72
+   },
+   {
+    "w": "of",
+    "s": 5.04
+   },
+   {
+    "w": "starting",
+    "s": 5.2
+   },
+   {
+    "w": "from",
+    "s": 5.52
+   },
+   {
+    "w": "zero",
+    "s": 5.76
+   },
+   {
+    "w": "every",
+    "s": 6.4
+   },
+   {
+    "w": "time.",
+    "s": 6.72
+   }
+  ]
+ },
+ {
+  "name": "v6",
+  "spoken": "Eventually, that could mean retrieving the right record from the right source, with user permission.",
+  "dur": 5.198,
+  "asr": [
+   {
+    "w": "Eventually,",
+    "s": 0.0
+   },
+   {
+    "w": "that",
+    "s": 0.8
+   },
+   {
+    "w": "could",
+    "s": 1.04
+   },
+   {
+    "w": "mean",
+    "s": 1.2
+   },
+   {
+    "w": "retrieving",
+    "s": 1.36
+   },
+   {
+    "w": "the",
+    "s": 1.92
+   },
+   {
+    "w": "right",
+    "s": 2.08
+   },
+   {
+    "w": "record",
+    "s": 2.32
+   },
+   {
+    "w": "from",
+    "s": 2.72
+   },
+   {
+    "w": "the",
+    "s": 2.88
+   },
+   {
+    "w": "right",
+    "s": 3.04
+   },
+   {
+    "w": "source,",
+    "s": 3.28
+   },
+   {
+    "w": "with",
+    "s": 3.84
+   },
+   {
+    "w": "user",
+    "s": 4.08
+   },
+   {
+    "w": "permission.",
+    "s": 4.48
+   }
+  ]
+ },
+ {
+  "name": "v7",
+  "spoken": "And helping people understand what programs may fit their situation, and what they'll need before they apply.",
+  "dur": 6.136,
+  "asr": [
+   {
+    "w": "and",
+    "s": 0.0
+   },
+   {
+    "w": "helping",
+    "s": 0.32
+   },
+   {
+    "w": "people",
+    "s": 0.88
+   },
+   {
+    "w": "understand",
+    "s": 1.2
+   },
+   {
+    "w": "what",
+    "s": 1.52
+   },
+   {
+    "w": "programs",
+    "s": 1.84
+   },
+   {
+    "w": "may",
+    "s": 2.56
+   },
+   {
+    "w": "fit",
+    "s": 2.8
+   },
+   {
+    "w": "their",
+    "s": 3.04
+   },
+   {
+    "w": "situation",
+    "s": 3.28
+   },
+   {
+    "w": "and",
+    "s": 4.08
+   },
+   {
+    "w": "what",
+    "s": 4.32
+   },
+   {
+    "w": "they'll",
+    "s": 4.48
+   },
+   {
+    "w": "need",
+    "s": 4.88
+   },
+   {
+    "w": "before",
+    "s": 5.12
+   },
+   {
+    "w": "they",
+    "s": 5.36
+   },
+   {
+    "w": "apply.",
+    "s": 5.52
+   }
+  ]
+ },
+ {
+  "name": "v8",
+  "spoken": "We're building toward infrastructure that helps people and public services connect more simply.",
+  "dur": 5.271,
+  "asr": [
+   {
+    "w": "We're",
+    "s": 0.0
+   },
+   {
+    "w": "building",
+    "s": 0.32
+   },
+   {
+    "w": "toward",
+    "s": 0.72
+   },
+   {
+    "w": "infrastructure",
+    "s": 1.04
+   },
+   {
+    "w": "that",
+    "s": 1.92
+   },
+   {
+    "w": "helps",
+    "s": 2.16
+   },
+   {
+    "w": "people",
+    "s": 2.48
+   },
+   {
+    "w": "and",
+    "s": 2.72
+   },
+   {
+    "w": "public",
+    "s": 2.96
+   },
+   {
+    "w": "services",
+    "s": 3.36
+   },
+   {
+    "w": "connect",
+    "s": 4.0
+   },
+   {
+    "w": "more",
+    "s": 4.48
+   },
+   {
+    "w": "simply.",
+    "s": 4.64
+   }
+  ]
+ },
+ {
+  "name": "v9",
+  "spoken": "Digipay. Building toward Plaid for government.",
+  "dur": 2.613,
+  "asr": [
+   {
+    "w": "Digipay",
+    "s": 0.0
+   },
+   {
+    "w": "building",
+    "s": 0.88
+   },
+   {
+    "w": "toward",
+    "s": 1.2
+   },
+   {
+    "w": "plaid",
+    "s": 1.44
+   },
+   {
+    "w": "for",
+    "s": 1.92
+   },
+   {
+    "w": "government.",
+    "s": 2.08
+   }
+  ]
+ }
+]
