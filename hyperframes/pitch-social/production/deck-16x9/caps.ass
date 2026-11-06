@@ -1,0 +1,69 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Inter SemiBold,38,&H00FBF8F4,&H00FFFFFF,&HE0170D05,&H80000000,0,0,0,0,100,100,0,0,3,14,0,2,200,200,22,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.40,0:00:04.14,Cap,,0,0,0,,DigiPae is building the connectivity layer for government services.
+Dialogue: 0,0:00:05.30,0:00:08.42,Cap,,0,0,0,,Today, government services are connected by paperwork,
+Dialogue: 0,0:00:08.42,0:00:11.65,Cap,,0,0,0,,not infrastructure. One applicant moves between portals,
+Dialogue: 0,0:00:11.65,0:00:13.73,Cap,,0,0,0,,each with its own account and rules,
+Dialogue: 0,0:00:13.73,0:00:15.40,Cap,,0,0,0,,and enters the same identity,
+Dialogue: 0,0:00:15.40,0:00:17.70,Cap,,0,0,0,,address, and income details every time.
+Dialogue: 0,0:00:18.87,0:00:20.53,Cap,,0,0,0,,That friction has real costs.
+Dialogue: 0,0:00:20.53,0:00:23.11,Cap,,0,0,0,,In the final month of the Medicaid unwinding,
+Dialogue: 0,0:00:23.11,0:00:26.32,Cap,,0,0,0,,about 2 in 3 disenrollments were for procedural reasons.
+Dialogue: 0,0:00:26.32,0:00:29.70,Cap,,0,0,0,,Benefit programs ask for similar information about the same
+Dialogue: 0,0:00:29.70,0:00:32.85,Cap,,0,0,0,,people. And the public spends an estimated 10.5 billion
+Dialogue: 0,0:00:32.85,0:00:34.85,Cap,,0,0,0,,hours a year on federal paperwork.
+Dialogue: 0,0:00:36.00,0:00:40.04,Cap,,0,0,0,,DigiPae is one consent-based connection for many government workflows.
+Dialogue: 0,0:00:40.04,0:00:41.83,Cap,,0,0,0,,Authorized sources on one side.
+Dialogue: 0,0:00:41.83,0:00:44.83,Cap,,0,0,0,,The organizations helping people apply on the other.
+Dialogue: 0,0:00:44.83,0:00:46.56,Cap,,0,0,0,,In between, we handle consent,
+Dialogue: 0,0:00:46.56,0:00:48.46,Cap,,0,0,0,,document retrieval, verification,
+Dialogue: 0,0:00:48.46,0:00:49.62,Cap,,0,0,0,,and normalized data,
+Dialogue: 0,0:00:49.62,0:00:51.92,Cap,,0,0,0,,only where access is legally permitted.
+Dialogue: 0,0:00:53.07,0:00:54.03,Cap,,0,0,0,,For the applicant,
+Dialogue: 0,0:00:54.03,0:00:55.53,Cap,,0,0,0,,that means authorizing once,
+Dialogue: 0,0:00:55.53,0:00:58.74,Cap,,0,0,0,,instead of repeating forms and collecting documents by hand.
+Dialogue: 0,0:00:58.74,0:01:01.47,Cap,,0,0,0,,We will measure the time saved with design partners
+Dialogue: 0,0:01:01.47,0:01:02.86,Cap,,0,0,0,,before we claim a number.
+Dialogue: 0,0:01:04.14,0:01:05.79,Cap,,0,0,0,,Here's the app, today.
+Dialogue: 0,0:01:05.87,0:01:08.16,Cap,,0,0,0,,Sign in with just your phone number.
+Dialogue: 0,0:01:08.51,0:01:11.09,Cap,,0,0,0,,A one-time code confirms it's really you.
+Dialogue: 0,0:01:11.17,0:01:14.75,Cap,,0,0,0,,Before anything happens, you see exactly what you're agreeing to.
+Dialogue: 0,0:01:14.81,0:01:16.86,Cap,,0,0,0,,Then you lock it with your own PIN.
+Dialogue: 0,0:01:17.71,0:01:19.79,Cap,,0,0,0,,Your home screen holds your digital ID,
+Dialogue: 0,0:01:19.79,0:01:21.34,Cap,,0,0,0,,ready to verify.
+Dialogue: 0,0:01:21.41,0:01:23.99,Cap,,0,0,0,,Documents are organized by category.
+Dialogue: 0,0:01:24.07,0:01:26.55,Cap,,0,0,0,,Government IDs alone covers licenses,
+Dialogue: 0,0:01:26.55,0:01:29.75,Cap,,0,0,0,,passports, green cards, work permits, and more.
+Dialogue: 0,0:01:29.84,0:01:32.96,Cap,,0,0,0,,Pulling a license straight from the issuer is coming soon.
+Dialogue: 0,0:01:32.96,0:01:35.48,Cap,,0,0,0,,For now, you upload a copy to your vault.
+Dialogue: 0,0:01:35.54,0:01:38.50,Cap,,0,0,0,,Consent first. Only where access is permitted.
+Dialogue: 0,0:01:40.67,0:01:42.81,Cap,,0,0,0,,For customers, it's one integration:
+Dialogue: 0,0:01:42.81,0:01:45.31,Cap,,0,0,0,,consent, documents, identity verification,
+Dialogue: 0,0:01:45.31,0:01:47.57,Cap,,0,0,0,,eligibility workflows, developer APIs,
+Dialogue: 0,0:01:47.57,0:01:48.94,Cap,,0,0,0,,and audit and security.
+Dialogue: 0,0:01:48.94,0:01:50.42,Cap,,0,0,0,,Some of it is prototyped,
+Dialogue: 0,0:01:50.42,0:01:51.79,Cap,,0,0,0,,some is in development,
+Dialogue: 0,0:01:51.79,0:01:53.03,Cap,,0,0,0,,and some is planned.
+Dialogue: 0,0:01:54.17,0:01:58.19,Cap,,0,0,0,,We start with benefits technology providers and navigation nonprofits.
+Dialogue: 0,0:01:58.19,0:02:00.08,Cap,,0,0,0,,Then we expand to health centers,
+Dialogue: 0,0:02:00.08,0:02:02.78,Cap,,0,0,0,,Medicaid plans, and community action agencies.
+Dialogue: 0,0:02:03.93,0:02:05.99,Cap,,0,0,0,,Built bottom up from public counts,
+Dialogue: 0,0:02:05.99,0:02:09.27,Cap,,0,0,0,,our initial segments represent about $92 million a year,
+Dialogue: 0,0:02:09.27,0:02:13.31,Cap,,0,0,0,,at illustrative contract values we will replace with discovery data.
+Dialogue: 0,0:02:14.47,0:02:16.10,Cap,,0,0,0,,Login.gov, ID.me, Equifax,
+Dialogue: 0,0:02:16.10,0:02:19.13,Cap,,0,0,0,,Truv, Propel, and Plaid each solve part of this,
+Dialogue: 0,0:02:19.13,0:02:21.14,Cap,,0,0,0,,and many are potential partners.
+Dialogue: 0,0:02:21.14,0:02:26.29,Cap,,0,0,0,,Our focus is consent-based connectivity for government documents and eligibility.
+Dialogue: 0,0:02:27.43,0:02:30.19,Cap,,0,0,0,,Government services should be easier to connect to,
+Dialogue: 0,0:02:30.19,0:02:31.22,Cap,,0,0,0,,easier to navigate,
+Dialogue: 0,0:02:31.22,0:02:32.57,Cap,,0,0,0,,and easier to build upon.
+Dialogue: 0,0:02:32.57,0:02:35.49,Cap,,0,0,0,,That's DigiPae. Building toward Plaid for government.

@@ -1,0 +1,18 @@
+[
+ ["a1","Applying for a public service still means starting from zero."],
+ ["a2","Three portals. Three accounts. The same identity, address, and income, typed in again every time."],
+ ["a3","In the final month of the Medicaid unwinding, about two in three people who lost coverage lost it for paperwork reasons."],
+ ["a4","Finance got a connection layer. Government services never did. Digipay is building it. Think Plaid, but for government."],
+ ["b1","Here's the app, today."],
+ ["b2","Sign in with just your phone number."],
+ ["b3","A one-time code confirms it's really you."],
+ ["b4","Before anything happens, you see exactly what you're agreeing to."],
+ ["b5","Then you lock it with your own pin."],
+ ["b6","Your home screen holds your digital ID, ready to verify."],
+ ["b7","Documents are organized by category."],
+ ["b8","Government IDs alone covers licenses, passports, green cards, work permits, and more."],
+ ["b9","Pulling a license straight from the issuer is coming soon. For now, you upload a copy to your vault."],
+ ["b10","Consent first. Only where access is permitted."],
+ ["c1","One consent-based connection for government documents, verification, and eligibility."],
+ ["c2","Digipay. Building toward Plaid for government. Follow the build."]
+]

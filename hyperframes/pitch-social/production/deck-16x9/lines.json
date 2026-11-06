@@ -1,0 +1,1196 @@
+[
+ {
+  "name": "d01",
+  "spoken": "Digipay is building the connectivity layer for government services.",
+  "dur": 3.686,
+  "asr": [
+   {
+    "w": "Digipay",
+    "s": 0.0
+   },
+   {
+    "w": "is",
+    "s": 0.8
+   },
+   {
+    "w": "building",
+    "s": 0.96
+   },
+   {
+    "w": "the",
+    "s": 1.28
+   },
+   {
+    "w": "connectivity",
+    "s": 1.44
+   },
+   {
+    "w": "layer",
+    "s": 2.08
+   },
+   {
+    "w": "for",
+    "s": 2.4
+   },
+   {
+    "w": "government",
+    "s": 2.56
+   },
+   {
+    "w": "services.",
+    "s": 2.96
+   }
+  ]
+ },
+ {
+  "name": "d02",
+  "spoken": "Today, government services are connected by paperwork, not infrastructure. One applicant moves between portals, each with its own account and rules, and enters the same identity, address, and income details every time.",
+  "dur": 12.351,
+  "asr": [
+   {
+    "w": "Today,",
+    "s": 0.0
+   },
+   {
+    "w": "government",
+    "s": 0.56
+   },
+   {
+    "w": "services",
+    "s": 1.04
+   },
+   {
+    "w": "are",
+    "s": 1.6
+   },
+   {
+    "w": "connected",
+    "s": 1.84
+   },
+   {
+    "w": "by",
+    "s": 2.32
+   },
+   {
+    "w": "paperwork,",
+    "s": 2.48
+   },
+   {
+    "w": "not",
+    "s": 3.28
+   },
+   {
+    "w": "infrastructure.",
+    "s": 3.52
+   },
+   {
+    "w": "One",
+    "s": 4.4
+   },
+   {
+    "w": "applicant",
+    "s": 4.64
+   },
+   {
+    "w": "moves",
+    "s": 5.04
+   },
+   {
+    "w": "between",
+    "s": 5.36
+   },
+   {
+    "w": "portals,",
+    "s": 5.68
+   },
+   {
+    "w": "each",
+    "s": 6.32
+   },
+   {
+    "w": "with",
+    "s": 6.56
+   },
+   {
+    "w": "its",
+    "s": 6.72
+   },
+   {
+    "w": "own",
+    "s": 6.88
+   },
+   {
+    "w": "account",
+    "s": 7.12
+   },
+   {
+    "w": "and",
+    "s": 7.44
+   },
+   {
+    "w": "rules,",
+    "s": 7.68
+   },
+   {
+    "w": "and",
+    "s": 8.24
+   },
+   {
+    "w": "enters",
+    "s": 8.4
+   },
+   {
+    "w": "the",
+    "s": 8.8
+   },
+   {
+    "w": "same",
+    "s": 8.96
+   },
+   {
+    "w": "identity,",
+    "s": 9.2
+   },
+   {
+    "w": "address",
+    "s": 9.92
+   },
+   {
+    "w": "and",
+    "s": 10.56
+   },
+   {
+    "w": "income",
+    "s": 10.72
+   },
+   {
+    "w": "details",
+    "s": 11.12
+   },
+   {
+    "w": "every",
+    "s": 11.68
+   },
+   {
+    "w": "time.",
+    "s": 11.92
+   }
+  ]
+ },
+ {
+  "name": "d03",
+  "spoken": "That friction has real costs. In the final month of the Medicaid unwinding, about two in three disenrollments were for procedural reasons. Benefit programs ask for similar information about the same people. And the public spends an estimated ten and a half billion hours a year on federal paperwork.",
+  "dur": 15.93,
+  "asr": [
+   {
+    "w": "That",
+    "s": 0.0
+   },
+   {
+    "w": "friction",
+    "s": 0.24
+   },
+   {
+    "w": "has",
+    "s": 0.64
+   },
+   {
+    "w": "real",
+    "s": 0.88
+   },
+   {
+    "w": "costs.",
+    "s": 1.12
+   },
+   {
+    "w": "In",
+    "s": 1.68
+   },
+   {
+    "w": "the",
+    "s": 1.84
+   },
+   {
+    "w": "final",
+    "s": 2.0
+   },
+   {
+    "w": "month",
+    "s": 2.24
+   },
+   {
+    "w": "of",
+    "s": 2.48
+   },
+   {
+    "w": "the",
+    "s": 2.56
+   },
+   {
+    "w": "Medicaid",
+    "s": 2.72
+   },
+   {
+    "w": "unwinding,",
+    "s": 3.36
+   },
+   {
+    "w": "about",
+    "s": 4.08
+   },
+   {
+    "w": "two",
+    "s": 4.4
+   },
+   {
+    "w": "in",
+    "s": 4.64
+   },
+   {
+    "w": "three",
+    "s": 4.88
+   },
+   {
+    "w": "disenrollments",
+    "s": 5.12
+   },
+   {
+    "w": "were",
+    "s": 5.92
+   },
+   {
+    "w": "for",
+    "s": 6.08
+   },
+   {
+    "w": "procedural",
+    "s": 6.24
+   },
+   {
+    "w": "reasons.",
+    "s": 6.8
+   },
+   {
+    "w": "Benefit",
+    "s": 7.28
+   },
+   {
+    "w": "programs",
+    "s": 7.84
+   },
+   {
+    "w": "ask",
+    "s": 8.4
+   },
+   {
+    "w": "for",
+    "s": 8.64
+   },
+   {
+    "w": "similar",
+    "s": 8.8
+   },
+   {
+    "w": "information",
+    "s": 9.28
+   },
+   {
+    "w": "about",
+    "s": 9.84
+   },
+   {
+    "w": "the",
+    "s": 10.08
+   },
+   {
+    "w": "same",
+    "s": 10.24
+   },
+   {
+    "w": "people,",
+    "s": 10.48
+   },
+   {
+    "w": "and",
+    "s": 10.96
+   },
+   {
+    "w": "the",
+    "s": 11.12
+   },
+   {
+    "w": "public",
+    "s": 11.2
+   },
+   {
+    "w": "spends",
+    "s": 11.6
+   },
+   {
+    "w": "an",
+    "s": 11.92
+   },
+   {
+    "w": "estimated",
+    "s": 12.08
+   },
+   {
+    "w": "10.5",
+    "s": 12.64
+   },
+   {
+    "w": "billion",
+    "s": 13.36
+   },
+   {
+    "w": "hours",
+    "s": 13.84
+   },
+   {
+    "w": "a",
+    "s": 14.24
+   },
+   {
+    "w": "year",
+    "s": 14.48
+   },
+   {
+    "w": "on",
+    "s": 14.72
+   },
+   {
+    "w": "federal",
+    "s": 14.88
+   },
+   {
+    "w": "paperwork.",
+    "s": 15.36
+   }
+  ]
+ },
+ {
+  "name": "d04",
+  "spoken": "Digipay is one consent-based connection for many government workflows. Authorized sources on one side. The organizations helping people apply on the other. In between, we handle consent, document retrieval, verification, and normalized data, only where access is legally permitted.",
+  "dur": 15.867,
+  "asr": [
+   {
+    "w": "Digipay",
+    "s": 0.0
+   },
+   {
+    "w": "is",
+    "s": 0.72
+   },
+   {
+    "w": "one",
+    "s": 0.88
+   },
+   {
+    "w": "consent-based",
+    "s": 1.12
+   },
+   {
+    "w": "connection",
+    "s": 2.0
+   },
+   {
+    "w": "for",
+    "s": 2.56
+   },
+   {
+    "w": "many",
+    "s": 2.72
+   },
+   {
+    "w": "government",
+    "s": 2.96
+   },
+   {
+    "w": "workflows,",
+    "s": 3.36
+   },
+   {
+    "w": "authorized",
+    "s": 4.16
+   },
+   {
+    "w": "sources",
+    "s": 4.72
+   },
+   {
+    "w": "on",
+    "s": 5.12
+   },
+   {
+    "w": "one",
+    "s": 5.28
+   },
+   {
+    "w": "side,",
+    "s": 5.44
+   },
+   {
+    "w": "the",
+    "s": 5.92
+   },
+   {
+    "w": "organizations",
+    "s": 6.08
+   },
+   {
+    "w": "helping",
+    "s": 7.04
+   },
+   {
+    "w": "people",
+    "s": 7.36
+   },
+   {
+    "w": "apply",
+    "s": 7.68
+   },
+   {
+    "w": "on",
+    "s": 8.08
+   },
+   {
+    "w": "the",
+    "s": 8.24
+   },
+   {
+    "w": "other.",
+    "s": 8.32
+   },
+   {
+    "w": "In",
+    "s": 8.72
+   },
+   {
+    "w": "between,",
+    "s": 8.96
+   },
+   {
+    "w": "we",
+    "s": 9.36
+   },
+   {
+    "w": "handle",
+    "s": 9.52
+   },
+   {
+    "w": "consent,",
+    "s": 9.92
+   },
+   {
+    "w": "document",
+    "s": 10.56
+   },
+   {
+    "w": "retrieval,",
+    "s": 11.04
+   },
+   {
+    "w": "verification,",
+    "s": 11.68
+   },
+   {
+    "w": "and",
+    "s": 12.56
+   },
+   {
+    "w": "normalized",
+    "s": 12.72
+   },
+   {
+    "w": "data,",
+    "s": 13.36
+   },
+   {
+    "w": "only",
+    "s": 13.92
+   },
+   {
+    "w": "where",
+    "s": 14.16
+   },
+   {
+    "w": "access",
+    "s": 14.32
+   },
+   {
+    "w": "is",
+    "s": 14.72
+   },
+   {
+    "w": "legally",
+    "s": 14.96
+   },
+   {
+    "w": "permitted.",
+    "s": 15.36
+   }
+  ]
+ },
+ {
+  "name": "d05",
+  "spoken": "For the applicant, that means authorizing once, instead of repeating forms and collecting documents by hand. We will measure the time saved with design partners before we claim a number.",
+  "dur": 9.744,
+  "asr": [
+   {
+    "w": "For",
+    "s": 0.0
+   },
+   {
+    "w": "the",
+    "s": 0.24
+   },
+   {
+    "w": "applicant,",
+    "s": 0.32
+   },
+   {
+    "w": "that",
+    "s": 0.88
+   },
+   {
+    "w": "means",
+    "s": 1.04
+   },
+   {
+    "w": "authorizing",
+    "s": 1.28
+   },
+   {
+    "w": "once.",
+    "s": 2.0
+   },
+   {
+    "w": "Instead",
+    "s": 2.48
+   },
+   {
+    "w": "of",
+    "s": 2.8
+   },
+   {
+    "w": "repeating",
+    "s": 2.96
+   },
+   {
+    "w": "forms",
+    "s": 3.52
+   },
+   {
+    "w": "and",
+    "s": 3.92
+   },
+   {
+    "w": "collecting",
+    "s": 4.16
+   },
+   {
+    "w": "documents",
+    "s": 4.56
+   },
+   {
+    "w": "by",
+    "s": 5.12
+   },
+   {
+    "w": "hand,",
+    "s": 5.28
+   },
+   {
+    "w": "we",
+    "s": 5.76
+   },
+   {
+    "w": "will",
+    "s": 5.92
+   },
+   {
+    "w": "measure",
+    "s": 6.08
+   },
+   {
+    "w": "the",
+    "s": 6.4
+   },
+   {
+    "w": "time",
+    "s": 6.56
+   },
+   {
+    "w": "saved",
+    "s": 6.88
+   },
+   {
+    "w": "with",
+    "s": 7.28
+   },
+   {
+    "w": "design",
+    "s": 7.52
+   },
+   {
+    "w": "partners",
+    "s": 7.92
+   },
+   {
+    "w": "before",
+    "s": 8.56
+   },
+   {
+    "w": "we",
+    "s": 8.8
+   },
+   {
+    "w": "claim",
+    "s": 8.88
+   },
+   {
+    "w": "a",
+    "s": 9.2
+   },
+   {
+    "w": "number.",
+    "s": 9.36
+   }
+  ]
+ },
+ {
+  "name": "d06",
+  "spoken": "For customers, it's one integration: consent, documents, identity verification, eligibility workflows, developer APIs, and audit and security. Some of it is prototyped, some is in development, and some is planned.",
+  "dur": 12.314,
+  "asr": [
+   {
+    "w": "For",
+    "s": 0.0
+   },
+   {
+    "w": "customers,",
+    "s": 0.24
+   },
+   {
+    "w": "it's",
+    "s": 0.88
+   },
+   {
+    "w": "one",
+    "s": 1.2
+   },
+   {
+    "w": "integration,",
+    "s": 1.44
+   },
+   {
+    "w": "consent",
+    "s": 2.24
+   },
+   {
+    "w": "documents,",
+    "s": 2.88
+   },
+   {
+    "w": "identity",
+    "s": 3.52
+   },
+   {
+    "w": "verification",
+    "s": 4.0
+   },
+   {
+    "w": "eligibility",
+    "s": 4.8
+   },
+   {
+    "w": "workflows,",
+    "s": 5.44
+   },
+   {
+    "w": "developer",
+    "s": 6.16
+   },
+   {
+    "w": "apis,",
+    "s": 6.72
+   },
+   {
+    "w": "and",
+    "s": 7.28
+   },
+   {
+    "w": "audit",
+    "s": 7.44
+   },
+   {
+    "w": "and",
+    "s": 7.84
+   },
+   {
+    "w": "security.",
+    "s": 8.0
+   },
+   {
+    "w": "Some",
+    "s": 8.64
+   },
+   {
+    "w": "of",
+    "s": 8.88
+   },
+   {
+    "w": "it",
+    "s": 8.96
+   },
+   {
+    "w": "is",
+    "s": 9.12
+   },
+   {
+    "w": "prototyped,",
+    "s": 9.28
+   },
+   {
+    "w": "some",
+    "s": 10.08
+   },
+   {
+    "w": "is",
+    "s": 10.32
+   },
+   {
+    "w": "in",
+    "s": 10.48
+   },
+   {
+    "w": "development",
+    "s": 10.64
+   },
+   {
+    "w": "and",
+    "s": 11.28
+   },
+   {
+    "w": "some",
+    "s": 11.44
+   },
+   {
+    "w": "is",
+    "s": 11.6
+   },
+   {
+    "w": "planned.",
+    "s": 11.76
+   }
+  ]
+ },
+ {
+  "name": "d07",
+  "spoken": "We start with benefits technology providers and navigation nonprofits. Then we expand to health centers, Medicaid plans, and community action agencies.",
+  "dur": 8.558,
+  "asr": [
+   {
+    "w": "We",
+    "s": 0.0
+   },
+   {
+    "w": "start",
+    "s": 0.24
+   },
+   {
+    "w": "with",
+    "s": 0.4
+   },
+   {
+    "w": "benefits",
+    "s": 0.56
+   },
+   {
+    "w": "technology",
+    "s": 1.2
+   },
+   {
+    "w": "providers",
+    "s": 1.84
+   },
+   {
+    "w": "and",
+    "s": 2.32
+   },
+   {
+    "w": "navigation",
+    "s": 2.48
+   },
+   {
+    "w": "nonprofits.",
+    "s": 3.12
+   },
+   {
+    "w": "Then",
+    "s": 4.08
+   },
+   {
+    "w": "we",
+    "s": 4.24
+   },
+   {
+    "w": "expand",
+    "s": 4.4
+   },
+   {
+    "w": "to",
+    "s": 4.8
+   },
+   {
+    "w": "health",
+    "s": 4.96
+   },
+   {
+    "w": "centers,",
+    "s": 5.28
+   },
+   {
+    "w": "Medicaid",
+    "s": 5.84
+   },
+   {
+    "w": "plans",
+    "s": 6.56
+   },
+   {
+    "w": "and",
+    "s": 6.96
+   },
+   {
+    "w": "community",
+    "s": 7.12
+   },
+   {
+    "w": "action",
+    "s": 7.52
+   },
+   {
+    "w": "agencies.",
+    "s": 7.84
+   }
+  ]
+ },
+ {
+  "name": "d09",
+  "spoken": "Built bottom up from public counts, our initial segments represent about ninety two million dollars a year, at illustrative contract values we will replace with discovery data.",
+  "dur": 9.328,
+  "asr": [
+   {
+    "w": "Built",
+    "s": 0.0
+   },
+   {
+    "w": "bottom-up",
+    "s": 0.32
+   },
+   {
+    "w": "from",
+    "s": 0.8
+   },
+   {
+    "w": "public",
+    "s": 0.96
+   },
+   {
+    "w": "counts,",
+    "s": 1.28
+   },
+   {
+    "w": "our",
+    "s": 1.84
+   },
+   {
+    "w": "initial",
+    "s": 2.0
+   },
+   {
+    "w": "segments",
+    "s": 2.4
+   },
+   {
+    "w": "represent",
+    "s": 2.96
+   },
+   {
+    "w": "about",
+    "s": 3.44
+   },
+   {
+    "w": "$92",
+    "s": 3.68
+   },
+   {
+    "w": "million",
+    "s": 4.4
+   },
+   {
+    "w": "a",
+    "s": 5.12
+   },
+   {
+    "w": "year",
+    "s": 5.28
+   },
+   {
+    "w": "at",
+    "s": 5.6
+   },
+   {
+    "w": "illustrative",
+    "s": 5.84
+   },
+   {
+    "w": "contract",
+    "s": 6.48
+   },
+   {
+    "w": "values",
+    "s": 6.96
+   },
+   {
+    "w": "we",
+    "s": 7.52
+   },
+   {
+    "w": "will",
+    "s": 7.68
+   },
+   {
+    "w": "replace",
+    "s": 7.84
+   },
+   {
+    "w": "with",
+    "s": 8.24
+   },
+   {
+    "w": "discovery",
+    "s": 8.4
+   },
+   {
+    "w": "data.",
+    "s": 8.88
+   }
+  ]
+ },
+ {
+  "name": "d10",
+  "spoken": "Login dot gov, ID dot me, Equifax, Truv, Propel, and Plaid each solve part of this, and many are potential partners. Our focus is consent-based connectivity for government documents and eligibility.",
+  "dur": 11.774,
+  "asr": [
+   {
+    "w": "Login.gov,",
+    "s": 0.0
+   },
+   {
+    "w": "id.me,",
+    "s": 1.12
+   },
+   {
+    "w": "Equifax,",
+    "s": 1.92
+   },
+   {
+    "w": "Truv,",
+    "s": 2.56
+   },
+   {
+    "w": "Propel,",
+    "s": 3.04
+   },
+   {
+    "w": "and",
+    "s": 3.52
+   },
+   {
+    "w": "Plaid",
+    "s": 3.6
+   },
+   {
+    "w": "each",
+    "s": 4.0
+   },
+   {
+    "w": "solve",
+    "s": 4.24
+   },
+   {
+    "w": "part",
+    "s": 4.56
+   },
+   {
+    "w": "of",
+    "s": 4.72
+   },
+   {
+    "w": "this,",
+    "s": 4.8
+   },
+   {
+    "w": "and",
+    "s": 5.2
+   },
+   {
+    "w": "many",
+    "s": 5.36
+   },
+   {
+    "w": "are",
+    "s": 5.68
+   },
+   {
+    "w": "potential",
+    "s": 5.92
+   },
+   {
+    "w": "partners.",
+    "s": 6.4
+   },
+   {
+    "w": "Our",
+    "s": 7.12
+   },
+   {
+    "w": "focus",
+    "s": 7.36
+   },
+   {
+    "w": "is",
+    "s": 7.76
+   },
+   {
+    "w": "consent-based",
+    "s": 8.08
+   },
+   {
+    "w": "connectivity",
+    "s": 8.88
+   },
+   {
+    "w": "for",
+    "s": 9.6
+   },
+   {
+    "w": "government",
+    "s": 9.84
+   },
+   {
+    "w": "documents",
+    "s": 10.24
+   },
+   {
+    "w": "and",
+    "s": 10.8
+   },
+   {
+    "w": "eligibility.",
+    "s": 10.96
+   }
+  ]
+ },
+ {
+  "name": "d13",
+  "spoken": "Government services should be easier to connect to, easier to navigate, and easier to build upon. That's Digipay. Building toward Plaid for government.",
+  "dur": 8.004,
+  "asr": [
+   {
+    "w": "Government",
+    "s": 0.0
+   },
+   {
+    "w": "services",
+    "s": 0.48
+   },
+   {
+    "w": "should",
+    "s": 1.04
+   },
+   {
+    "w": "be",
+    "s": 1.28
+   },
+   {
+    "w": "easier",
+    "s": 1.44
+   },
+   {
+    "w": "to",
+    "s": 1.76
+   },
+   {
+    "w": "connect",
+    "s": 1.92
+   },
+   {
+    "w": "to,",
+    "s": 2.32
+   },
+   {
+    "w": "easier",
+    "s": 2.72
+   },
+   {
+    "w": "to",
+    "s": 3.12
+   },
+   {
+    "w": "navigate,",
+    "s": 3.28
+   },
+   {
+    "w": "and",
+    "s": 3.92
+   },
+   {
+    "w": "easier",
+    "s": 4.08
+   },
+   {
+    "w": "to",
+    "s": 4.4
+   },
+   {
+    "w": "build",
+    "s": 4.56
+   },
+   {
+    "w": "upon.",
+    "s": 4.8
+   },
+   {
+    "w": "That's",
+    "s": 5.28
+   },
+   {
+    "w": "Digipay",
+    "s": 5.52
+   },
+   {
+    "w": "Building",
+    "s": 6.32
+   },
+   {
+    "w": "Toward",
+    "s": 6.64
+   },
+   {
+    "w": "Plaid",
+    "s": 6.88
+   },
+   {
+    "w": "for",
+    "s": 7.28
+   },
+   {
+    "w": "Government.",
+    "s": 7.44
+   }
+  ]
+ }
+]

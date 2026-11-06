@@ -1,0 +1,331 @@
+{
+ "end": 71.2333,
+ "vo": {
+  "a1": 0.3,
+  "a2": 3.849,
+  "a3": 10.0,
+  "a4": 16.951,
+  "b1": 24.253,
+  "b2": 25.987,
+  "b3": 28.62,
+  "b4": 31.287,
+  "b5": 34.92,
+  "b6": 37.82,
+  "b7": 41.52,
+  "b8": 44.187,
+  "b9": 49.953,
+  "b10": 55.653,
+  "c1": 60.35,
+  "c2": 65.77
+ },
+ "voEnd": {
+  "a1": 3.449,
+  "a2": 9.55,
+  "a3": 16.451,
+  "a4": 23.677,
+  "b1": 25.477,
+  "b2": 27.842,
+  "b3": 30.771,
+  "b4": 34.432,
+  "b5": 36.543,
+  "b6": 41.024,
+  "b7": 43.676,
+  "b8": 49.438,
+  "b9": 55.167,
+  "b10": 58.188,
+  "c1": 65.32,
+  "c2": 69.142
+ },
+ "scenes": {
+  "a1": 0,
+  "a2": 3.599,
+  "a3": 9.7,
+  "a4": 16.651,
+  "b": 24.1333,
+  "c": 59.9,
+  "fin": 65.42,
+  "end": 71.2333
+ },
+ "beats": {
+  "a1": {
+   "zero": 2.86
+  },
+  "a2": {
+   "p1": 3.849,
+   "acc": 4.729,
+   "id": 6.089,
+   "addr": 6.729,
+   "inc": 7.449,
+   "again": 8.489
+  },
+  "a3": {
+   "stat": 12.620000000000001,
+   "lost": 14.32,
+   "paper": 15.229999999999999
+  },
+  "a4": {
+   "fin": 16.951,
+   "gov": 18.711,
+   "dp": 20.450999999999997,
+   "think": 21.351
+  },
+  "b9": {
+   "soon": 52.173,
+   "vault": 52.973
+  },
+  "c1": {
+   "docs": 62.540000000000006,
+   "ver": 63.260000000000005,
+   "elig": 64.46000000000001
+  },
+  "c2": {
+   "word": 65.72,
+   "plaid": 66.68,
+   "follow": 68.12
+  }
+ },
+ "segs": [
+  {
+   "line": "b1",
+   "in": 1.6,
+   "out": 3.9,
+   "t": 24.1333,
+   "dur": 1.7333,
+   "speed": 1.3269,
+   "label": "Open the app"
+  },
+  {
+   "line": "b2",
+   "in": 8.7,
+   "out": 16.6,
+   "t": 25.8666,
+   "dur": 2.6333,
+   "speed": 3.0,
+   "label": "Sign in"
+  },
+  {
+   "line": "b3",
+   "in": 16.6,
+   "out": 23.0,
+   "t": 28.4999,
+   "dur": 2.6667,
+   "speed": 2.4,
+   "label": "Verify"
+  },
+  {
+   "line": "b4",
+   "in": 23.0,
+   "out": 27.3,
+   "t": 31.1666,
+   "dur": 3.6333,
+   "speed": 1.1835,
+   "label": "Consent"
+  },
+  {
+   "line": "b5",
+   "in": 27.3,
+   "out": 35.95,
+   "t": 34.7999,
+   "dur": 2.9,
+   "speed": 2.9828,
+   "label": "Secure PIN"
+  },
+  {
+   "line": "b6",
+   "in": 35.95,
+   "out": 41.15,
+   "t": 37.6999,
+   "dur": 3.7,
+   "speed": 1.4054,
+   "label": "Home"
+  },
+  {
+   "line": "b7",
+   "in": 41.15,
+   "out": 43.65,
+   "t": 41.3999,
+   "dur": 2.6667,
+   "speed": 0.9375,
+   "label": "Documents"
+  },
+  {
+   "line": "b8",
+   "in": 43.65,
+   "out": 55.4,
+   "t": 44.0666,
+   "dur": 5.7667,
+   "speed": 2.0376,
+   "label": "Government IDs"
+  },
+  {
+   "line": "b9",
+   "in": 55.4,
+   "out": 58.45,
+   "t": 49.8333,
+   "dur": 5.7,
+   "speed": 0.9,
+   "label": "Coming soon"
+  },
+  {
+   "line": "b10",
+   "in": 58.45,
+   "out": 71.6,
+   "t": 55.5333,
+   "dur": 4.3667,
+   "speed": 3.0,
+   "label": "Consent first"
+  }
+ ],
+ "captions": [
+  {
+   "text": "Applying for a public service",
+   "s": 0.22,
+   "e": 1.82,
+   "part": "a"
+  },
+  {
+   "text": "still means starting from zero.",
+   "s": 1.82,
+   "e": 3.769,
+   "part": "a"
+  },
+  {
+   "text": "Three portals. Three accounts.",
+   "s": 3.769,
+   "e": 5.609,
+   "part": "a"
+  },
+  {
+   "text": "The same identity, address, and income,",
+   "s": 5.609,
+   "e": 7.929,
+   "part": "a"
+  },
+  {
+   "text": "typed in again every time.",
+   "s": 7.929,
+   "e": 9.9,
+   "part": "a"
+  },
+  {
+   "text": "In the final month of the Medicaid unwinding,",
+   "s": 9.92,
+   "e": 12.32,
+   "part": "a"
+  },
+  {
+   "text": "about 2 in 3 people who lost coverage lost it for paperwork reasons.",
+   "s": 12.32,
+   "e": 16.801,
+   "part": "a"
+  },
+  {
+   "text": "Finance got a connection layer.",
+   "s": 16.871,
+   "e": 18.631,
+   "part": "a"
+  },
+  {
+   "text": "Government services never did.",
+   "s": 18.631,
+   "e": 20.471,
+   "part": "a"
+  },
+  {
+   "text": "DigiPae is building it. Think Plaid, but for government.",
+   "s": 20.471,
+   "e": 24.027,
+   "part": "a"
+  },
+  {
+   "text": "Here's the app, today.",
+   "s": 24.173,
+   "e": 25.827,
+   "part": "b"
+  },
+  {
+   "text": "Sign in with just your phone number.",
+   "s": 25.907,
+   "e": 28.192,
+   "part": "b"
+  },
+  {
+   "text": "A one-time code confirms it's really you.",
+   "s": 28.54,
+   "e": 31.121,
+   "part": "b"
+  },
+  {
+   "text": "Before anything happens, you see exactly what you're agreeing to.",
+   "s": 31.207,
+   "e": 34.782,
+   "part": "b"
+  },
+  {
+   "text": "Then you lock it with your own PIN.",
+   "s": 34.84,
+   "e": 36.893,
+   "part": "b"
+  },
+  {
+   "text": "Your home screen holds your digital ID,",
+   "s": 37.74,
+   "e": 39.82,
+   "part": "b"
+  },
+  {
+   "text": "ready to verify.",
+   "s": 39.82,
+   "e": 41.374,
+   "part": "b"
+  },
+  {
+   "text": "Documents are organized by category.",
+   "s": 41.44,
+   "e": 44.026,
+   "part": "b"
+  },
+  {
+   "text": "Government IDs alone covers licenses,",
+   "s": 44.107,
+   "e": 46.587,
+   "part": "b"
+  },
+  {
+   "text": "passports, green cards, work permits, and more.",
+   "s": 46.587,
+   "e": 49.788,
+   "part": "b"
+  },
+  {
+   "text": "Pulling a license straight from the issuer is coming soon.",
+   "s": 49.873,
+   "e": 52.993,
+   "part": "b"
+  },
+  {
+   "text": "For now, you upload a copy to your vault.",
+   "s": 52.993,
+   "e": 55.517,
+   "part": "b"
+  },
+  {
+   "text": "Consent first. Only where access is permitted.",
+   "s": 55.573,
+   "e": 58.538,
+   "part": "b"
+  },
+  {
+   "text": "One consent-based connection",
+   "s": 60.27,
+   "e": 61.95,
+   "part": "c"
+  },
+  {
+   "text": "for government documents, verification, and eligibility.",
+   "s": 61.95,
+   "e": 65.67,
+   "part": "c"
+  }
+ ]
+}

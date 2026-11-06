@@ -1,0 +1,12 @@
+[
+ ["d01","Digipay is building the connectivity layer for government services."],
+ ["d02","Today, government services are connected by paperwork, not infrastructure. One applicant moves between portals, each with its own account and rules, and enters the same identity, address, and income details every time."],
+ ["d03","That friction has real costs. In the final month of the Medicaid unwinding, about two in three disenrollments were for procedural reasons. Benefit programs ask for similar information about the same people. And the public spends an estimated ten and a half billion hours a year on federal paperwork."],
+ ["d04","Digipay is one consent-based connection for many government workflows. Authorized sources on one side. The organizations helping people apply on the other. In between, we handle consent, document retrieval, verification, and normalized data, only where access is legally permitted."],
+ ["d05","For the applicant, that means authorizing once, instead of repeating forms and collecting documents by hand. We will measure the time saved with design partners before we claim a number."],
+ ["d06","For customers, it's one integration: consent, documents, identity verification, eligibility workflows, developer APIs, and audit and security. Some of it is prototyped, some is in development, and some is planned."],
+ ["d07","We start with benefits technology providers and navigation nonprofits. Then we expand to health centers, Medicaid plans, and community action agencies."],
+ ["d09","Built bottom up from public counts, our initial segments represent about ninety two million dollars a year, at illustrative contract values we will replace with discovery data."],
+ ["d10","Login dot gov, ID dot me, Equifax, Truv, Propel, and Plaid each solve part of this, and many are potential partners. Our focus is consent-based connectivity for government documents and eligibility."],
+ ["d13","Government services should be easier to connect to, easier to navigate, and easier to build upon. That's Digipay. Building toward Plaid for government."]
+]
