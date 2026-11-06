@@ -1,0 +1,186 @@
+{
+ "end": 49.98,
+ "vo": {
+  "v1": 0.4,
+  "v2": 5.763,
+  "v3": 10.635,
+  "v4": 15.617,
+  "v5": 20.178,
+  "v6": 27.863,
+  "v7": 33.511,
+  "v8": 40.147,
+  "v9": 46.068
+ },
+ "voEnd": {
+  "v1": 5.513,
+  "v2": 9.635,
+  "v3": 15.167,
+  "v4": 19.678,
+  "v5": 27.413,
+  "v6": 33.061,
+  "v7": 39.647,
+  "v8": 45.418,
+  "v9": 48.681
+ },
+ "scenes": {
+  "s1": 0.0,
+  "s2": 5.663,
+  "s3": 10.235,
+  "s4": 15.317,
+  "s5": 19.828,
+  "s6": 27.512999999999998,
+  "s7": 33.161,
+  "s8": 39.747,
+  "fin": 45.518,
+  "end": 49.98
+ },
+ "beats": {
+  "s1": {
+   "type": 2.17,
+   "doc": 3.42,
+   "form4": 4.380000000000001
+  },
+  "s2": {
+   "l1": 5.923,
+   "l2": 6.483,
+   "l3": 7.043,
+   "l4": 7.843,
+   "rep": 8.643,
+   "silence": 9.685
+  },
+  "s3": {
+   "perm": 12.295,
+   "phone": 11.475000000000001
+  },
+  "s4": {
+   "data": 15.667000000000002,
+   "toggle": 17.237000000000002,
+   "press": 18.157,
+   "release": 19.087,
+   "perm": 18.257
+  },
+  "s5": {
+   "verify": 21.517999999999997,
+   "packet": 22.258,
+   "request": 23.148,
+   "tap": 24.208,
+   "reuse": 23.298
+  },
+  "s6": {
+   "request": 29.122999999999998,
+   "card": 30.033,
+   "approve": 31.893,
+   "tunnel": 32.593
+  },
+  "s7": {
+   "discover": 34.611,
+   "programs": 35.150999999999996,
+   "tap": 36.741,
+   "need": 38.241,
+   "apply": 38.931
+  },
+  "s8": {
+   "lines": 41.086999999999996,
+   "people": 42.527,
+   "services": 43.057,
+   "connect": 44.047
+  },
+  "fin": {
+   "word": 46.018,
+   "line1": 46.898,
+   "plaid": 47.408
+  }
+ },
+ "captions": [
+  {
+   "text": "Every time you apply for a public service,",
+   "s": 0.3,
+   "e": 2.94
+  },
+  {
+   "text": "you may be asked for the same information again\u2026",
+   "s": 2.94,
+   "e": 5.813
+  },
+  {
+   "text": "\u2026identity, address, income, documents \u2014",
+   "s": 5.823,
+   "e": 8.543
+  },
+  {
+   "text": "over and over.",
+   "s": 8.543,
+   "e": 9.935
+  },
+  {
+   "text": "DigiPae is exploring a consent-based",
+   "s": 10.535,
+   "e": 13.175
+  },
+  {
+   "text": "connection layer for government data.",
+   "s": 13.175,
+   "e": 15.467
+  },
+  {
+   "text": "You see what information is requested.",
+   "s": 15.517,
+   "e": 17.917
+  },
+  {
+   "text": "You decide what can be shared.",
+   "s": 17.917,
+   "e": 19.978
+  },
+  {
+   "text": "The vision is simple: verified information",
+   "s": 20.078,
+   "e": 22.718
+  },
+  {
+   "text": "that can be reused when you choose \u2014",
+   "s": 22.718,
+   "e": 24.798
+  },
+  {
+   "text": "instead of starting from zero every time.",
+   "s": 24.798,
+   "e": 27.713
+  },
+  {
+   "text": "Eventually, that could mean retrieving the right record",
+   "s": 27.763,
+   "e": 30.483
+  },
+  {
+   "text": "from the right source \u2014 with user permission.",
+   "s": 30.483,
+   "e": 33.361
+  },
+  {
+   "text": "And helping people understand what programs",
+   "s": 33.411,
+   "e": 35.971
+  },
+  {
+   "text": "may fit their situation \u2014",
+   "s": 35.971,
+   "e": 37.491
+  },
+  {
+   "text": "and what they'll need before they apply.",
+   "s": 37.491,
+   "e": 39.947
+  },
+  {
+   "text": "We're building toward infrastructure",
+   "s": 40.047,
+   "e": 41.967
+  },
+  {
+   "text": "that helps people and public services connect more simply.",
+   "s": 41.967,
+   "e": 45.718
+  }
+ ]
+}

@@ -1,0 +1,290 @@
+[
+ {
+  "name": "hook",
+  "spoken": "Every fee, shown before you accept it.",
+  "caption": "Every fee, shown before you accept it.",
+  "dur": 2.124,
+  "asr": [
+   {
+    "w": "Every",
+    "s": 0.0
+   },
+   {
+    "w": "fee",
+    "s": 0.32
+   },
+   {
+    "w": "shown",
+    "s": 0.8
+   },
+   {
+    "w": "before",
+    "s": 1.12
+   },
+   {
+    "w": "you",
+    "s": 1.36
+   },
+   {
+    "w": "accept",
+    "s": 1.52
+   },
+   {
+    "w": "it.",
+    "s": 1.84
+   }
+  ]
+ },
+ {
+  "name": "scan",
+  "spoken": "Customers scan to pay, and it's confirmed right in the app.",
+  "caption": "Customers scan to pay, and it's confirmed right in the app.",
+  "dur": 3.086,
+  "asr": [
+   {
+    "w": "Customers",
+    "s": 0.0
+   },
+   {
+    "w": "scan",
+    "s": 0.56
+   },
+   {
+    "w": "to",
+    "s": 0.96
+   },
+   {
+    "w": "pay",
+    "s": 1.12
+   },
+   {
+    "w": "and",
+    "s": 1.36
+   },
+   {
+    "w": "it's",
+    "s": 1.52
+   },
+   {
+    "w": "confirmed",
+    "s": 1.76
+   },
+   {
+    "w": "right",
+    "s": 2.24
+   },
+   {
+    "w": "in",
+    "s": 2.4
+   },
+   {
+    "w": "the",
+    "s": 2.56
+   },
+   {
+    "w": "app.",
+    "s": 2.72
+   }
+  ]
+ },
+ {
+  "name": "portal",
+  "spoken": "Every sale lands in your merchant portal.",
+  "caption": "Every sale lands in your merchant portal.",
+  "dur": 2.106,
+  "asr": [
+   {
+    "w": "Every",
+    "s": 0.0
+   },
+   {
+    "w": "sale",
+    "s": 0.32
+   },
+   {
+    "w": "lands",
+    "s": 0.72
+   },
+   {
+    "w": "in",
+    "s": 1.04
+   },
+   {
+    "w": "your",
+    "s": 1.12
+   },
+   {
+    "w": "merchant",
+    "s": 1.28
+   },
+   {
+    "w": "portal.",
+    "s": 1.68
+   }
+  ]
+ },
+ {
+  "name": "rate",
+  "spoken": "One flat rate. One point two nine percent. No monthly fee. No minimum.",
+  "caption": "One flat rate. 1.29%. No monthly fee. No minimum.",
+  "dur": 4.247,
+  "asr": [
+   {
+    "w": "One",
+    "s": 0.0
+   },
+   {
+    "w": "flat",
+    "s": 0.32
+   },
+   {
+    "w": "rate,",
+    "s": 0.56
+   },
+   {
+    "w": "one",
+    "s": 0.96
+   },
+   {
+    "w": "point",
+    "s": 1.2
+   },
+   {
+    "w": "two",
+    "s": 1.44
+   },
+   {
+    "w": "nine",
+    "s": 1.6
+   },
+   {
+    "w": "percent,",
+    "s": 1.84
+   },
+   {
+    "w": "no",
+    "s": 2.48
+   },
+   {
+    "w": "monthly",
+    "s": 2.72
+   },
+   {
+    "w": "fee,",
+    "s": 3.04
+   },
+   {
+    "w": "no",
+    "s": 3.52
+   },
+   {
+    "w": "minimum.",
+    "s": 3.76
+   }
+  ]
+ },
+ {
+  "name": "payout",
+  "spoken": "Free next-day payouts. Every time.",
+  "caption": "Free next-day payouts. Every time.",
+  "dur": 2.135,
+  "asr": [
+   {
+    "w": "Free",
+    "s": 0.0
+   },
+   {
+    "w": "next",
+    "s": 0.32
+   },
+   {
+    "w": "day",
+    "s": 0.56
+   },
+   {
+    "w": "payouts,",
+    "s": 0.8
+   },
+   {
+    "w": "every",
+    "s": 1.44
+   },
+   {
+    "w": "time.",
+    "s": 1.68
+   }
+  ]
+ },
+ {
+  "name": "setup",
+  "spoken": "No hardware. No setup fee.",
+  "caption": "No hardware. No setup fee.",
+  "dur": 1.846,
+  "asr": [
+   {
+    "w": "No",
+    "s": 0.0
+   },
+   {
+    "w": "hardware,",
+    "s": 0.32
+   },
+   {
+    "w": "no",
+    "s": 0.88
+   },
+   {
+    "w": "setup",
+    "s": 1.04
+   },
+   {
+    "w": "fee.",
+    "s": 1.52
+   }
+  ]
+ },
+ {
+  "name": "outro",
+  "spoken": "Digipay. See the fee. Keep the rest.",
+  "caption": "Digipae. See the fee. Keep the rest.",
+  "dur": 2.353,
+  "asr": [
+   {
+    "w": "Did",
+    "s": 0.0
+   },
+   {
+    "w": "you",
+    "s": 0.24
+   },
+   {
+    "w": "pay",
+    "s": 0.32
+   },
+   {
+    "w": "see",
+    "s": 0.56
+   },
+   {
+    "w": "the",
+    "s": 0.8
+   },
+   {
+    "w": "fee?",
+    "s": 1.04
+   },
+   {
+    "w": "Keep",
+    "s": 1.44
+   },
+   {
+    "w": "the",
+    "s": 1.68
+   },
+   {
+    "w": "rest.",
+    "s": 1.84
+   }
+  ]
+ }
+]

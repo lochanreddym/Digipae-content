@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.otf") format("opentype"); font-weight: 400; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.otf") format("opentype"); font-weight: 500; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.otf") format("opentype"); font-weight: 600; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-ExtraBold.otf") format("opentype"); font-weight: 800; }
+      :root {
+        --violet: #7c5cff;
+        --lav: #b9a6ff;
+        --navy: #0d1330;
+        --navy-2: #16204a;
+        --cream: #f7f1e6;
+        --ink: #1b1d33;
+        --muted: #6e7086;
+        --teal: #2bb5a0;
+        --teal-bg: rgba(43, 181, 160, 0.14);
+        --amber: #f2a93b;
+        --amber-bg: rgba(242, 169, 59, 0.16);
+        --font: "Inter", sans-serif;
+        --display: "Inter Display", "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--font); color: var(--ink); }
+      .layer { position: absolute; inset: 0; }
+      .scene { position: absolute; inset: 0; opacity: 0; }
+
+      /* backgrounds */
+      #bgCream { background: linear-gradient(170deg, #fbf5ea 0%, #f4ead9 70%, #efe2cc 100%); }
+      #sun { position: absolute; left: -300px; top: -400px; width: 1100px; height: 2600px; transform: rotate(-28deg); filter: blur(40px);
+             background: linear-gradient(90deg, rgba(255, 236, 196, 0) 0%, rgba(255, 236, 196, 0.75) 45%, rgba(255, 236, 196, 0) 100%); }
+      #bgNavy { opacity: 0; background: radial-gradient(90% 70% at 50% 45%, #1a2456 0%, var(--navy) 65%, #080c22 100%); }
+      #glow { position: absolute; left: 140px; top: 520px; width: 800px; height: 800px; border-radius: 50%; opacity: 0;
+              background: radial-gradient(circle, rgba(124, 92, 255, 0.55) 0%, rgba(124, 92, 255, 0.15) 40%, rgba(124, 92, 255, 0) 70%); }
+      #grid { position: absolute; inset: 0; opacity: 0;
+              background-image: linear-gradient(rgba(185,166,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(185,166,255,0.06) 1px, transparent 1px);
+              background-size: 60px 60px; }
+
+      /* type */
+      .hl { position: absolute; left: 70px; width: 860px; font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.02; opacity: 0; }
+      .hl span { display: block; }
+      .lavtxt { color: var(--lav); }
+      .violettxt { color: var(--violet); }
+      .tag { position: absolute; left: 70px; top: 240px; padding: 11px 20px; border-radius: 24px; font-size: 28px; font-weight: 700; letter-spacing: 0.06em; opacity: 0;
+             background: rgba(124, 92, 255, 0.18); color: var(--lav); border: 1.5px solid rgba(185, 166, 255, 0.45); }
+      .note { position: absolute; left: 70px; top: 306px; padding: 10px 18px; border-radius: 20px; font-size: 28px; font-weight: 600; opacity: 0;
+              background: var(--amber-bg); color: #ffcc7a; border: 1.5px solid rgba(242, 169, 59, 0.5); }
+
+      /* paper forms (scene 1-2) */
+      .form { position: absolute; width: 560px; padding: 34px 38px; border-radius: 18px; background: #fff; box-shadow: 0 30px 60px rgba(90, 60, 20, 0.16), 0 0 0 1px rgba(60,40,10,0.05); }
+      .form h5 { font-size: 26px; font-weight: 700; color: #4a4c60; letter-spacing: 0.02em; }
+      .form .sub { font-size: 18px; color: #9a9cab; margin-top: 4px; }
+      .form .f { margin-top: 26px; }
+      .form .f label { font-size: 18px; font-weight: 600; color: #8b8d9c; letter-spacing: 0.04em; }
+      .form .f .ln { position: relative; height: 46px; border-bottom: 2.5px solid #d9d9e0; font-size: 32px; font-weight: 500; color: #2a2d55; padding-top: 6px; white-space: nowrap; overflow: hidden; }
+      .form .f .ln.hot { border-bottom-color: var(--amber); background: rgba(242, 169, 59, 0.08); }
+      .laptop { position: absolute; left: 90px; top: 640px; width: 900px; height: 600px; border-radius: 26px; background: #2b2d3a; padding: 22px; box-shadow: 0 40px 80px rgba(60, 40, 10, 0.25); opacity: 0; }
+      .laptop .scr { width: 100%; height: 100%; border-radius: 12px; background: #f6f7fb; padding: 40px 46px; }
+      .laptop .scr h5 { font-size: 28px; font-weight: 700; color: #4a4c60; }
+      .laptop .scr .in { margin-top: 30px; height: 84px; border-radius: 14px; border: 2.5px solid #7c5cff; background: #fff; padding: 18px 22px; font-size: 38px; font-weight: 500; color: #2a2d55; }
+      .laptop .scr .in2 { margin-top: 22px; height: 84px; border-radius: 14px; border: 2px solid #dcdde6; background: #fff; }
+      #caret { display: inline-block; width: 3px; height: 40px; background: #2a2d55; vertical-align: -6px; margin-left: 2px; }
+      .idcard { position: absolute; left: 230px; top: 760px; width: 620px; height: 390px; border-radius: 26px; background: linear-gradient(135deg, #e9edf5, #dde3ee);
+                box-shadow: 0 40px 70px rgba(60, 40, 10, 0.25); padding: 36px; opacity: 0; }
+      .idcard .ph { position: absolute; left: 36px; top: 96px; width: 170px; height: 210px; border-radius: 14px; background: #c3cad8; }
+      .idcard .bar { position: absolute; left: 240px; height: 22px; border-radius: 11px; background: #c7cedb; }
+      .idcard .t { font-size: 26px; font-weight: 700; color: #6b7287; letter-spacing: 0.1em; }
+      .lbl { position: absolute; left: 50%; top: 1060px; transform: translateX(-50%); padding: 26px 46px; border-radius: 22px; background: var(--ink); color: #fff;
+             font-family: var(--display); font-size: 74px; font-weight: 800; letter-spacing: 0.04em; opacity: 0; white-space: nowrap; box-shadow: 0 30px 60px rgba(30, 20, 60, 0.3); }
+
+      /* phone (scenes 3, 4, 7) */
+      #phone { position: absolute; left: 345px; top: 600px; width: 390px; height: 790px; border-radius: 58px; background: #0a0d1f; opacity: 0;
+               box-shadow: 0 0 0 2px #2c3364, 0 60px 120px rgba(0, 0, 0, 0.5), 0 0 140px rgba(124, 92, 255, 0.25); }
+      #pscr { position: absolute; left: 12px; top: 12px; width: 366px; height: 766px; border-radius: 47px; overflow: hidden; background: #f6f5fb; }
+      #pisl { position: absolute; left: 50%; top: 22px; width: 104px; height: 30px; margin-left: -52px; border-radius: 16px; background: #000; z-index: 30; }
+      .ps { position: absolute; inset: 0; opacity: 0; padding: 74px 22px 0; color: var(--ink); }
+      .ps .k { display: inline-block; padding: 6px 12px; border-radius: 10px; background: rgba(124, 92, 255, 0.12); color: #5a3fe0; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; }
+      .ps h4 { margin-top: 12px; font-size: 25px; font-weight: 700; letter-spacing: -0.01em; }
+      .ps .s { margin-top: 4px; font-size: 14px; color: var(--muted); }
+      .rows { margin-top: 18px; border-radius: 18px; background: #fff; box-shadow: 0 1px 2px rgba(20,20,60,0.06); padding: 0 16px; }
+      .r { display: flex; align-items: center; gap: 12px; padding: 15px 0; font-size: 16px; font-weight: 600; }
+      .r + .r { border-top: 1px solid #efedf6; }
+      .r .ck { width: 26px; height: 26px; border-radius: 50%; background: var(--teal); flex: none; position: relative; }
+      .r .ck::after { content: ""; position: absolute; left: 8px; top: 6px; width: 9px; height: 5px; border-left: 2.5px solid #fff; border-bottom: 2.5px solid #fff; transform: rotate(-45deg); }
+      .r .am { width: 26px; height: 26px; border-radius: 50%; background: var(--amber); flex: none; color: #fff; font-size: 16px; font-weight: 800; display: grid; place-items: center; }
+      .r small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+      .r .tx { flex: 1; }
+      .tg { width: 46px; height: 28px; border-radius: 14px; background: var(--violet); position: relative; flex: none; }
+      .tg i { position: absolute; top: 3px; left: 21px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+      .pbtn { position: absolute; left: 22px; right: 22px; bottom: 40px; height: 62px; border-radius: 31px; background: linear-gradient(90deg, #6b4dff, #8e5bff);
+              color: #fff; display: grid; place-items: center; font-size: 18px; font-weight: 700; overflow: hidden; }
+      .pbtn .fill { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.28); transform-origin: left center; transform: scaleX(0); }
+      .pbtn span { position: relative; }
+      .prog { margin-top: 12px; border-radius: 18px; background: #fff; padding: 16px; box-shadow: 0 1px 2px rgba(20,20,60,0.06); position: relative; }
+      .prog b { font-size: 17px; }
+      .prog .m { display: inline-block; margin-top: 8px; padding: 5px 10px; border-radius: 8px; background: var(--teal-bg); color: #12806f; font-size: 12px; font-weight: 700; }
+      .prog .hl2 { position: absolute; inset: 0; border-radius: 18px; box-shadow: 0 0 0 3px var(--violet) inset; opacity: 0; }
+      .tap { position: absolute; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: rgba(124, 92, 255, 0.35); border: 3px solid rgba(124,92,255,0.9); opacity: 0; z-index: 25; }
+      #sharedOk { position: absolute; inset: 0; background: rgba(246, 245, 251, 0.97); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+      #sharedOk .c { width: 96px; height: 96px; border-radius: 50%; background: var(--violet); position: relative; }
+      #sharedOk .c::after { content: ""; position: absolute; left: 30px; top: 28px; width: 36px; height: 20px; border-left: 7px solid #fff; border-bottom: 7px solid #fff; transform: rotate(-45deg); }
+      #sharedOk b { margin-top: 20px; font-size: 22px; font-weight: 700; }
+      #sharedOk small { margin-top: 6px; font-size: 14px; color: var(--muted); }
+      #rays { position: absolute; inset: 0; pointer-events: none; }
+
+      /* network (scene 5) */
+      .node { position: absolute; display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-radius: 20px; background: rgba(255, 255, 255, 0.06);
+              border: 1.5px solid rgba(255,255,255,0.12); color: #fff; font-size: 26px; font-weight: 600; opacity: 0; white-space: nowrap; }
+      .node .ck { width: 30px; height: 30px; border-radius: 50%; background: var(--teal); position: relative; flex: none; }
+      .node .ck::after { content: ""; position: absolute; left: 9px; top: 7px; width: 11px; height: 6px; border-left: 3px solid #fff; border-bottom: 3px solid #fff; transform: rotate(-45deg); }
+      .svc { position: absolute; padding: 18px 20px; border-radius: 20px; background: #fff; color: var(--ink); font-size: 26px; font-weight: 700; opacity: 0; white-space: nowrap;
+             box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+      .svc small { display: block; font-size: 18px; color: var(--muted); font-weight: 500; margin-top: 3px; }
+      .svc.req { box-shadow: 0 0 0 4px var(--amber), 0 20px 40px rgba(0,0,0,0.3); }
+      .hub { position: absolute; left: 440px; top: 880px; width: 200px; text-align: center; opacity: 0; }
+      .hub img { width: 150px; height: 150px; filter: drop-shadow(0 0 40px rgba(124, 92, 255, 0.8)); }
+      .hub b { display: block; margin-top: 8px; color: #fff; font-family: var(--display); font-size: 34px; font-weight: 800; }
+      svg.lines { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
+      svg.lines path { fill: none; stroke: var(--violet); stroke-width: 3; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(124, 92, 255, 0.9)); }
+      .packet { position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: #d7ccff; box-shadow: 0 0 24px 8px rgba(124, 92, 255, 0.85); opacity: 0; }
+      .ask { position: absolute; left: 140px; top: 1180px; width: 800px; padding: 28px 32px; border-radius: 26px; background: #fff; color: var(--ink); opacity: 0;
+             box-shadow: 0 40px 80px rgba(0,0,0,0.45); display: flex; align-items: center; gap: 22px; }
+      .ask .tx { flex: 1; }
+      .ask b { font-size: 32px; font-weight: 700; }
+      .ask small { display: block; margin-top: 4px; font-size: 22px; color: var(--muted); }
+      .ask .btn { padding: 18px 32px; border-radius: 30px; background: var(--violet); color: #fff; font-size: 28px; font-weight: 700; position: relative; }
+
+      /* documents (scene 6) */
+      .folder { position: absolute; left: 90px; top: 780px; width: 520px; padding: 28px; border-radius: 26px; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.14); opacity: 0; }
+      .folder h5 { color: #fff; font-size: 30px; font-weight: 700; display: flex; align-items: center; gap: 14px; }
+      .folder h5 i { width: 44px; height: 34px; border-radius: 6px; background: var(--lav); display: block; }
+      .doc { margin-top: 16px; padding: 18px 20px; border-radius: 16px; background: #fff; color: var(--ink); font-size: 24px; font-weight: 600; display: flex; align-items: center; gap: 14px; }
+      .doc i { width: 30px; height: 38px; border-radius: 5px; background: #e2e5ef; display: block; flex: none; }
+      #docMove { position: absolute; }
+      .reqchip { position: absolute; left: 330px; top: 470px; padding: 20px 26px; border-radius: 22px; background: #fff; color: var(--ink); font-size: 28px; font-weight: 700; opacity: 0;
+                 box-shadow: 0 0 0 4px var(--amber), 0 30px 60px rgba(0,0,0,0.4); }
+      .reqchip small { display: block; font-size: 20px; color: #b4741a; font-weight: 700; letter-spacing: 0.08em; }
+      .ccard { position: absolute; left: 470px; top: 1060px; width: 520px; padding: 28px; border-radius: 24px; background: #fff; color: var(--ink); opacity: 0; box-shadow: 0 40px 80px rgba(0,0,0,0.45); }
+      .ccard b { font-size: 30px; font-weight: 700; }
+      .ccard small { display: block; margin-top: 6px; font-size: 22px; color: var(--muted); }
+      .ccard .btn { display: inline-block; margin-top: 18px; padding: 16px 30px; border-radius: 28px; background: var(--violet); color: #fff; font-size: 26px; font-weight: 700; position: relative; }
+      .tunnel { position: absolute; left: 640px; top: 560px; width: 320px; height: 320px; opacity: 0; }
+      .tunnel i { position: absolute; left: 50%; top: 50%; border-radius: 40px; border: 3px solid rgba(124, 92, 255, 0.7); box-shadow: 0 0 22px rgba(124, 92, 255, 0.6); transform: translate(-50%, -50%); }
+
+      /* infrastructure (scene 8) */
+      .col { position: absolute; top: 700px; width: 280px; text-align: center; color: #fff; opacity: 0; }
+      .col .ic { width: 150px; height: 150px; margin: 0 auto; border-radius: 40px; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.16); display: grid; place-items: center; }
+      .col b { display: block; margin-top: 18px; font-size: 32px; font-weight: 700; }
+      .pill { position: absolute; left: 340px; width: 400px; padding: 18px; border-radius: 18px; background: rgba(124, 92, 255, 0.14); border: 1.5px solid rgba(185, 166, 255, 0.4);
+              color: #fff; font-size: 28px; font-weight: 600; text-align: center; opacity: 0; }
+
+      /* final */
+      #final { display: flex; flex-direction: column; align-items: center; padding-top: 470px; text-align: center; }
+      #pulse { position: absolute; left: 290px; top: 380px; width: 500px; height: 500px; border-radius: 50%; opacity: 0;
+               background: radial-gradient(circle, rgba(124, 92, 255, 0.45) 0%, rgba(124, 92, 255, 0) 65%); }
+      #final img { position: relative; width: 190px; height: 190px; filter: drop-shadow(0 26px 40px rgba(80, 50, 180, 0.3)); }
+      #final h1 { position: relative; margin-top: 30px; font-family: var(--display); font-size: 116px; font-weight: 800; letter-spacing: 0.06em; color: var(--ink); }
+      #final .l1 { position: relative; margin-top: 18px; width: 860px; font-size: 40px; font-weight: 600; line-height: 1.25; color: var(--ink); }
+      #final .l2 { position: relative; margin-top: 22px; font-family: var(--display); font-size: 66px; font-weight: 800; letter-spacing: -0.02em; color: var(--violet); }
+      #final .cta { position: relative; margin-top: 46px; padding: 22px 44px; border-radius: 40px; background: var(--violet); color: #fff; font-size: 36px; font-weight: 700; }
+      #final .disc { position: relative; margin-top: 30px; width: 820px; font-size: 28px; font-weight: 500; color: var(--muted); }
+
+      /* captions: left column, clear of Reels controls */
+      #captions { position: absolute; left: 70px; width: 830px; top: 1410px; height: 120px; }
+      .cap { position: absolute; left: 0; top: 0; max-width: 830px; padding: 16px 26px; border-radius: 20px; background: rgba(10, 12, 32, 0.82); color: #fff;
+             font-size: 36px; font-weight: 600; line-height: 1.25; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="49.98" data-width="1080" data-height="1920">
+      <div class="layer" id="bgCream"><div id="sun"></div></div>
+      <div class="layer" id="bgNavy"><div id="grid"></div><div id="glow"></div></div>
+
+      <!-- 1 · THE PROBLEM -->
+      <div class="scene" id="s1" style="opacity: 1" data-layout-ignore>
+        <div class="form" id="f1" style="left:220px;top:700px;transform:rotate(-3deg)">
+          <h5>PUBLIC SERVICE APPLICATION</h5><div class="sub">Form A · page 1 of 4</div>
+          <div class="f"><label>FULL NAME</label><div class="ln"><span id="hand">Jordan Avery</span></div></div>
+          <div class="f"><label>HOME ADDRESS</label><div class="ln"></div></div>
+          <div class="f"><label>MONTHLY INCOME</label><div class="ln"></div></div>
+        </div>
+        <div class="laptop" id="lap"><div class="scr"><h5>Online application · Step 1</h5><div class="in"><span id="typed"></span><span id="caret"></span></div><div class="in2"></div><div class="in2"></div></div></div>
+        <div class="idcard" id="idc"><div class="t">IDENTITY DOCUMENT</div><div class="ph"></div>
+          <div class="bar" style="top:110px;width:300px"></div><div class="bar" style="top:156px;width:240px"></div><div class="bar" style="top:202px;width:280px"></div><div class="bar" style="top:248px;width:200px"></div></div>
+        <div class="form" id="f4" style="left:250px;top:720px;transform:rotate(2.5deg);opacity:0">
+          <h5>BENEFITS APPLICATION</h5><div class="sub">Form C · page 1 of 6</div>
+          <div class="f"><label>FULL NAME</label><div class="ln">Jordan Avery</div></div>
+          <div class="f"><label>IDENTITY DOCUMENT</label><div class="ln hot"></div></div>
+          <div class="f"><label>PROOF OF INCOME</label><div class="ln"></div></div>
+        </div>
+      </div>
+
+      <!-- 2 · THE REPETITION -->
+      <div class="scene" id="s2" data-layout-ignore>
+        <div class="form st" style="left:250px;top:680px;transform:rotate(-6deg)"><h5>APPLICATION</h5><div class="f"><label>IDENTITY</label><div class="ln"></div></div><div class="f"><label>ADDRESS</label><div class="ln"></div></div><div class="f"><label>INCOME</label><div class="ln"></div></div><div class="f"><label>DOCUMENTS</label><div class="ln"></div></div></div>
+        <div class="form st" style="left:270px;top:700px;transform:rotate(3deg)"><h5>APPLICATION</h5><div class="f"><label>IDENTITY</label><div class="ln"></div></div><div class="f"><label>ADDRESS</label><div class="ln"></div></div><div class="f"><label>INCOME</label><div class="ln"></div></div><div class="f"><label>DOCUMENTS</label><div class="ln"></div></div></div>
+        <div class="form st" style="left:240px;top:720px;transform:rotate(-1deg)"><h5>APPLICATION</h5><div class="f"><label>IDENTITY</label><div class="ln"></div></div><div class="f"><label>ADDRESS</label><div class="ln"></div></div><div class="f"><label>INCOME</label><div class="ln"></div></div><div class="f"><label>DOCUMENTS</label><div class="ln"></div></div></div>
+        <div class="form st" style="left:260px;top:740px;transform:rotate(4deg)"><h5>APPLICATION</h5><div class="f"><label>IDENTITY</label><div class="ln"></div></div><div class="f"><label>ADDRESS</label><div class="ln"></div></div><div class="f"><label>INCOME</label><div class="ln"></div></div><div class="f"><label>DOCUMENTS</label><div class="ln"></div></div></div>
+        <div class="lbl" id="lb1">IDENTITY</div><div class="lbl" id="lb2">ADDRESS</div><div class="lbl" id="lb3">INCOME</div><div class="lbl" id="lb4">DOCUMENTS</div>
+      </div>
+      <div class="hl" id="hook" style="top:300px;font-size:78px;color:var(--ink);opacity:1"><span>WHY DO WE KEEP</span><span class="violettxt">STARTING FROM ZERO?</span></div>
+
+      <!-- 3-4 · INTRODUCE + CONTROL (shared phone) -->
+      <div class="hl" id="h3" style="top:300px;font-size:54px;color:#fff"><span>WHAT IF GOVERNMENT DATA</span><span>COULD WORK MORE</span><span class="lavtxt">LIKE PLAID?</span></div>
+      <div class="hl" id="h3b" style="top:488px;font-size:40px;color:var(--teal);font-weight:700">With your permission.</div>
+      <div class="hl" id="h4" style="top:330px;font-size:78px;color:#fff"><span id="h4a">YOUR DATA.</span><span id="h4b" class="lavtxt">YOUR PERMISSION.</span></div>
+      <svg class="lines" id="rays" data-layout-ignore><path id="ray1" d="M540 640 C 520 420, 300 300, 120 140" /><path id="ray2" d="M540 640 C 560 420, 600 260, 640 60" /><path id="ray3" d="M540 640 C 620 460, 860 360, 1010 260" /></svg>
+      <div id="phone" data-layout-ignore>
+        <div id="pscr">
+          <div class="ps" id="psReq">
+            <span class="k">CONCEPT PREVIEW</span><h4>Information requested</h4><div class="s">An example service is asking for:</div>
+            <div class="rows"><div class="r"><span class="ck"></span><div class="tx">Identity</div></div><div class="r"><span class="ck"></span><div class="tx">Address</div></div><div class="r"><span class="ck"></span><div class="tx">Income</div></div></div>
+            <div class="pbtn"><span>Review &amp; Approve</span></div>
+          </div>
+          <div class="ps" id="psRev">
+            <span class="k">CONCEPT PREVIEW</span><h4>Choose what to share</h4><div class="s">Only what this service needs</div>
+            <div class="rows">
+              <div class="r"><div class="tx">Identity<small>Required</small></div><span class="tg"><i></i></span></div>
+              <div class="r"><div class="tx">Address<small>Required</small></div><span class="tg"><i></i></span></div>
+              <div class="r"><div class="tx">Income<small>Required</small></div><span class="tg"><i></i></span></div>
+              <div class="r"><div class="tx">Employment history<small id="nr">Optional</small></div><span class="tg" id="tgOpt"><i id="tgKnob"></i></span></div>
+            </div>
+            <div class="pbtn" id="approveBtn"><div class="fill" id="approveFill"></div><span>Approve sharing</span></div>
+            <div class="tap" id="tapA" style="left:183px;top:695px"></div>
+            <div class="tap" id="tapT" style="left:320px;top:380px"></div>
+            <div id="sharedOk"><div class="c"></div><b>Shared with your permission</b><small>3 items · you can revoke anytime</small></div>
+          </div>
+          <div class="ps" id="psProg">
+            <span class="k">CONCEPT PREVIEW</span><h4>Possible programs</h4><div class="s">Based on information you chose to share</div>
+            <div class="prog" id="pg1"><div class="hl2" id="pgHl"></div><b>Housing support</b><br /><span class="m">May match your information</span></div>
+            <div class="prog" id="pg2"><b>Food assistance</b><br /><span class="m">May match your information</span></div>
+            <div class="prog" id="pg3"><b>Education support</b><br /><span class="m">May match your information</span></div>
+            <div class="tap" id="tapP" style="left:183px;top:200px"></div>
+          </div>
+          <div class="ps" id="psNeed">
+            <span class="k">CONCEPT PREVIEW</span><h4>Housing support</h4><div class="s">Information you may need</div>
+            <div class="rows"><div class="r"><span class="ck"></span><div class="tx">Identity<small>Verified</small></div></div><div class="r"><span class="ck"></span><div class="tx">Address<small>Verified</small></div></div><div class="r"><span class="am">!</span><div class="tx">Income<small>Needed</small></div></div></div>
+            <div class="pbtn" style="background:#e9e6f6;color:#4b3cc4"><span>Prepare application</span></div>
+          </div>
+        </div>
+        <div id="pisl"></div>
+      </div>
+
+      <!-- 5 · REUSABLE VERIFIED INFORMATION -->
+      <div class="scene" id="s5" data-layout-ignore>
+        <svg class="lines" id="netLines"><path id="nl1" d="M330 760 C 420 780, 450 900, 520 950" /><path id="nl2" d="M310 900 C 400 910, 440 940, 500 960" /><path id="nl3" d="M300 1040 C 400 1030, 440 1000, 500 980" /><path id="nl4" d="M330 1180 C 420 1160, 460 1060, 520 1000" />
+          <path id="np1" d="M600 950 C 660 900, 690 790, 720 770" /><path id="np2" d="M600 975 C 660 960, 690 920, 720 910" /></svg>
+        <div class="node" id="nd1" style="left:40px;top:722px"><span class="ck"></span>Verified Identity</div>
+        <div class="node" id="nd2" style="left:40px;top:862px"><span class="ck"></span>Address</div>
+        <div class="node" id="nd3" style="left:40px;top:1002px"><span class="ck"></span>Income</div>
+        <div class="node" id="nd4" style="left:40px;top:1142px"><span class="ck"></span>Documents</div>
+        <div class="hub" id="hub"><img src="assets/digipae-icon.png" /><b>DigiPae</b></div>
+        <div class="svc" id="sv1" style="left:720px;top:720px">Housing Service<small>Example</small></div>
+        <div class="svc" id="sv2" style="left:720px;top:860px">Food Support<small>Example</small></div>
+        <div class="svc" id="sv3" style="left:720px;top:1000px">Education Support<small>Example</small></div>
+        <div class="svc" id="sv4" style="left:720px;top:1140px">Health Program<small>Example</small></div>
+        <div class="packet" id="pk" style="left:560px;top:960px"></div>
+        <div class="ask" id="ask"><div class="tx"><b>Use verified information?</b><small>Food Support (example) is asking</small></div><div class="btn" id="askBtn">Review</div><div class="tap" id="tapR" style="left:700px;top:60px"></div></div>
+      </div>
+      <div class="hl" id="h5" style="top:330px;font-size:76px;color:#fff"><span id="h5a">VERIFY ONCE.</span><span id="h5b" class="lavtxt">REUSE WITH PERMISSION.</span></div>
+
+      <!-- 6 · DOCUMENT RETRIEVAL VISION -->
+      <div class="scene" id="s6" data-layout-ignore>
+        <div class="folder" id="fold"><h5><i></i>My Documents</h5>
+          <div class="doc"><i></i>Identity document</div><div class="doc" id="incomeDoc"><i></i>Income record</div><div class="doc"><i></i>Residency document</div></div>
+        <div class="reqchip" id="reqc"><small>NEW REQUEST</small>Income verification</div>
+        <div class="tunnel" id="tun"><i style="width:300px;height:300px"></i><i style="width:230px;height:230px"></i><i style="width:160px;height:160px"></i><i style="width:90px;height:90px"></i></div>
+        <div class="doc" id="docMove" style="left:118px;top:964px;width:464px;opacity:0"><i></i>Income record</div>
+        <div class="ccard" id="ccard"><b>Retrieve required record</b><small>Requires your permission</small><div class="btn" id="apBtn">Approve</div><div class="tap" id="tapD" style="left:110px;top:150px"></div></div>
+      </div>
+
+      <!-- 8 · INFRASTRUCTURE -->
+      <div class="scene" id="s8" data-layout-ignore>
+        <svg class="lines" id="infLines"><path id="il1" d="M230 780 C 330 780, 360 780, 450 780" /><path id="il2" d="M630 780 C 720 780, 750 780, 850 780" />
+          <path id="il3" d="M540 870 L540 980" /><path id="il4" d="M540 1050 L540 1090" /><path id="il5" d="M540 1160 L540 1200" /><path id="il6" d="M540 1270 L540 1310" /></svg>
+        <div class="col" id="cP" style="left:-10px"><div class="ic"><svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#b9a6ff" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21.5 19"/></svg></div><b>People</b></div>
+        <div class="col" id="cD" style="left:400px"><div class="ic"><img src="assets/digipae-icon.png" style="width:110px;height:110px" /></div><b>DigiPae</b></div>
+        <div class="col" id="cS" style="left:810px"><div class="ic"><svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#b9a6ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6z"/><path d="M5 10v8M9.7 10v8M14.3 10v8M19 10v8M3 20h18"/></svg></div><b>Public<br />Services</b></div>
+        <div class="pill" id="p1" style="top:985px">Consent</div><div class="pill" id="p2" style="top:1092px">Verified Data</div>
+        <div class="pill" id="p3" style="top:1199px">Document Access</div><div class="pill" id="p4" style="top:1306px">APIs</div>
+      </div>
+      <div class="hl" id="h7" style="top:300px;font-size:76px;color:#fff"><span id="h7a">DISCOVER.</span><span id="h7b">PREPARE.</span><span id="h7c" class="lavtxt" style="font-size:60px">APPLY WITH MORE CLARITY.</span></div>
+
+      <!-- FINAL BRAND MOMENT -->
+      <div class="scene" id="final"><div id="pulse"></div>
+        <img src="assets/digipae-icon.png" id="fMark" /><h1 id="fWord">DIGIPAE</h1>
+        <div class="l1" id="fL1">Building the connection layer for government data.</div>
+        <div class="l2" id="fL2">Plaid for government.</div>
+        <div class="cta" id="fCta">Follow the build →</div>
+        <div class="disc" id="fDisc">Future vision. Government data integrations are not live yet.</div>
+      </div>
+
+      <div class="tag" id="concept">CONCEPT PREVIEW</div>
+      <div class="note" id="future">Future concept — government integrations not live</div>
+      <div id="captions"></div>
+      <audio id="mix" src="assets/mix.wav" data-start="0" data-duration="49.98" data-track-index="9"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const T = {"end": 49.98, "vo": {"v1": 0.4, "v2": 5.763, "v3": 10.635, "v4": 15.617, "v5": 20.178, "v6": 27.863, "v7": 33.511, "v8": 40.147, "v9": 46.068}, "voEnd": {"v1": 5.513, "v2": 9.635, "v3": 15.167, "v4": 19.678, "v5": 27.413, "v6": 33.061, "v7": 39.647, "v8": 45.418, "v9": 48.681}, "scenes": {"s1": 0.0, "s2": 5.663, "s3": 10.235, "s4": 15.317, "s5": 19.828, "s6": 27.512999999999998, "s7": 33.161, "s8": 39.747, "fin": 45.518, "end": 49.98}, "beats": {"s1": {"type": 2.17, "doc": 3.42, "form4": 4.380000000000001}, "s2": {"l1": 5.923, "l2": 6.483, "l3": 7.043, "l4": 7.843, "rep": 8.643, "silence": 9.685}, "s3": {"perm": 12.295, "phone": 11.475000000000001}, "s4": {"data": 15.667000000000002, "toggle": 17.237000000000002, "press": 18.157, "release": 19.087, "perm": 18.257}, "s5": {"verify": 21.517999999999997, "packet": 22.258, "request": 23.148, "tap": 24.208, "reuse": 23.298}, "s6": {"request": 29.122999999999998, "card": 30.033, "approve": 31.893, "tunnel": 32.593}, "s7": {"discover": 34.611, "programs": 35.150999999999996, "tap": 36.741, "need": 38.241, "apply": 38.931}, "s8": {"lines": 41.086999999999996, "people": 42.527, "services": 43.057, "connect": 44.047}, "fin": {"word": 46.018, "line1": 46.898, "plaid": 47.408}}, "captions": [{"text": "Every time you apply for a public service,", "s": 0.3, "e": 2.94}, {"text": "you may be asked for the same information again\u2026", "s": 2.94, "e": 5.813}, {"text": "\u2026identity, address, income, documents \u2014", "s": 5.823, "e": 8.543}, {"text": "over and over.", "s": 8.543, "e": 9.935}, {"text": "DigiPae is exploring a consent-based", "s": 10.535, "e": 13.175}, {"text": "connection layer for government data.", "s": 13.175, "e": 15.467}, {"text": "You see what information is requested.", "s": 15.517, "e": 17.917}, {"text": "You decide what can be shared.", "s": 17.917, "e": 19.978}, {"text": "The vision is simple: verified information", "s": 20.078, "e": 22.718}, {"text": "that can be reused when you choose \u2014", "s": 22.718, "e": 24.798}, {"text": "instead of starting from zero every time.", "s": 24.798, "e": 27.713}, {"text": "Eventually, that could mean retrieving the right record", "s": 27.763, "e": 30.483}, {"text": "from the right source \u2014 with user permission.", "s": 30.483, "e": 33.361}, {"text": "And helping people understand what programs", "s": 33.411, "e": 35.971}, {"text": "may fit their situation \u2014", "s": 35.971, "e": 37.491}, {"text": "and what they'll need before they apply.", "s": 37.491, "e": 39.947}, {"text": "We're building toward infrastructure", "s": 40.047, "e": 41.967}, {"text": "that helps people and public services connect more simply.", "s": 41.967, "e": 45.718}]};
+      const S = T.scenes, B = T.beats;
+      const tl = gsap.timeline({ paused: true });
+      const ease = "power3.out";
+      const fadeIn = (sel, t, d = 0.4, from = {}) => tl.fromTo(sel, { opacity: 0, ...from }, { opacity: 1, x: 0, y: 0, scale: 1, duration: d, ease }, t);
+      const fadeOut = (sel, t, d = 0.3) => tl.to(sel, { opacity: 0, duration: d, ease: "power2.in" }, t);
+      const tap = (sel, t) => {
+        tl.fromTo(sel, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.12 }, t - 0.12);
+        tl.to(sel, { opacity: 0, scale: 1.7, duration: 0.4, ease: "power2.out" }, t + 0.02);
+      };
+      const draw = (sel, t, d = 0.6) => {
+        document.querySelectorAll(sel).forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+        tl.to(sel, { strokeDashoffset: 0, duration: d, ease: "power2.inOut", stagger: 0.08 }, t);
+      };
+
+      // ---------- 1 · problem: fast close-ups, cream daylight ----------
+      tl.fromTo("#f1", { scale: 1.12 }, { scale: 1.04, duration: B.s1.type, ease: "sine.out" }, 0);
+      tl.fromTo("#hand", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.3, ease: "power1.inOut" }, 0.35);
+      tl.set("#f1", { opacity: 0 }, B.s1.type);
+      tl.set("#lap", { opacity: 1 }, B.s1.type);
+      const name = "Jordan Avery"; const typ = { n: 0 };
+      tl.to(typ, { n: name.length, duration: 1.0, ease: "none", onUpdate: () => { document.getElementById("typed").textContent = name.slice(0, Math.round(typ.n)); } }, B.s1.type + 0.1);
+      tl.fromTo("#lap", { scale: 1.05 }, { scale: 1, duration: 1.4, ease: "sine.out" }, B.s1.type);
+      tl.set("#lap", { opacity: 0 }, B.s1.doc);
+      tl.fromTo("#idc", { opacity: 1, x: 220, rotation: 8 }, { opacity: 1, x: 0, rotation: -2, duration: 0.6, ease, immediateRender: false }, B.s1.doc);
+      tl.set("#idc", { opacity: 0 }, B.s1.form4);
+      tl.set("#f4", { opacity: 1 }, B.s1.form4);
+      tl.fromTo("#f4", { scale: 1.08 }, { scale: 1.0, duration: 1.2, ease: "sine.out" }, B.s1.form4);
+
+      // ---------- 2 · repetition: forms stack, labels cycle, then silence ----------
+      tl.to("#s1", { opacity: 0, duration: 0.2 }, S.s2);
+      tl.set("#s2", { opacity: 1 }, S.s2);
+      tl.fromTo("#s2 .st", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.35, ease, stagger: 0.5 }, S.s2);
+      const lbls = ["#lb1", "#lb2", "#lb3", "#lb4"];
+      const flash = (sel, t, d) => { tl.fromTo(sel, { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power2.out" }, t); tl.set(sel, { opacity: 0 }, t + d); };
+      [B.s2.l1, B.s2.l2, B.s2.l3, B.s2.l4].forEach((t, k, arr) => flash(lbls[k], t, (k < 3 ? arr[k + 1] : B.s2.rep) - t - 0.02));
+      const span = B.s2.silence - B.s2.rep, step = span / 8;
+      for (let k = 0; k < 8; k++) flash(lbls[k % 4], B.s2.rep + k * step, step - 0.02);
+      tl.to("#hook", { opacity: 0, duration: 0.15 }, B.s2.silence);
+      tl.set("#s2", { opacity: 0 }, B.s2.silence);
+
+      // ---------- 3 · introduce: cream -> deep navy, purple light ----------
+      tl.to("#bgNavy", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, B.s2.silence);
+      tl.to("#grid", { opacity: 1, duration: 1.0 }, S.s3);
+      tl.fromTo("#glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" }, S.s3);
+      tl.set("#h3", { opacity: 1 }, S.s3);
+      tl.fromTo("#h3 span", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease, stagger: 0.18 }, S.s3);
+      fadeIn("#h3b", B.s3.perm, 0.5, { y: 16 });
+      fadeIn("#phone", B.s3.phone, 0.7, { y: 80 });
+      tl.set("#psReq", { opacity: 1 }, B.s3.phone);
+      fadeIn("#psReq .r", B.s3.phone + 0.4, 0.35, { x: 20 });
+      fadeIn("#concept", B.s3.phone + 0.2, 0.4);
+
+      // ---------- 4 · control: deliberate approval is the hero ----------
+      fadeOut("#h3, #h3b", S.s4 - 0.1, 0.3);
+      tl.to("#psReq", { x: -120, opacity: 0, duration: 0.4, ease: "power2.inOut" }, S.s4);
+      tl.fromTo("#psRev", { x: 366, opacity: 1 }, { x: 0, opacity: 1, duration: 0.45, ease }, S.s4);
+      tl.set("#h4", { opacity: 1 }, B.s4.data);
+      fadeIn("#h4a", B.s4.data, 0.45, { y: 30 });
+      tl.set("#h4b", { opacity: 0 }, 0);
+      fadeIn("#h4b", B.s4.perm, 0.45, { y: 30 });
+      tap("#tapT", B.s4.toggle);
+      tl.to("#tgOpt", { backgroundColor: "#cfd0dc", duration: 0.25 }, B.s4.toggle);
+      tl.to("#tgKnob", { x: -18, duration: 0.25, ease: "power2.inOut" }, B.s4.toggle);
+      tl.set("#nr", { textContent: "Not required · not shared" }, B.s4.toggle + 0.1);
+      // press and hold: the fill sweeps, then release
+      tl.fromTo("#tapA", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.15 }, B.s4.press - 0.15);
+      tl.to("#approveBtn", { scale: 0.96, duration: 0.15, ease: "power2.out" }, B.s4.press);
+      tl.to("#approveFill", { scaleX: 1, duration: B.s4.release - B.s4.press - 0.05, ease: "power1.inOut" }, B.s4.press);
+      tl.to("#approveBtn", { scale: 1, duration: 0.2, ease: "back.out(2)" }, B.s4.release);
+      tl.to("#tapA", { opacity: 0, scale: 1.7, duration: 0.4 }, B.s4.release);
+      fadeIn("#sharedOk", B.s4.release + 0.05, 0.3);
+      tl.fromTo("#sharedOk .c", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.2)" }, B.s4.release + 0.1);
+      // purple data lines move only after approval
+      tl.set("#rays", { opacity: 1 }, B.s4.release);
+      draw("#rays path", B.s4.release + 0.05, 0.7);
+      tl.to("#rays", { opacity: 0, duration: 0.4 }, S.s5 - 0.2);
+      fadeOut("#h4", S.s5 - 0.25, 0.3);
+      tl.to("#phone", { y: 60, opacity: 0, duration: 0.35, ease: "power2.in" }, S.s5 - 0.3);
+
+      // ---------- 5 · verify once, reuse with permission ----------
+      tl.set("#s5", { opacity: 1 }, S.s5);
+      tl.to("#glow", { opacity: 0.6, duration: 0.6 }, S.s5);
+      fadeIn("#hub", S.s5 + 0.1, 0.6, { scale: 0.7 });
+      fadeIn("#nd1, #nd2, #nd3, #nd4", S.s5 + 0.3, 0.4, { x: -30 });
+      tl.fromTo("#nd1, #nd2, #nd3, #nd4", { x: -30 }, { x: 0, duration: 0.4, ease, stagger: 0.08 }, S.s5 + 0.3);
+      fadeIn("#sv1, #sv2, #sv3, #sv4", S.s5 + 0.6, 0.4, { x: 30 });
+      tl.set("#h5", { opacity: 1 }, B.s5.verify);
+      fadeIn("#h5a", B.s5.verify, 0.45, { y: 30 });
+      tl.set("#h5b", { opacity: 0 }, 0);
+      draw("#nl1, #nl2, #nl3, #nl4", B.s5.verify, 0.6);
+      draw("#np1", B.s5.packet, 0.5);
+      tl.fromTo("#pk", { opacity: 1, x: 0, y: 0 }, { opacity: 1, x: 175, y: -192, duration: 0.8, ease: "power2.inOut", immediateRender: false }, B.s5.packet + 0.1);
+      tl.to("#pk", { opacity: 0, duration: 0.2 }, B.s5.packet + 0.9);
+      tl.to("#sv1", { boxShadow: "0 0 0 4px #2bb5a0, 0 20px 40px rgba(0,0,0,0.3)", duration: 0.3 }, B.s5.packet + 0.85);
+      tl.set("#sv2", { className: "svc req" }, B.s5.request);
+      fadeIn("#h5b", B.s5.reuse, 0.45, { y: 30 });
+      fadeIn("#ask", B.s5.request + 0.15, 0.45, { y: 40 });
+      tap("#tapR", B.s5.tap);
+      tl.to("#askBtn", { scale: 0.94, duration: 0.1, yoyo: true, repeat: 1 }, B.s5.tap);
+      draw("#np2", B.s5.tap + 0.15, 0.5);
+      fadeOut("#s5, #h5", S.s6 - 0.3, 0.3);
+
+      // ---------- 6 · document retrieval (future concept) ----------
+      tl.set("#s6", { opacity: 1 }, S.s6);
+      fadeIn("#future", S.s6, 0.4);
+      fadeIn("#fold", S.s6 + 0.1, 0.5, { y: 40 });
+      fadeIn("#reqc", B.s6.request, 0.45, { y: -30 });
+      fadeIn("#ccard", B.s6.card, 0.45, { y: 40 });
+      tap("#tapD", B.s6.approve);
+      tl.to("#apBtn", { scale: 0.94, duration: 0.12, yoyo: true, repeat: 1 }, B.s6.approve);
+      fadeIn("#tun", B.s6.approve + 0.1, 0.4, { scale: 0.7 });
+      tl.fromTo("#tun i", { scale: 0.9, opacity: 0.4 }, { scale: 1.08, opacity: 1, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 3, stagger: 0.1 }, B.s6.approve + 0.15);
+      tl.set("#docMove", { opacity: 1 }, B.s6.tunnel);
+      tl.set("#incomeDoc", { opacity: 0.35 }, B.s6.tunnel);
+      tl.to("#docMove", { x: 532, y: -274, scale: 0.4, rotation: -6, duration: 1.0, ease: "power2.inOut" }, B.s6.tunnel);
+      tl.to("#docMove", { opacity: 0, duration: 0.25 }, B.s6.tunnel + 0.9);
+      tl.to("#reqc", { boxShadow: "0 0 0 4px #2bb5a0, 0 30px 60px rgba(0,0,0,0.4)", duration: 0.3 }, B.s6.tunnel + 0.95);
+      fadeOut("#s6, #future", S.s7 - 0.3, 0.3);
+
+      // ---------- 7 · eligibility (phone returns) ----------
+      tl.set("#psRev", { opacity: 0 }, S.s7 - 0.4);
+      tl.set("#psProg", { opacity: 1 }, S.s7 - 0.4);
+      tl.fromTo("#phone", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease }, S.s7);
+      fadeIn("#psProg .prog", B.s7.programs, 0.35, { y: 16 });
+      tl.fromTo("#psProg .prog", { y: 16 }, { y: 0, duration: 0.35, ease, stagger: 0.1 }, B.s7.programs);
+      tl.set("#h7", { opacity: 1 }, B.s7.discover);
+      tl.set("#h7b, #h7c", { opacity: 0 }, 0);
+      fadeIn("#h7a", B.s7.discover, 0.4, { y: 26 });
+      tap("#tapP", B.s7.tap);
+      tl.to("#pgHl", { opacity: 1, duration: 0.2 }, B.s7.tap);
+      tl.to("#psProg", { x: -120, opacity: 0, duration: 0.4, ease: "power2.inOut" }, B.s7.tap + 0.35);
+      tl.fromTo("#psNeed", { x: 366, opacity: 1 }, { x: 0, opacity: 1, duration: 0.45, ease }, B.s7.tap + 0.35);
+      fadeIn("#h7b", B.s7.need, 0.4, { y: 26 });
+      fadeIn("#h7c", B.s7.apply, 0.4, { y: 26 });
+      fadeOut("#phone", S.s8 - 0.3, 0.3);
+      fadeOut("#h7, #concept", S.s8 + 0.9, 0.35);
+
+      // ---------- 8 · infrastructure ----------
+      tl.set("#s8", { opacity: 1 }, S.s8);
+      tl.fromTo("#s8", { scale: 1 }, { scale: 1.06, duration: S.fin - S.s8, ease: "sine.inOut" }, S.s8);
+      tl.fromTo("#glow", { scale: 1 }, { scale: 1.25, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, S.s8 + 2.2);
+      tl.to("#glow", { opacity: 0.35, duration: 0.6 }, S.s8);
+      fadeIn("#cD", S.s8 + 0.1, 0.5, { scale: 0.8 });
+      fadeIn("#cP", B.s8.people, 0.45, { x: -30 });
+      fadeIn("#cS", B.s8.services, 0.45, { x: 30 });
+      draw("#il1, #il2", B.s8.connect, 0.6);
+      draw("#il3, #il4, #il5, #il6", B.s8.lines, 0.4);
+      fadeIn("#p1, #p2, #p3, #p4", B.s8.lines, 0.35, { y: 16 });
+      tl.fromTo("#p1, #p2, #p3, #p4", { y: 16 }, { y: 0, duration: 0.35, ease, stagger: 0.12 }, B.s8.lines);
+      tl.to("#s8", { opacity: 0, duration: 0.5 }, S.fin);
+
+      // ---------- final: back to cream ----------
+      tl.to("#bgNavy", { opacity: 0, duration: 0.6, ease: "power2.inOut" }, S.fin);
+      tl.set("#final", { opacity: 1 }, S.fin + 0.1);
+      fadeIn("#fMark", S.fin + 0.15, 0.7, { scale: 0.6 });
+      fadeIn("#fWord", B.fin.word, 0.5, { y: 30 });
+      fadeIn("#fL1", B.fin.line1, 0.5, { y: 24 });
+      fadeIn("#fL2", B.fin.plaid, 0.5, { y: 24 });
+      fadeIn("#fDisc", B.fin.line1 + 0.2, 0.5, { y: 16 });
+      fadeIn("#fCta", B.fin.plaid + 0.3, 0.5, { y: 16 });
+      tl.fromTo("#pulse", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.25, duration: 0.9, ease: "sine.out" }, T.end - 1.4);
+      tl.to("#pulse", { opacity: 0.25, duration: 0.5 }, T.end - 0.5);
+
+      // ---------- captions ----------
+      const capRoot = document.getElementById("captions");
+      T.captions.forEach((c, i) => {
+        const el = document.createElement("div");
+        el.className = "cap"; el.id = `cap${i}`; el.textContent = c.text;
+        capRoot.appendChild(el);
+        tl.fromTo(el, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, c.s);
+        tl.to(el, { opacity: 0, duration: 0.12 }, c.e - 0.12);
+      });
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

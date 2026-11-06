@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.otf") format("opentype"); font-weight: 400; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.otf") format("opentype"); font-weight: 500; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.otf") format("opentype"); font-weight: 600; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-ExtraBold.otf") format("opentype"); font-weight: 800; }
+      :root {
+        --blue: #2f62ef;
+        --blue-2: #3b6cf6;
+        --violet: #7b3fe4;
+        --ink: #111427;
+        --muted: #7a8094;
+        --line: #eceef4;
+        --bg: #f3f5f9;
+        --green: #1fa463;
+        --green-bg: #e3f6ec;
+        --orange: #ef8a2c;
+        --orange-bg: #fdeedd;
+        --red: #e5484d;
+        --red-bg: #fde8e8;
+        --purple: #7c4ddf;
+        --purple-bg: #efe8fd;
+        --indigo-bg: #e6ebfd;
+        --font: "Inter", sans-serif;
+        --display: "Inter Display", "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #160f4a; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--font); color: #fff; }
+      svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+      /* ---------- world ---------- */
+      #bg { position: absolute; inset: -60px; background: linear-gradient(135deg, #3159ef 0%, #4a3fe0 45%, #6a2fd9 100%); }
+      #bg2 { position: absolute; inset: 0; background: radial-gradient(70% 80% at 50% 40%, rgba(255,255,255,0) 40%, rgba(10,6,40,0.45) 100%); }
+      .blob { position: absolute; border-radius: 50%; filter: blur(80px); }
+      #blobA { width: 900px; height: 900px; left: -200px; top: -300px; background: rgba(90, 140, 255, 0.55); }
+      #blobB { width: 1000px; height: 1000px; left: 1100px; top: 300px; background: rgba(150, 70, 255, 0.5); }
+      .slab { position: absolute; border-radius: 80px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.07); }
+      #slabA { width: 620px; height: 820px; left: 1500px; top: -140px; transform: rotate(12deg); }
+      #slabB { width: 520px; height: 520px; left: -180px; top: 640px; transform: rotate(-10deg); }
+      #darkwash { position: absolute; inset: 0; background: radial-gradient(80% 90% at 50% 50%, #1b1450 0%, #0b0827 100%); opacity: 0; }
+
+      /* ---------- headlines ---------- */
+      .head { position: absolute; top: 0; height: 1080px; width: 700px; display: flex; flex-direction: column; justify-content: center; opacity: 0; }
+      .head.left { left: 150px; }
+      .head.right { left: 1080px; }
+      .head .bar { width: 70px; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.55); margin-bottom: 34px; }
+      .head h2 { font-family: var(--display); font-size: 92px; line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; }
+      .head h2 .line { display: block; }
+      .head p { margin-top: 28px; font-size: 32px; font-weight: 500; color: rgba(255,255,255,0.78); line-height: 1.3; }
+
+      /* ---------- phone ---------- */
+      #stage { position: absolute; inset: 0; perspective: 2600px; }
+      #phone { position: absolute; left: 1121px; top: 104px; opacity: 0; width: 418px; height: 872px; border-radius: 66px; background: #0c0c14;
+               box-shadow: 0 0 0 2px #2b2b3a, 0 80px 140px rgba(8, 4, 40, 0.55), 0 30px 60px rgba(8, 4, 40, 0.35); transform-style: preserve-3d; }
+      #screen { position: absolute; left: 14px; top: 14px; width: 390px; height: 844px; border-radius: 52px; overflow: hidden; background: var(--bg); }
+      #island { position: absolute; left: 50%; top: 11px; width: 120px; height: 34px; margin-left: -60px; border-radius: 20px; background: #000; z-index: 50; }
+      #glare { position: absolute; inset: 0; border-radius: 52px; background: linear-gradient(115deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 32%); z-index: 49; pointer-events: none; }
+      .scr { position: absolute; inset: 0; opacity: 0; box-shadow: -20px 0 40px rgba(0, 0, 0, 0.18); color: var(--ink); background: var(--bg); overflow: hidden; }
+      .scr.dark { background: radial-gradient(90% 60% at 50% 38%, #2a2a6b 0%, #12123a 45%, #0b0b22 100%); color: #fff; }
+      .content { position: absolute; left: 0; right: 0; top: 0; }
+      .status { height: 54px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 28px 6px 34px; font-size: 15px; font-weight: 600; }
+      .status .sig { display: flex; gap: 5px; align-items: center; }
+      .status .sig i { display: block; width: 3px; border-radius: 1px; background: currentColor; }
+      .status .bat { width: 24px; height: 12px; border: 1.5px solid currentColor; border-radius: 4px; padding: 1.5px; margin-left: 4px; }
+      .status .bat b { display: block; width: 80%; height: 100%; background: currentColor; border-radius: 1px; }
+      .pad { padding: 0 20px; }
+      .title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+      .subt { font-size: 13px; color: var(--muted); margin-top: 3px; }
+      .hdr { background: #fff; padding: 4px 20px 14px; }
+      .sec { display: flex; justify-content: space-between; align-items: baseline; margin: 20px 0 10px; }
+      .sec b { font-size: 17px; font-weight: 700; }
+      .sec span { font-size: 13px; font-weight: 600; color: var(--blue); }
+      .tile { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; flex: none; }
+      .t-blue { background: var(--indigo-bg); color: var(--blue); }
+      .t-green { background: var(--green-bg); color: var(--green); }
+      .t-red { background: var(--red-bg); color: var(--red); }
+      .t-purple { background: var(--purple-bg); color: var(--purple); }
+      .t-orange { background: var(--orange-bg); color: var(--orange); }
+      .t-grey { background: #eceef3; color: #5d6274; }
+      .badge { font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 10px; }
+      .b-green { background: var(--green-bg); color: var(--green); }
+      .b-orange { background: var(--orange-bg); color: var(--orange); }
+      .card { background: #fff; border-radius: 16px; box-shadow: 0 1px 2px rgba(20, 20, 60, 0.05); }
+      .row { display: flex; align-items: center; gap: 13px; padding: 12px 14px; }
+      .row .tx { flex: 1; min-width: 0; }
+      .row .tx b { display: block; font-size: 15px; font-weight: 600; }
+      .row .tx small { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+      .list .row + .row { border-top: 1px solid var(--line); }
+      .stack .card + .card { margin-top: 10px; }
+      .tabbar { position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #fff; border-top: 1px solid var(--line);
+                display: flex; justify-content: space-around; padding-top: 12px; z-index: 5; }
+      .tabbar div { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #8a8fa0; width: 60px; }
+      .tabbar div svg { font-size: 22px; }
+      .tabbar div.on { color: var(--blue); font-weight: 600; }
+      .tap { position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(255,255,255,0.55);
+             border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 4px 18px rgba(0,0,0,0.25); opacity: 0; z-index: 40; pointer-events: none; }
+
+      /* s1 home */
+      #s1 .welcome { padding: 6px 20px 0; display: flex; justify-content: space-between; align-items: center; }
+      #s1 .welcome small { font-size: 13px; color: var(--muted); }
+      #s1 .welcome b { display: block; font-size: 22px; font-weight: 700; margin-top: 2px; }
+      #s1 .welcome .btns { display: flex; gap: 10px; }
+      #s1 .welcome .btns div { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-size: 18px; }
+      #s1 .bal { margin: 14px 20px 0; padding: 12px 14px; border-radius: 14px; background: #e3ebff; color: var(--blue); display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+      #s1 .bal .amt { margin-left: auto; font-size: 16px; font-weight: 700; }
+      #idcard { position: relative; margin: 14px 20px 0; height: 238px; border-radius: 20px; background: linear-gradient(130deg, #3a6cf5 0%, #5f4fe9 50%, #8a3fe3 100%); color: #fff; overflow: hidden; }
+      #idcard .av { position: absolute; left: 16px; top: 16px; width: 62px; height: 62px; border-radius: 50%; background: #e8ecff; border: 3px solid rgba(255,255,255,0.7); display: grid; place-items: center; color: #b9c3f5; font-size: 34px; }
+      #idcard .avn { position: absolute; left: 12px; top: 86px; font-size: 10px; font-weight: 600; }
+      #idcard .dl { position: absolute; left: 96px; top: 16px; font-size: 15px; font-weight: 700; display: flex; gap: 6px; align-items: center; }
+      #idcard .dl svg { color: #8ff0c4; font-size: 16px; }
+      #idcard .dls { position: absolute; left: 118px; top: 37px; font-size: 11px; opacity: 0.8; }
+      #idcard .qr { position: absolute; right: 16px; top: 14px; width: 70px; height: 70px; border-radius: 10px; background: #fff; padding: 9px; }
+      #idcard .qrs { position: absolute; right: 22px; top: 88px; font-size: 9px; opacity: 0.85; }
+      #idcard .inner { position: absolute; left: 14px; right: 14px; top: 104px; bottom: 12px; border-radius: 14px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.2); padding: 9px 14px; }
+      #idcard .inner label { display: block; font-size: 8px; letter-spacing: 0.08em; opacity: 0.7; }
+      #idcard .inner .v { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+      #idcard .inner .m { font-size: 12px; font-weight: 600; display: flex; justify-content: space-between; margin-bottom: 4px; }
+      #idcard .inner .ft { font-size: 8.5px; opacity: 0.75; display: flex; gap: 4px; align-items: center; }
+      .qa { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .qa .card { height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; font-size: 13px; font-weight: 600; }
+
+      /* s2 scan */
+      #s2 .hd { text-align: center; margin-top: 18px; }
+      #s2 .hd b { font-size: 18px; font-weight: 700; }
+      #s2 .hd small { display: block; font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 4px; }
+      #frame { position: relative; width: 160px; height: 160px; margin: 30px auto 0; border-radius: 16px; background: rgba(255,255,255,0.07); }
+      #frame .br { position: absolute; width: 26px; height: 26px; border: 3px solid #6aa4ff; }
+      #frame .br:nth-child(1) { left: -12px; top: -12px; border-right: 0; border-bottom: 0; }
+      #frame .br:nth-child(2) { right: -12px; top: -12px; border-left: 0; border-bottom: 0; }
+      #frame .br:nth-child(3) { left: -12px; bottom: -12px; border-right: 0; border-top: 0; }
+      #frame .br:nth-child(4) { right: -12px; bottom: -12px; border-left: 0; border-top: 0; }
+      #frame .code { position: absolute; left: 28px; top: 28px; width: 104px; height: 104px; border-radius: 10px; background: #fff; padding: 10px; }
+      #scanline { position: absolute; left: 14px; right: 14px; top: 30px; height: 4px; border-radius: 2px; background: #6aa4ff; box-shadow: 0 0 14px #6aa4ff; }
+      #s2 .pay { text-align: center; margin-top: 30px; }
+      #s2 .pay small { font-size: 12px; color: rgba(255,255,255,0.6); }
+      #s2 .pay b { display: block; font-size: 19px; font-weight: 700; margin-top: 4px; }
+      #s2 .pay .amt { font-size: 34px; font-weight: 800; color: #9cc0ff; margin-top: 4px; letter-spacing: -0.01em; }
+      #faceBtn { position: relative; margin: 18px 30px 0; height: 50px; border-radius: 25px; background: linear-gradient(90deg, #3b6cf6, #8e45ea); display: grid; place-items: center; font-size: 15px; font-weight: 700; overflow: hidden; }
+      #s2 .feat { display: flex; justify-content: space-around; margin-top: 22px; font-size: 11px; color: rgba(255,255,255,0.75); }
+      #s2 .feat div { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+      #s2 .feat svg { font-size: 20px; }
+      #s2 .rec { padding: 0 24px; margin-top: 22px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); }
+      #s2 .chips { display: flex; gap: 8px; margin-top: 10px; }
+      #s2 .chips div { flex: 1; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.08); display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 11px; font-weight: 600; }
+      #s2 .chips i { width: 18px; height: 18px; border-radius: 50%; background: #3e5fb8; display: block; }
+      #paidOk { position: absolute; inset: 0; background: rgba(11, 11, 34, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; z-index: 30; }
+      #paidOk .ok { width: 96px; height: 96px; border-radius: 50%; background: #22c07a; display: grid; place-items: center; font-size: 52px; color: #fff; }
+      #paidOk b { margin-top: 18px; font-size: 22px; font-weight: 700; }
+      #paidOk small { margin-top: 6px; font-size: 14px; color: rgba(255,255,255,0.7); }
+
+      /* s3 vault */
+      #upBtn { position: relative; margin-top: 16px; height: 46px; border-radius: 23px; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 700; overflow: hidden; }
+
+      /* s4 credentials */
+      #agecard { position: relative; margin-top: 16px; height: 168px; border-radius: 18px; background: linear-gradient(120deg, #128b78 0%, #1d77c9 70%, #2f62ef 100%); color: #fff; padding: 22px 20px 0 76px; }
+      #agecard .sh { position: absolute; left: 20px; top: 22px; font-size: 38px; }
+      #agecard b { font-size: 20px; font-weight: 700; }
+      #agecard p { font-size: 12.5px; opacity: 0.85; margin-top: 4px; line-height: 1.35; }
+      #agecard .btn { display: inline-block; margin-top: 12px; padding: 8px 18px; border-radius: 16px; background: #fff; color: #138a6f; font-size: 13px; font-weight: 700; position: relative; }
+      .cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .cats .card { position: relative; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; font-size: 9.5px; font-weight: 600; text-align: center; }
+      .cats .card .tile { width: 34px; height: 34px; font-size: 17px; }
+      .cats .n { position: absolute; right: 8px; top: 6px; width: 17px; height: 17px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 9.5px; display: grid; place-items: center; }
+
+      /* s5 history */
+      .fchips { display: flex; gap: 8px; margin-top: 14px; }
+      .fchips div { padding: 8px 14px; border-radius: 17px; background: #fff; font-size: 12.5px; font-weight: 600; color: #5d6274; }
+      .fchips div.on { background: var(--blue); color: #fff; }
+      #spend { margin-top: 12px; height: 92px; border-radius: 18px; background: linear-gradient(110deg, #2f62ef 0%, #6a43e6 60%, #8a3fe3 100%); color: #fff; padding: 14px 18px; position: relative; }
+      #spend small { font-size: 12px; opacity: 0.85; }
+      #spend b { display: block; font-size: 32px; font-weight: 800; margin-top: 4px; letter-spacing: -0.01em; }
+      #spend .vs { position: absolute; right: 16px; top: 18px; padding: 7px 12px; border-radius: 14px; background: rgba(255,255,255,0.22); font-size: 11px; font-weight: 600; }
+      .amt-r { font-size: 15px; font-weight: 700; }
+      .pos { color: var(--green); }
+      .ref { color: var(--blue); }
+      .pend { color: #8a8fa0; }
+
+      /* s6 wallet */
+      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+      .stats .card { height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .stats .card .tile { width: 38px; height: 38px; border-radius: 50%; font-size: 19px; }
+      .stats b { font-size: 15px; font-weight: 700; margin-top: 7px; }
+      .stats small { font-size: 10.5px; color: var(--muted); }
+      #vcard { position: relative; margin-top: 12px; height: 196px; border-radius: 18px; background: linear-gradient(125deg, #3a6cf5 0%, #6a4be8 55%, #9a42e6 100%); color: #fff; padding: 18px 20px; overflow: hidden; }
+      #vcard .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; opacity: 0.85; }
+      #vcard .dmark { position: absolute; right: 20px; top: 16px; font-size: 30px; }
+      #vcard .chip { width: 40px; height: 30px; border-radius: 6px; background: #f6d46f; margin-top: 18px; }
+      #vcard .num { font-size: 21px; font-weight: 700; letter-spacing: 0.06em; margin-top: 14px; }
+      #vcard .foot { display: flex; justify-content: space-between; margin-top: 12px; font-size: 9px; opacity: 0.85; }
+      #vcard .foot b { display: block; font-size: 13px; opacity: 1; margin-top: 2px; }
+      .bank { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: #fff; font-size: 20px; flex: none; }
+
+      /* s7 security */
+      #s7 .dmk { margin: 40px auto 0; width: 54px; height: 54px; font-size: 54px; color: #fff; display: block; }
+      #s7 .wb { text-align: center; margin-top: 18px; }
+      #s7 .wb b { font-size: 22px; font-weight: 700; }
+      #s7 .wb small { display: block; font-size: 12.5px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+      #pinDots { display: flex; gap: 14px; justify-content: center; margin-top: 18px; }
+      #pinDots i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #7fb0ff; display: block; }
+      #pinDots i b { display: block; width: 100%; height: 100%; border-radius: 50%; background: #9cc4ff; transform: scale(0); }
+      #faceBox { position: relative; width: 150px; height: 150px; margin: 22px auto 0; border-radius: 26px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+                 display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+      #faceBox svg { font-size: 64px; stroke-width: 1.6; }
+      #faceBox b { margin-top: 10px; font-size: 15px; font-weight: 700; }
+      #faceBox small { font-size: 10.5px; color: rgba(255,255,255,0.6); }
+      #faceSweep { position: absolute; left: 0; right: 0; height: 40px; top: -40px; background: linear-gradient(180deg, rgba(120,170,255,0), rgba(120,170,255,0.35), rgba(120,170,255,0)); }
+      .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 36px; margin-top: 22px; }
+      .keys div { height: 46px; border-radius: 12px; background: rgba(255,255,255,0.08); display: grid; place-items: center; font-size: 20px; font-weight: 500; }
+      .keys div.none { background: none; }
+      #s7 .pinlink { text-align: center; margin-top: 14px; font-size: 12.5px; font-weight: 600; color: #8fb6ff; }
+      #s7 .feat { display: flex; justify-content: space-around; margin-top: 18px; font-size: 10px; color: rgba(255,255,255,0.6); }
+      #s7 .feat div { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+      #s7 .feat svg { font-size: 18px; }
+      #unlocked { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(11, 11, 34, 0.95); opacity: 0; z-index: 30; }
+      #unlocked .ok { width: 96px; height: 96px; border-radius: 50%; background: #22c07a; display: grid; place-items: center; font-size: 50px; }
+      #unlocked b { margin-top: 16px; font-size: 20px; font-weight: 700; }
+
+      /* s8 profile */
+      #pcard { margin-top: 14px; padding: 16px 16px 12px; }
+      #pcard .top { display: flex; gap: 14px; align-items: center; }
+      #pcard .av { position: relative; width: 62px; height: 62px; border-radius: 50%; background: #e3e7ff; display: grid; place-items: center; color: #b4bdf2; font-size: 34px; }
+      #pcard .av i { position: absolute; right: -2px; bottom: -2px; width: 20px; height: 20px; border-radius: 50%; background: var(--blue); border: 2px solid #fff; }
+      #pcard b { font-size: 18px; font-weight: 700; }
+      #pcard .mask { font-size: 12px; color: var(--muted); margin-top: 2px; }
+      #vchip { display: inline-flex; align-items: center; gap: 4px; margin-top: 5px; padding: 3px 9px; border-radius: 10px; background: var(--green-bg); color: var(--green); font-size: 11px; font-weight: 600; }
+      #pcard .st { display: flex; justify-content: space-around; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; text-align: center; }
+      #pcard .st b { font-size: 16px; color: var(--blue); }
+      #pcard .st small { display: block; font-size: 10px; color: var(--muted); }
+      .grp { font-size: 10.5px; font-weight: 600; color: #9aa0b1; letter-spacing: 0.06em; margin: 16px 4px 7px; }
+      .set .row { padding: 11px 14px; }
+      .set .row .tx b { font-size: 14.5px; }
+      .set .row .val { font-size: 12px; color: #9aa0b1; }
+      .set .row .chev { color: #b4b8c6; font-size: 15px; }
+      .hl { position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 12px; background: rgba(47, 98, 239, 0.1); opacity: 0; }
+      .rel { position: relative; }
+
+      /* ---------- callouts (lift off the phone toward camera) ---------- */
+      .callout { position: absolute; padding: 18px 22px; border-radius: 22px; background: rgba(255, 255, 255, 0.96); color: var(--ink);
+                 box-shadow: 0 40px 80px rgba(10, 5, 50, 0.45), 0 10px 24px rgba(10, 5, 50, 0.25); opacity: 0; display: flex; align-items: center; gap: 14px; }
+      .callout .tile { width: 52px; height: 52px; border-radius: 16px; font-size: 26px; }
+      .callout b { display: block; font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+      .callout small { display: block; font-size: 17px; color: var(--muted); margin-top: 3px; }
+      .callout.dark { background: rgba(20, 18, 58, 0.92); color: #fff; border: 1px solid rgba(255,255,255,0.14); }
+      .callout.dark small { color: rgba(255,255,255,0.65); }
+
+      /* ---------- intro / outro ---------- */
+      #intro, #outro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+      #intro img, #outro img { width: 210px; height: 210px; filter: drop-shadow(0 30px 60px rgba(10, 5, 60, 0.5)); }
+      #intro h1, #outro h1 { margin-top: 34px; font-family: var(--display); font-size: 110px; font-weight: 800; letter-spacing: -0.035em; }
+      #outro p { margin-top: 12px; font-size: 40px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+      /* ---------- captions ---------- */
+      #captions { position: absolute; left: 0; right: 0; bottom: 40px; display: flex; justify-content: center; }
+      .cap { position: absolute; bottom: 0; padding: 12px 26px; border-radius: 20px; background: rgba(12, 8, 40, 0.6); font-size: 34px; font-weight: 600; white-space: nowrap; opacity: 0; }
+      .cap span { color: rgba(255,255,255,0.5); }
+      .cap span.on { color: #fff; }
+      .cap span.now { color: #c9bcff; }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" /></symbol>
+        <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 1 1 12 0v5l2 2H4z" /><path d="M10 20a2 2 0 0 0 4 0" /></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+        <symbol id="i-qr" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1" /><rect x="14" y="4" width="6" height="6" rx="1" /><rect x="4" y="14" width="6" height="6" rx="1" /><path d="M14 14h3v3h-3zM18 18h2v2h-2z" /></symbol>
+        <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5" /><path d="M3 10h18M16 14h2" /></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /><path d="M9 12l2 2 4-4" /></symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2" /><path d="M9 8h6M9 12h6M9 16h4" /></symbol>
+        <symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h14l-3-3M19 16H5l3 3" /></symbol>
+        <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5" /><path d="M3 10h18M7 15h4" /></symbol>
+        <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6zM5 10v8M9.7 10v8M14.3 10v8M19 10v8M3 20h18" /></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="currentColor" stroke="none" /></symbol>
+        <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7" cy="12" r="3" /><path d="M10 12h11M17 12v3M20 12v2" /></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" /></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></symbol>
+        <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 7.6-1.7" /></symbol>
+        <symbol id="i-upload" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.6-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9M12 12v8M9 15l3-3 3 3" /></symbol>
+        <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A9.6 9.6 0 0 1 12 6c5.5 0 9 6 9 6a15 15 0 0 1-2.6 3.2M6.6 6.6A15 15 0 0 0 3 12s3.5 6 9 6a9 9 0 0 0 4.2-1" /></symbol>
+        <symbol id="i-back" viewBox="0 0 24 24"><path d="M9 6h11v12H9l-6-6zM12 10l4 4M16 10l-4 4" /></symbol>
+        <symbol id="i-face" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 15.5c1.6 1.3 4.4 1.3 6 0" /></symbol>
+        <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+        <symbol id="i-d" viewBox="0 0 24 24"><path d="M7 20V4h4.5a8 8 0 0 1 7.6 5.5M19.6 13.5A8 8 0 0 1 11.5 20H7" /></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /><path d="M12 15.5l-3-3a1.8 1.8 0 0 1 3-2 1.8 1.8 0 0 1 3 2z" /></symbol>
+        <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4.5" fill="currentColor" stroke="none" /><path d="M3.5 22a8.5 8.5 0 0 1 17 0z" fill="currentColor" stroke="none" /></symbol>
+        <symbol id="i-qrcode" viewBox="0 0 7 7"><path d="M0 0h3v3H0zM4 0h3v3H4zM0 4h3v3H0zM1 1v1h1V1zM5 1v1h1V1zM1 5v1h1V5zM4 4h1v1H4zM5 5h1v1H5zM6 4h1v1H6zM4 6h1v1H4zM6 6h1v1H6z" fill="#141427" fill-rule="evenodd" stroke="none" /></symbol>
+      </defs>
+    </svg>
+
+    <div id="root" data-composition-id="main" data-start="0" data-duration="__END__" data-width="1920" data-height="1080">
+      <div id="bg"></div>
+      <div class="blob" id="blobA"></div>
+      <div class="blob" id="blobB"></div>
+      <div class="slab" id="slabA"></div>
+      <div class="slab" id="slabB"></div>
+      <div id="darkwash"></div>
+      <div id="bg2"></div>
+
+      <!-- headlines: the exact copy from each App Store slide -->
+      <div class="head left" id="h1"><div class="bar"></div><h2><span class="line">Your identity.</span><span class="line">One secure app.</span></h2><p>Government-verified ID, always with you</p></div>
+      <div class="head right" id="h2"><div class="bar"></div><h2><span class="line">Scan. Pay.</span><span class="line">Done.</span></h2><p>Instant payments with zero hidden fees</p></div>
+      <div class="head left" id="h3"><div class="bar"></div><h2><span class="line">Every document.</span><span class="line">Encrypted.</span></h2><p>Upload once — verified and ready forever</p></div>
+      <div class="head right" id="h4"><div class="bar"></div><h2><span class="line">Prove it.</span><span class="line">Don't share it.</span></h2><p>Share verified proof, never the document</p></div>
+      <div class="head left" id="h5"><div class="bar"></div><h2><span class="line">Every payment,</span><span class="line">in plain sight.</span></h2><p>Search, filter and export in seconds</p></div>
+      <div class="head right" id="h6"><div class="bar"></div><h2><span class="line">All your money.</span><span class="line">One wallet.</span></h2><p>Cards, banks and balance in a single place</p></div>
+      <div class="head left" id="h7"><div class="bar"></div><h2><span class="line">Bank-grade security,</span><span class="line">built in.</span></h2><p>Face ID, 256-bit encryption, fully on-device</p></div>
+      <div class="head right" id="h8"><div class="bar"></div><h2><span class="line">You stay</span><span class="line">in control.</span></h2><p>Manage access, devices and privacy anytime</p></div>
+
+      <div id="stage">
+        <div id="phone" data-layout-ignore>
+          <div id="screen">
+            <!-- 1 · Home -->
+            <div class="scr" id="s1">
+              <div class="content">
+                <div class="status"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                <div class="welcome"><div><small>Welcome back</small><b>Alex Morgan</b></div>
+                  <div class="btns"><div style="background:#fff;color:#2c2f3c"><svg class="i"><use href="#i-search" /></svg></div><div style="background:var(--blue);color:#fff"><svg class="i"><use href="#i-qr" /></svg></div></div></div>
+                <div class="bal"><svg class="i"><use href="#i-wallet" /></svg>Digipae Balance<span class="amt"><span id="balAmt">$1,248.50</span> ›</span></div>
+                <div id="idcard">
+                  <div class="av"><svg class="i"><use href="#i-person" /></svg></div>
+                  <div class="avn">Alex Morgan</div>
+                  <div class="dl"><svg class="i"><use href="#i-shield" /></svg>Driver's License</div>
+                  <div class="dls">Main ID · Verified</div>
+                  <div class="qr" id="idqr"><svg viewBox="0 0 7 7" width="52" height="52"><use href="#i-qrcode" /></svg></div>
+                  <div class="qrs">Tap to share</div>
+                  <div class="inner">
+                    <label>FULL NAME</label><div class="v">Alex Morgan</div>
+                    <label>DATE OF BIRTH</label><div class="m"><span>•• / •• / ••••</span><svg class="i"><use href="#i-eyeoff" /></svg></div>
+                    <label>ADDRESS</label><div class="m"><span>•••• Market St, ••••</span><svg class="i"><use href="#i-eyeoff" /></svg></div>
+                    <div class="ft"><svg class="i"><use href="#i-shield" /></svg>Government-verified · Secured by Digipae</div>
+                  </div>
+                </div>
+                <div class="pad"><div class="sec"><b>Quick Actions</b></div>
+                  <div class="qa">
+                    <div class="card"><div class="tile t-blue"><svg class="i"><use href="#i-doc" /></svg></div>Pay a Bill</div>
+                    <div class="card"><div class="tile t-green"><svg class="i"><use href="#i-shield" /></svg></div>Verified Credentials</div>
+                    <div class="card"><div class="tile t-purple"><svg class="i"><use href="#i-swap" /></svg></div>Money Transfer</div>
+                    <div class="card"><div class="tile t-blue"><svg class="i"><use href="#i-card" /></svg></div>Manage Payments</div>
+                  </div></div>
+              </div>
+              <div class="tabbar"><div class="on"><svg class="i"><use href="#i-home" /></svg>Home</div><div><svg class="i"><use href="#i-folder" /></svg>Vault</div><div><svg class="i"><use href="#i-clock" /></svg>History</div><div><svg class="i"><use href="#i-bell" /></svg>Alerts</div><div><svg class="i"><use href="#i-user" /></svg>Profile</div></div>
+            </div>
+
+            <!-- 2 · Scan & Pay -->
+            <div class="scr dark" id="s2">
+              <div class="content">
+                <div class="status"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                <div class="hd"><b>Scan &amp; Pay</b><small>Point at any Digipae or UPI QR code</small></div>
+                <div id="frame"><div class="br"></div><div class="br"></div><div class="br"></div><div class="br"></div>
+                  <div class="code"><svg viewBox="0 0 7 7" width="84" height="84"><use href="#i-qrcode" /></svg></div><div id="scanline"></div></div>
+                <div class="pay" id="payInfo"><small>Paying to</small><b>Blue Bottle Coffee</b><div class="amt">$18.40</div></div>
+                <div id="faceBtn">Confirm with Face ID</div>
+                <div class="feat" id="s2feat"><div><svg class="i"><use href="#i-swap" /></svg>Instant</div><div><svg class="i"><use href="#i-unlock" /></svg>Encrypted</div><div><svg class="i"><use href="#i-shield" /></svg>No fees</div></div>
+                <div class="rec">Recent<div class="chips"><div><i></i>Whole Foods</div><div><i></i>Shell</div><div><i></i>Uber</div></div></div>
+              </div>
+              <div class="tap" id="tap2" style="left:195px;top:528px"></div>
+              <div id="paidOk"><div class="ok"><svg class="i"><use href="#i-check" /></svg></div><b>Paid $18.40</b><small>Blue Bottle Coffee · No fees</small></div>
+            </div>
+
+            <!-- 3 · Identity Vault -->
+            <div class="scr" id="s3">
+              <div class="content">
+                <div class="hdr"><div class="status" style="padding:0 8px 6px 14px"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                  <div class="title">Identity Vault</div><div class="subt">8 documents · All encrypted</div></div>
+                <div class="pad">
+                  <div id="upBtn"><svg class="i"><use href="#i-upload" /></svg>Upload Document</div>
+                  <div class="sec"><b>Your Documents</b><span>See All</span></div>
+                  <div class="stack" id="docs">
+                    <div class="card row"><div class="tile t-blue"><svg class="i"><use href="#i-card" /></svg></div><div class="tx"><b>Driver's License</b><small>State of California · Exp 2031</small></div><span class="badge b-green">Verified</span></div>
+                    <div class="card row"><div class="tile t-purple"><svg class="i"><use href="#i-doc" /></svg></div><div class="tx"><b>Passport</b><small>United States · Exp 2033</small></div><span class="badge b-green">Verified</span></div>
+                    <div class="card row"><div class="tile t-red"><svg class="i"><use href="#i-heart" /></svg></div><div class="tx"><b>Health Insurance</b><small>Blue Shield · Member 4821</small></div><span class="badge b-green">Verified</span></div>
+                    <div class="card row"><div class="tile t-purple"><svg class="i"><use href="#i-doc" /></svg></div><div class="tx"><b>University Degree</b><small>B.Sc Computer Science · 2019</small></div><span class="badge b-green">Verified</span></div>
+                    <div class="card row"><div class="tile t-orange"><svg class="i"><use href="#i-card" /></svg></div><div class="tx"><b>Vehicle Title</b><small>2022 Model · Plate 8KJ-441</small></div><span class="badge b-orange">Pending</span></div>
+                    <div class="card row"><div class="tile t-green"><svg class="i"><use href="#i-shield" /></svg></div><div class="tx"><b>Professional License</b><small>Registered Engineer · Tier II</small></div><span class="badge b-green">Verified</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tabbar"><div><svg class="i"><use href="#i-home" /></svg>Home</div><div class="on"><svg class="i"><use href="#i-folder" /></svg>Vault</div><div><svg class="i"><use href="#i-clock" /></svg>History</div><div><svg class="i"><use href="#i-bell" /></svg>Alerts</div><div><svg class="i"><use href="#i-user" /></svg>Profile</div></div>
+              <div class="tap" id="tap3" style="left:195px;top:165px"></div>
+            </div>
+
+            <!-- 4 · Verified Credentials -->
+            <div class="scr" id="s4">
+              <div class="content">
+                <div class="hdr"><div class="status" style="padding:0 8px 6px 14px"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                  <div class="title">Verified Credentials</div><div class="subt">Share proof, not documents</div></div>
+                <div class="pad">
+                  <div id="agecard"><svg class="i sh"><use href="#i-shield" /></svg><b>Age verified</b><p>Over 21 · Proven without<br />revealing your birthday</p><div class="btn" id="shareBtn">Share proof</div></div>
+                  <div class="sec"><b>Categories</b><span>See All</span></div>
+                  <div class="cats" id="cats">
+                    <div class="card"><div class="tile t-blue"><svg class="i"><use href="#i-card" /></svg></div>Government IDs<span class="n">3</span></div>
+                    <div class="card"><div class="tile t-purple"><svg class="i"><use href="#i-doc" /></svg></div>Education<span class="n">2</span></div>
+                    <div class="card"><div class="tile t-green"><svg class="i"><use href="#i-bank" /></svg></div>Banking<span class="n">4</span></div>
+                    <div class="card"><div class="tile t-red"><svg class="i"><use href="#i-heart" /></svg></div>Healthcare<span class="n">2</span></div>
+                    <div class="card"><div class="tile t-orange"><svg class="i"><use href="#i-swap" /></svg></div>Transport<span class="n">1</span></div>
+                    <div class="card"><div class="tile t-blue"><svg class="i"><use href="#i-doc" /></svg></div>Identity Docs<span class="n">3</span></div>
+                    <div class="card"><div class="tile t-green"><svg class="i"><use href="#i-bank" /></svg></div>Industry<span class="n">1</span></div>
+                    <div class="card"><div class="tile t-purple"><svg class="i"><use href="#i-star" /></svg></div>Skills<span class="n">5</span></div>
+                  </div>
+                  <div class="sec"><b>Recent Shares</b></div>
+                  <div class="stack">
+                    <div class="card row"><div class="tile t-green"><svg class="i"><use href="#i-shield" /></svg></div><div class="tx"><b>Northwind Car Rental</b><small>Driver's License · 2 days ago</small></div></div>
+                    <div class="card row"><div class="tile t-green"><svg class="i"><use href="#i-shield" /></svg></div><div class="tx"><b>Meridian Trust Bank</b><small>Proof of address · 5 days ago</small></div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tabbar"><div><svg class="i"><use href="#i-home" /></svg>Home</div><div class="on"><svg class="i"><use href="#i-folder" /></svg>Vault</div><div><svg class="i"><use href="#i-clock" /></svg>History</div><div><svg class="i"><use href="#i-bell" /></svg>Alerts</div><div><svg class="i"><use href="#i-user" /></svg>Profile</div></div>
+              <div class="tap" id="tap4" style="left:150px;top:300px"></div>
+            </div>
+
+            <!-- 5 · Transaction History -->
+            <div class="scr" id="s5">
+              <div class="content" id="s5c">
+                <div class="hdr"><div class="status" style="padding:0 8px 6px 14px"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                  <div class="title">Transaction History</div><div class="subt">June 2026</div></div>
+                <div class="pad">
+                  <div class="fchips" id="fchips"><div class="on" id="fAll">All</div><div id="fDone">Completed</div><div>Pending</div><div>Refunded</div></div>
+                  <div id="spend"><small>Total spend · June 2026</small><b id="spendAmt">$2,184.30</b><span class="vs">12% vs May</span></div>
+                  <div class="card list" id="txs" style="margin-top:12px">
+                    <div class="row"><div class="tile t-blue"><svg class="i"><use href="#i-qr" /></svg></div><div class="tx"><b>Blue Bottle Coffee</b><small>Completed · Jun 30</small></div><span class="amt-r">-$18.40</span></div>
+                    <div class="row"><div class="tile t-green"><svg class="i"><use href="#i-bank" /></svg></div><div class="tx"><b>Salary · Northwind Inc</b><small>Completed · Jun 28</small></div><span class="amt-r pos">+$4,200.00</span></div>
+                    <div class="row"><div class="tile t-purple"><svg class="i"><use href="#i-card" /></svg></div><div class="tx"><b>Whole Foods Market</b><small>Completed · Jun 27</small></div><span class="amt-r">-$126.85</span></div>
+                    <div class="row"><div class="tile t-orange"><svg class="i"><use href="#i-doc" /></svg></div><div class="tx"><b>City Power &amp; Water</b><small>Completed · Jun 25</small></div><span class="amt-r">-$94.12</span></div>
+                    <div class="row"><div class="tile t-blue"><svg class="i"><use href="#i-swap" /></svg></div><div class="tx"><b>Uber Technologies</b><small>Refunded · Jun 24</small></div><span class="amt-r ref">+$23.50</span></div>
+                    <div class="row"><div class="tile t-grey"><svg class="i"><use href="#i-card" /></svg></div><div class="tx"><b>Apple Store</b><small>Pending · Jun 22</small></div><span class="amt-r pend">-$399.00</span></div>
+                    <div class="row"><div class="tile t-purple"><svg class="i"><use href="#i-user" /></svg></div><div class="tx"><b>Sarah Chen</b><small>Completed · Jun 20</small></div><span class="amt-r">-$75.00</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tabbar"><div><svg class="i"><use href="#i-home" /></svg>Home</div><div><svg class="i"><use href="#i-folder" /></svg>Vault</div><div class="on"><svg class="i"><use href="#i-clock" /></svg>History</div><div><svg class="i"><use href="#i-bell" /></svg>Alerts</div><div><svg class="i"><use href="#i-user" /></svg>Profile</div></div>
+              <div class="tap" id="tap5" style="left:132px;top:148px"></div>
+            </div>
+
+            <!-- 6 · My Wallet -->
+            <div class="scr" id="s6">
+              <div class="content">
+                <div class="hdr"><div class="status" style="padding:0 8px 6px 14px"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                  <div class="title">My Wallet</div><div class="subt">Financial snapshot</div></div>
+                <div class="pad">
+                  <div class="stats" id="stats">
+                    <div class="card"><div class="tile t-blue"><svg class="i"><use href="#i-wallet" /></svg></div><b id="wBal">$1,248.50</b><small>Balance</small></div>
+                    <div class="card"><div class="tile t-green"><svg class="i"><use href="#i-star" /></svg></div><b id="wRew">$64.20</b><small>Rewards</small></div>
+                    <div class="card"><div class="tile t-purple"><svg class="i"><use href="#i-swap" /></svg></div><b>3 active</b><small>AutoPay</small></div>
+                  </div>
+                  <div id="vcard"><div class="lbl">DIGIPAE VIRTUAL</div><svg class="i dmark"><use href="#i-d" /></svg><div class="chip"></div>
+                    <div class="num">4821 &nbsp;••••&nbsp; ••••&nbsp; 0187</div>
+                    <div class="foot"><div>CARD HOLDER<b>ALEX MORGAN</b></div><div>EXPIRES<b>09 / 30</b></div></div></div>
+                  <div class="sec"><b>Saved Accounts</b><span>View My QR</span></div>
+                  <div class="stack" id="accts">
+                    <div class="card row"><div class="bank" style="background:#2340a8"><svg class="i"><use href="#i-bank" /></svg></div><div class="tx"><b>Northwind Bank</b><small>Checking ···· 9167</small></div><svg class="i" style="color:#b4b8c6"><use href="#i-chev" /></svg></div>
+                    <div class="card row"><div class="bank" style="background:#156b5a"><svg class="i"><use href="#i-bank" /></svg></div><div class="tx"><b>Meridian Trust <span class="badge" style="background:#e3ebff;color:var(--blue);margin-left:4px">Primary</span></b><small>Savings ···· 3699</small></div><svg class="i" style="color:#b4b8c6"><use href="#i-chev" /></svg></div>
+                    <div class="card row"><div class="bank" style="background:#6b34d6"><svg class="i"><use href="#i-bank" /></svg></div><div class="tx"><b>Northwind Visa</b><small>Credit ···· 0187</small></div><svg class="i" style="color:#b4b8c6"><use href="#i-chev" /></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tabbar"><div class="on"><svg class="i"><use href="#i-home" /></svg>Home</div><div><svg class="i"><use href="#i-folder" /></svg>Vault</div><div><svg class="i"><use href="#i-clock" /></svg>History</div><div><svg class="i"><use href="#i-bell" /></svg>Alerts</div><div><svg class="i"><use href="#i-user" /></svg>Profile</div></div>
+            </div>
+
+            <!-- 7 · Security -->
+            <div class="scr dark" id="s7">
+              <div class="content">
+                <div class="status"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                <svg class="i dmk"><use href="#i-d" /></svg>
+                <div class="wb"><b>Welcome back</b><small>Alex · Face ID enabled</small></div>
+                <div id="pinDots"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+                <div id="faceBox"><div id="faceSweep"></div><svg class="i"><use href="#i-face" /></svg><b>Face ID</b><small>Look to unlock</small></div>
+                <div class="keys"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div class="none"></div><div>0</div><div class="none"><svg class="i" style="font-size:22px"><use href="#i-back" /></svg></div></div>
+                <div class="pinlink">Use PIN instead</div>
+                <div class="feat"><div><svg class="i"><use href="#i-unlock" /></svg>256-bit AES</div><div><svg class="i"><use href="#i-phone" /></svg>On-device</div><div><svg class="i"><use href="#i-shield" /></svg>Zero-knowledge</div></div>
+              </div>
+              <div id="unlocked"><div class="ok"><svg class="i"><use href="#i-check" /></svg></div><b>Unlocked</b></div>
+            </div>
+
+            <!-- 8 · Profile -->
+            <div class="scr" id="s8">
+              <div class="content" id="s8c">
+                <div class="hdr"><div class="status" style="padding:0 8px 6px 14px"><span>9:41</span><span class="sig"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><span class="bat"><b></b></span></span></div>
+                  <div class="title">Profile</div></div>
+                <div class="pad">
+                  <div class="card" id="pcard"><div class="top"><div class="av"><svg class="i"><use href="#i-person" /></svg><i></i></div>
+                    <div><b>Alex Morgan</b><div class="mask">•••••• 4614</div><span id="vchip"><svg class="i"><use href="#i-shield" /></svg>Verified</span></div></div>
+                    <div class="st"><div><b>8</b><small>Documents</small></div><div><b>2026</b><small>Member since</small></div><div><b>100%</b><small>Verified</small></div></div></div>
+                  <div class="grp">SECURITY</div>
+                  <div class="card list set">
+                    <div class="row rel"><div class="hl" id="hlAccess"></div><div class="tile t-blue"><svg class="i"><use href="#i-shield" /></svg></div><div class="tx"><b>Face ID &amp; PIN</b></div><span class="val">On</span><svg class="i chev"><use href="#i-chev" /></svg></div>
+                    <div class="row rel"><div class="hl" id="hlDevices"></div><div class="tile t-purple"><svg class="i"><use href="#i-phone" /></svg></div><div class="tx"><b>Devices &amp; Sessions</b></div><span class="val">2 active</span><svg class="i chev"><use href="#i-chev" /></svg></div>
+                    <div class="row"><div class="tile t-purple"><svg class="i"><use href="#i-key" /></svg></div><div class="tx"><b>Recovery Options</b></div><span class="val">Set up</span><svg class="i chev"><use href="#i-chev" /></svg></div>
+                  </div>
+                  <div class="grp">PAYMENTS</div>
+                  <div class="card list set">
+                    <div class="row"><div class="tile t-green"><svg class="i"><use href="#i-wallet" /></svg></div><div class="tx"><b>Payment ID</b></div><span class="val">alex@digipae</span><svg class="i chev"><use href="#i-chev" /></svg></div>
+                    <div class="row"><div class="tile t-blue"><svg class="i"><use href="#i-bank" /></svg></div><div class="tx"><b>Linked Accounts</b></div><span class="val">4 methods</span><svg class="i chev"><use href="#i-chev" /></svg></div>
+                    <div class="row"><div class="tile t-orange"><svg class="i"><use href="#i-swap" /></svg></div><div class="tx"><b>AutoPay</b></div><span class="val">3 active</span><svg class="i chev"><use href="#i-chev" /></svg></div>
+                  </div>
+                  <div class="grp">PREFERENCES</div>
+                  <div class="card list set">
+                    <div class="row"><div class="tile t-blue"><svg class="i"><use href="#i-bell" /></svg></div><div class="tx"><b>Notifications</b></div><svg class="i chev"><use href="#i-chev" /></svg></div>
+                    <div class="row rel"><div class="hl" id="hlPrivacy"></div><div class="tile t-grey"><svg class="i"><use href="#i-lock" /></svg></div><div class="tx"><b>Privacy &amp; Data</b></div><svg class="i chev"><use href="#i-chev" /></svg></div>
+                  </div>
+                  <div style="text-align:center;font-size:10.5px;color:#b0b4c2;margin:14px 0 110px">Digipae v1.0.0 · Powered by Stripe</div>
+                </div>
+              </div>
+              <div class="tabbar"><div><svg class="i"><use href="#i-home" /></svg>Home</div><div><svg class="i"><use href="#i-folder" /></svg>Vault</div><div><svg class="i"><use href="#i-clock" /></svg>History</div><div><svg class="i"><use href="#i-bell" /></svg>Alerts</div><div class="on"><svg class="i"><use href="#i-user" /></svg>Profile</div></div>
+            </div>
+            <div id="glare"></div>
+          </div>
+          <div id="island"></div>
+        </div>
+      </div>
+
+      <!-- callouts: key UI lifted off the phone toward camera -->
+      <div class="callout" id="c1" data-layout-ignore><div class="tile t-green"><svg class="i"><use href="#i-shield" /></svg></div><div><b>Government-verified</b><small>Driver's License · Main ID</small></div></div>
+      <div class="callout dark" id="c2a" data-layout-ignore><div class="tile" style="background:rgba(106,164,255,0.18);color:#9cc4ff"><svg class="i"><use href="#i-swap" /></svg></div><div><b>Instant</b><small>Confirmed in-app</small></div></div>
+      <div class="callout dark" id="c2b" data-layout-ignore><div class="tile" style="background:rgba(34,192,122,0.18);color:#5ee0a3"><svg class="i"><use href="#i-shield" /></svg></div><div><b>Zero hidden fees</b><small>See it before you pay</small></div></div>
+      <div class="callout" id="c3" data-layout-ignore><div class="tile t-blue"><svg class="i"><use href="#i-lock" /></svg></div><div><b>8 documents</b><small>All encrypted</small></div></div>
+      <div class="callout" id="c4" data-layout-ignore style="padding:0;background:none;box-shadow:none"><div id="ageLift" style="width:400px;height:200px;border-radius:24px;background:linear-gradient(120deg,#128b78 0%,#1d77c9 70%,#2f62ef 100%);color:#fff;padding:26px 26px 0 92px;position:relative;box-shadow:0 40px 80px rgba(10,5,50,0.45)"><svg class="i" style="position:absolute;left:24px;top:26px;font-size:46px"><use href="#i-shield" /></svg><b style="font-size:28px;color:#fff">Age verified</b><small style="color:rgba(255,255,255,0.85);font-size:17px;margin-top:6px">Over 21 · birthday never shared</small><div style="display:inline-block;margin-top:16px;padding:10px 22px;border-radius:20px;background:#fff;color:#138a6f;font-size:17px;font-weight:700">Share proof</div></div></div>
+      <div class="callout" id="c5" data-layout-ignore><div class="tile t-blue"><svg class="i"><use href="#i-search" /></svg></div><div><b>Search · Filter · Export</b><small>Every payment, in seconds</small></div></div>
+      <div class="callout" id="c6a" data-layout-ignore><div class="tile t-blue"><svg class="i"><use href="#i-wallet" /></svg></div><div><b>$1,248.50</b><small>Digipae balance</small></div></div>
+      <div class="callout" id="c6b" data-layout-ignore><div class="tile t-green"><svg class="i"><use href="#i-star" /></svg></div><div><b>$64.20</b><small>Rewards</small></div></div>
+      <div class="callout dark" id="c7a" data-layout-ignore><div class="tile" style="background:rgba(106,164,255,0.18);color:#9cc4ff"><svg class="i"><use href="#i-lock" /></svg></div><div><b>256-bit AES</b><small>Encrypted end to end</small></div></div>
+      <div class="callout dark" id="c7b" data-layout-ignore><div class="tile" style="background:rgba(106,164,255,0.18);color:#9cc4ff"><svg class="i"><use href="#i-phone" /></svg></div><div><b>On-device</b><small>Zero-knowledge by design</small></div></div>
+      <div class="callout" id="c8" data-layout-ignore><div class="tile t-green"><svg class="i"><use href="#i-shield" /></svg></div><div><b>100% verified</b><small>2 active devices</small></div></div>
+
+      <div id="intro"><img src="assets/digipae-icon.png" id="introMark" /><h1 id="introWord">Meet Digipae.</h1></div>
+      <div id="outro"><img src="assets/digipae-icon.png" id="outroMark" /><h1 id="outroWord">Digipae</h1><p id="outroTag">Your identity. Your money. One secure app.</p></div>
+
+      <div id="captions"></div>
+      <audio id="mix" src="assets/mix.wav" data-start="0" data-duration="__END__" data-track-index="9"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const T = /*TIMING*/;
+      const tl = gsap.timeline({ paused: true });
+      const ease = "power3.out";
+      const S = Object.fromEntries(T.scenes.map((s) => [s.id, s]));
+      const B = T.beats;
+
+      // phone positions: right of frame for headline-left scenes, left for headline-right
+      const POS = { right: { x: 0, rot: -14 }, left: { x: -760, rot: 14 } };
+      const side = (n) => (n % 2 ? "right" : "left");
+      tl.set("#phone", { x: POS.right.x + 520, y: 140, rotationY: -30, rotationX: 6, opacity: 0 }, 0);
+
+      // count-up helper (text set from a tweened number, deterministic under seek)
+      const countUp = (sel, to, at, dur, fmt) => {
+        const o = { v: 0 };
+        tl.to(o, { v: to, duration: dur, ease: "power2.out", onUpdate: () => { document.querySelector(sel).textContent = fmt(o.v); } }, at);
+      };
+      const money = (v) => "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const tap = (sel, at) => {
+        tl.fromTo(sel, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power2.out" }, at - 0.12);
+        tl.to(sel, { scale: 1.6, opacity: 0, duration: 0.35, ease: "power2.out" }, at + 0.02);
+      };
+      const callout = (sel, at, out, from) => {
+        tl.fromTo(sel, { opacity: 0, x: from.x, y: from.y + 30, scale: 0.85, rotationY: from.r || 0 },
+                       { opacity: 1, x: from.x, y: from.y, scale: 1, rotationY: 0, duration: 0.55, ease: "back.out(1.5)" }, at);
+        tl.to(sel, { y: from.y - 14, duration: Math.max(0.1, out - at - 0.55), ease: "sine.inOut" }, at + 0.55);
+        tl.to(sel, { opacity: 0, scale: 0.92, duration: 0.3, ease: "power2.in" }, out);
+      };
+
+      // ---------- world drift ----------
+      tl.fromTo("#blobA", { x: 0, y: 0 }, { x: 260, y: 120, duration: T.end, ease: "none" }, 0);
+      tl.fromTo("#blobB", { x: 0, y: 0 }, { x: -320, y: -160, duration: T.end, ease: "none" }, 0);
+      tl.fromTo("#slabA", { rotation: 12, y: 0 }, { rotation: 4, y: 60, duration: T.end, ease: "none" }, 0);
+      tl.fromTo("#slabB", { rotation: -10 }, { rotation: -2, duration: T.end, ease: "none" }, 0);
+
+      // ---------- intro ----------
+      tl.set("#intro", { opacity: 1 }, 0);
+      tl.fromTo("#introMark", { scale: 0.62, opacity: 0.45, rotation: -10 }, { scale: 1, opacity: 1, rotation: 0, duration: 1.1, ease: "back.out(1.6)" }, 0);
+      tl.fromTo("#introWord", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease }, T.vo.intro - 0.1);
+      tl.to("#intro", { opacity: 0, scale: 1.08, filter: "blur(10px)", duration: 0.5, ease: "power2.in" }, T.intro - 0.45);
+
+      // ---------- scene transitions ----------
+      const order = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"];
+      order.forEach((id, i) => {
+        const s = S[id], n = i + 1, p = POS[side(n)], prev = order[i - 1];
+        const t0 = s.start;
+        // phone swings into position
+        if (i === 0) {
+          tl.to("#phone", { x: p.x, y: 0, rotationY: p.rot, rotationX: 0, opacity: 1, duration: 1.0, ease: "power3.out" }, t0 - 0.25);
+        } else {
+          tl.to("#phone", { x: p.x, rotationY: p.rot, duration: 0.95, ease: "power3.inOut" }, t0 - 0.35);
+          tl.to("#phone", { y: -24, duration: 0.47, ease: "power2.out", yoyo: true, repeat: 1 }, t0 - 0.35);
+          // iOS-style push: new screen slides in from the right, old one slides back and dims
+          tl.to(`#${prev}`, { x: -130, opacity: 0, duration: 0.45, ease: "power2.inOut" }, t0 - 0.2);
+          tl.fromTo(`#${id}`, { x: 390, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, t0 - 0.2);
+        }
+        if (i === 0) tl.fromTo(`#${id}`, { opacity: 0 }, { opacity: 1, duration: 0.25 }, t0 - 0.2);
+        // slow camera drift while the scene plays
+        tl.to("#phone", { rotationY: p.rot * 0.55, duration: s.end - t0 - 1.3, ease: "sine.inOut" }, t0 + 0.85);
+        // headline
+        const h = `#h${n}`;
+        tl.set(h, { opacity: 1 }, t0 + 0.05);
+        tl.fromTo(`${h} .bar`, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.5, ease }, t0 + 0.05);
+        tl.fromTo(`${h} .line`, { opacity: 0, y: 50, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.65, ease, stagger: 0.12 }, t0 + 0.1);
+        tl.fromTo(`${h} p`, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease }, t0 + 0.4);
+        tl.to(h, { opacity: 0, y: -26, filter: "blur(6px)", duration: 0.35, ease: "power2.in" }, s.end - 0.4);
+      });
+      // dark scenes deepen the world
+      ["s2", "s7"].forEach((id) => {
+        tl.to("#darkwash", { opacity: 0.75, duration: 0.6 }, S[id].start - 0.3);
+        tl.to("#darkwash", { opacity: 0, duration: 0.6 }, S[id].end - 0.3);
+      });
+      // callout x/y offsets sit on the phone's outer edge
+      const R = { x: 1470, y: 0 }, Lf = { x: 120, y: 0 };
+      const place = (sel, base, top) => tl.set(sel, { left: base.x, top }, 0);
+
+      // ---------- 1 · Home ----------
+      countUp("#balAmt", 1248.5, B.s1.count, 1.1, money);
+      tl.fromTo("#idcard", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease }, S.s1.start + 0.15);
+      tl.fromTo("#s1 .qa .card", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease, stagger: 0.07 }, S.s1.start + 0.4);
+      tl.to("#idcard", { scale: 1.035, duration: 0.3, ease: "power2.out", yoyo: true, repeat: 1 }, B.s1.lift);
+      tl.fromTo("#idqr", { scale: 1 }, { scale: 1.12, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 3 }, B.s1.qr);
+      place("#c1", R, 560); callout("#c1", B.s1.lift, S.s1.end - 0.45, { x: 0, y: 0, r: -20 });
+
+      // ---------- 2 · Scan & Pay ----------
+      tl.fromTo("#scanline", { y: 0 }, { y: 96, duration: 0.8, ease: "sine.inOut", yoyo: true, repeat: 3 }, S.s2.start);
+      tl.fromTo("#frame .br", { scale: 1.6, opacity: 0.3 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, B.s2.lock - 0.3);
+      tl.to("#scanline", { opacity: 0, duration: 0.2 }, B.s2.pay);
+      tl.fromTo("#payInfo", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease }, B.s2.pay - 0.1);
+      tl.fromTo("#faceBtn", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease }, B.s2.pay + 0.1);
+      tap("#tap2", B.s2.tap);
+      tl.to("#faceBtn", { scale: 0.96, duration: 0.1, yoyo: true, repeat: 1 }, B.s2.tap);
+      tl.fromTo("#paidOk", { opacity: 0 }, { opacity: 1, duration: 0.3 }, B.s2.done - 0.15);
+      tl.fromTo("#paidOk .ok", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2.2)" }, B.s2.done - 0.1);
+      place("#c2a", Lf, 300); place("#c2b", Lf, 470);
+      callout("#c2a", B.s2.tap - 0.2, S.s2.end - 0.45, { x: 0, y: 0, r: 20 });
+      callout("#c2b", B.s2.chips - 0.2, S.s2.end - 0.45, { x: 0, y: 0, r: 20 });
+
+      // ---------- 3 · Vault ----------
+      tap("#tap3", B.s3.tap);
+      tl.to("#upBtn", { scale: 0.96, duration: 0.1, yoyo: true, repeat: 1 }, B.s3.tap);
+      tl.fromTo("#docs .card", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease, stagger: 0.09 }, B.s3.list - 0.2);
+      tl.fromTo("#docs .b-green", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)", stagger: 0.08 }, B.s3.verify - 0.1);
+      tl.fromTo("#docs .b-orange", { opacity: 0.4 }, { opacity: 1, duration: 0.4, yoyo: true, repeat: 5 }, B.s3.verify);
+      place("#c3", R, 330); callout("#c3", B.s3.lock - 0.1, S.s3.end - 0.45, { x: 0, y: 0, r: -20 });
+
+      // ---------- 4 · Credentials ----------
+      tl.fromTo("#agecard", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease }, S.s4.start + 0.1);
+      tl.fromTo("#cats .card", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)", stagger: 0.05 }, B.s4.grid);
+      place("#c4", Lf, 330); callout("#c4", B.s4.lift - 0.15, S.s4.end - 0.45, { x: 0, y: 0, r: 22 });
+      tap("#tap4", B.s4.tap);
+      tl.to("#shareBtn", { scale: 0.94, duration: 0.1, yoyo: true, repeat: 1 }, B.s4.tap);
+      tl.to("#ageLift", { boxShadow: "0 40px 90px rgba(18, 139, 120, 0.7)", duration: 0.3, yoyo: true, repeat: 1 }, B.s4.tap);
+
+      // ---------- 5 · History ----------
+      countUp("#spendAmt", 2184.3, B.s5.count, 1.2, money);
+      tl.fromTo("#txs .row", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.07 }, S.s5.start + 0.3);
+      tl.to("#s5c", { y: -150, duration: 1.6, ease: "power2.inOut" }, B.s5.scroll);
+      tap("#tap5", B.s5.tap);
+      tl.set("#fAll", { className: "" }, B.s5.tap + 0.05);
+      tl.set("#fDone", { className: "on" }, B.s5.tap + 0.05);
+      tl.to("#s5c", { y: 0, duration: 0.8, ease: "power2.inOut" }, B.s5.tap - 0.9);
+      place("#c5", R, 300); callout("#c5", B.s5.export - 0.2, S.s5.end - 0.45, { x: 0, y: 0, r: -20 });
+
+      // ---------- 6 · Wallet ----------
+      countUp("#wBal", 1248.5, B.s6.stats - 0.1, 1.0, money);
+      countUp("#wRew", 64.2, B.s6.rewards - 0.1, 0.9, money);
+      tl.fromTo("#vcard", { rotationX: 60, y: 30, opacity: 0, transformPerspective: 900 }, { rotationX: 0, y: 0, opacity: 1, duration: 0.8, ease }, S.s6.start + 0.2);
+      tl.fromTo("#accts .card", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease, stagger: 0.1 }, B.s6.accounts - 0.2);
+      tl.to("#vcard", { scale: 1.04, duration: 0.35, ease: "power2.out", yoyo: true, repeat: 1 }, B.s6.card);
+      place("#c6a", Lf, 260); place("#c6b", Lf, 420);
+      callout("#c6a", B.s6.stats - 0.1, S.s6.end - 0.45, { x: 0, y: 0, r: 20 });
+      callout("#c6b", B.s6.rewards - 0.05, S.s6.end - 0.45, { x: 0, y: 0, r: 20 });
+
+      // ---------- 7 · Security ----------
+      tl.fromTo("#faceSweep", { y: 0 }, { y: 190, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: 3 }, B.s7.scan - 0.4);
+      tl.fromTo("#pinDots b", { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(2)", stagger: 0.18 }, B.s7.dots);
+      tl.fromTo("#unlocked", { opacity: 0 }, { opacity: 1, duration: 0.3 }, B.s7.unlock - 0.1);
+      tl.fromTo("#unlocked .ok", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2.2)" }, B.s7.unlock);
+      place("#c7a", R, 300); place("#c7b", R, 470);
+      callout("#c7a", B.s7.dots - 0.3, S.s7.end - 0.45, { x: 0, y: 0, r: -20 });
+      callout("#c7b", B.s7.dots + 0.5, S.s7.end - 0.45, { x: 0, y: 0, r: -20 });
+
+      // ---------- 8 · Profile ----------
+      tl.fromTo("#vchip", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.5)" }, B.s8.stamp);
+      tl.to("#hlAccess", { opacity: 1, duration: 0.2, yoyo: true, repeat: 1, repeatDelay: 0.4 }, B.s8.access);
+      tl.to("#hlDevices", { opacity: 1, duration: 0.2, yoyo: true, repeat: 1, repeatDelay: 0.4 }, B.s8.devices);
+      tl.to("#s8c", { y: -180, duration: 0.9, ease: "power2.inOut" }, B.s8.devices + 0.1);
+      tl.to("#hlPrivacy", { opacity: 1, duration: 0.2, yoyo: true, repeat: 1, repeatDelay: 0.5 }, B.s8.privacy);
+      place("#c8", Lf, 320); callout("#c8", B.s8.stamp - 0.1, S.s8.end - 0.45, { x: 0, y: 0, r: 20 });
+
+      // ---------- outro ----------
+      const oS = T.outroStart;
+      tl.to("#phone", { y: 160, rotationX: 18, opacity: 0, scale: 0.85, duration: 0.7, ease: "power2.in" }, oS - 0.2);
+      tl.set("#outro", { opacity: 1 }, oS + 0.2);
+      tl.fromTo("#outroMark", { scale: 0.5, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.9, ease: "back.out(1.6)" }, oS + 0.25);
+      tl.fromTo("#outroWord", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease }, T.vo.outro - 0.1);
+      tl.fromTo("#outroTag", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease }, T.vo.outro + 0.6);
+      tl.fromTo("#outro", { scale: 1 }, { scale: 1.03, duration: T.end - oS, ease: "sine.out" }, oS + 0.2);
+
+      // ---------- captions ----------
+      const capRoot = document.getElementById("captions");
+      T.captions.forEach((c, ci) => {
+        const el = document.createElement("div");
+        el.className = "cap";
+        el.id = `cap${ci}`;
+        c.words.forEach((w, wi) => {
+          const sp = document.createElement("span");
+          sp.id = `cap${ci}w${wi}`;
+          sp.textContent = (wi ? " " : "") + w.w;
+          el.appendChild(sp);
+        });
+        capRoot.appendChild(el);
+        tl.fromTo(el, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, c.s);
+        tl.to(el, { opacity: 0, duration: 0.15 }, c.e - 0.15);
+        c.words.forEach((w, wi) => {
+          tl.set(`#cap${ci}w${wi}`, { className: "now" }, w.t);
+          const next = c.words[wi + 1];
+          tl.set(`#cap${ci}w${wi}`, { className: "on" }, next ? next.t : w.t + 0.45);
+        });
+      });
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,806 @@
+[
+ {
+  "name": "a1",
+  "spoken": "Applying for a public service still means starting from zero.",
+  "dur": 3.149,
+  "asr": [
+   {
+    "w": "Applying",
+    "s": 0.0
+   },
+   {
+    "w": "for",
+    "s": 0.48
+   },
+   {
+    "w": "a",
+    "s": 0.64
+   },
+   {
+    "w": "public",
+    "s": 0.8
+   },
+   {
+    "w": "service",
+    "s": 1.12
+   },
+   {
+    "w": "still",
+    "s": 1.6
+   },
+   {
+    "w": "means",
+    "s": 1.84
+   },
+   {
+    "w": "starting",
+    "s": 2.16
+   },
+   {
+    "w": "from",
+    "s": 2.4
+   },
+   {
+    "w": "zero.",
+    "s": 2.56
+   }
+  ]
+ },
+ {
+  "name": "a2",
+  "spoken": "Three portals. Three accounts. The same identity, address, and income, typed in again every time.",
+  "dur": 5.701,
+  "asr": [
+   {
+    "w": "Three",
+    "s": 0.0
+   },
+   {
+    "w": "portals,",
+    "s": 0.32
+   },
+   {
+    "w": "three",
+    "s": 0.88
+   },
+   {
+    "w": "accounts,",
+    "s": 1.2
+   },
+   {
+    "w": "the",
+    "s": 1.84
+   },
+   {
+    "w": "same",
+    "s": 2.0
+   },
+   {
+    "w": "identity,",
+    "s": 2.24
+   },
+   {
+    "w": "address,",
+    "s": 2.88
+   },
+   {
+    "w": "and",
+    "s": 3.36
+   },
+   {
+    "w": "income,",
+    "s": 3.6
+   },
+   {
+    "w": "typed",
+    "s": 4.16
+   },
+   {
+    "w": "in",
+    "s": 4.48
+   },
+   {
+    "w": "again",
+    "s": 4.64
+   },
+   {
+    "w": "every",
+    "s": 4.96
+   },
+   {
+    "w": "time.",
+    "s": 5.2
+   }
+  ]
+ },
+ {
+  "name": "a3",
+  "spoken": "In the final month of the Medicaid unwinding, about two in three people who lost coverage lost it for paperwork reasons.",
+  "dur": 6.451,
+  "asr": [
+   {
+    "w": "In",
+    "s": 0.0
+   },
+   {
+    "w": "the",
+    "s": 0.24
+   },
+   {
+    "w": "final",
+    "s": 0.32
+   },
+   {
+    "w": "month",
+    "s": 0.56
+   },
+   {
+    "w": "of",
+    "s": 0.8
+   },
+   {
+    "w": "the",
+    "s": 0.88
+   },
+   {
+    "w": "Medicaid",
+    "s": 0.96
+   },
+   {
+    "w": "unwinding,",
+    "s": 1.68
+   },
+   {
+    "w": "about",
+    "s": 2.4
+   },
+   {
+    "w": "two",
+    "s": 2.72
+   },
+   {
+    "w": "in",
+    "s": 2.96
+   },
+   {
+    "w": "three",
+    "s": 3.2
+   },
+   {
+    "w": "people",
+    "s": 3.52
+   },
+   {
+    "w": "who",
+    "s": 3.84
+   },
+   {
+    "w": "lost",
+    "s": 4.0
+   },
+   {
+    "w": "coverage",
+    "s": 4.32
+   },
+   {
+    "w": "lost",
+    "s": 4.88
+   },
+   {
+    "w": "it",
+    "s": 5.12
+   },
+   {
+    "w": "for",
+    "s": 5.28
+   },
+   {
+    "w": "paperwork",
+    "s": 5.44
+   },
+   {
+    "w": "reasons.",
+    "s": 5.92
+   }
+  ]
+ },
+ {
+  "name": "a4",
+  "spoken": "Finance got a connection layer. Government services never did. Digipay is building it. Think Plaid, but for government.",
+  "dur": 6.726,
+  "asr": [
+   {
+    "w": "Finance",
+    "s": 0.0
+   },
+   {
+    "w": "got",
+    "s": 0.56
+   },
+   {
+    "w": "a",
+    "s": 0.72
+   },
+   {
+    "w": "connection",
+    "s": 0.88
+   },
+   {
+    "w": "layer.",
+    "s": 1.28
+   },
+   {
+    "w": "Government",
+    "s": 1.76
+   },
+   {
+    "w": "services",
+    "s": 2.24
+   },
+   {
+    "w": "never",
+    "s": 2.96
+   },
+   {
+    "w": "did.",
+    "s": 3.2
+   },
+   {
+    "w": "Did",
+    "s": 3.6
+   },
+   {
+    "w": "you",
+    "s": 3.84
+   },
+   {
+    "w": "pay",
+    "s": 4.0
+   },
+   {
+    "w": "as",
+    "s": 4.24
+   },
+   {
+    "w": "building",
+    "s": 4.4
+   },
+   {
+    "w": "it?",
+    "s": 4.72
+   },
+   {
+    "w": "Think",
+    "s": 5.04
+   },
+   {
+    "w": "plaid,",
+    "s": 5.36
+   },
+   {
+    "w": "but",
+    "s": 5.84
+   },
+   {
+    "w": "for",
+    "s": 6.0
+   },
+   {
+    "w": "government.",
+    "s": 6.16
+   }
+  ]
+ },
+ {
+  "name": "b1",
+  "spoken": "Here's the app, today.",
+  "dur": 1.224,
+  "asr": [
+   {
+    "w": "Here's",
+    "s": 0.0
+   },
+   {
+    "w": "the",
+    "s": 0.32
+   },
+   {
+    "w": "app",
+    "s": 0.48
+   },
+   {
+    "w": "today.",
+    "s": 0.72
+   }
+  ]
+ },
+ {
+  "name": "b10",
+  "spoken": "Consent first. Only where access is permitted.",
+  "dur": 2.535,
+  "asr": [
+   {
+    "w": "Consent",
+    "s": 0.0
+   },
+   {
+    "w": "first,",
+    "s": 0.56
+   },
+   {
+    "w": "only",
+    "s": 1.04
+   },
+   {
+    "w": "where",
+    "s": 1.28
+   },
+   {
+    "w": "access",
+    "s": 1.52
+   },
+   {
+    "w": "is",
+    "s": 1.84
+   },
+   {
+    "w": "permitted.",
+    "s": 2.0
+   }
+  ]
+ },
+ {
+  "name": "b2",
+  "spoken": "Sign in with just your phone number.",
+  "dur": 1.855,
+  "asr": [
+   {
+    "w": "Sign",
+    "s": 0.0
+   },
+   {
+    "w": "in",
+    "s": 0.48
+   },
+   {
+    "w": "with",
+    "s": 0.64
+   },
+   {
+    "w": "just",
+    "s": 0.8
+   },
+   {
+    "w": "your",
+    "s": 0.96
+   },
+   {
+    "w": "phone",
+    "s": 1.12
+   },
+   {
+    "w": "number.",
+    "s": 1.44
+   }
+  ]
+ },
+ {
+  "name": "b3",
+  "spoken": "A one-time code confirms it's really you.",
+  "dur": 2.151,
+  "asr": [
+   {
+    "w": "A",
+    "s": 0.0
+   },
+   {
+    "w": "one-time",
+    "s": 0.16
+   },
+   {
+    "w": "code",
+    "s": 0.64
+   },
+   {
+    "w": "confirms",
+    "s": 0.96
+   },
+   {
+    "w": "it's",
+    "s": 1.36
+   },
+   {
+    "w": "really",
+    "s": 1.6
+   },
+   {
+    "w": "you.",
+    "s": 1.84
+   }
+  ]
+ },
+ {
+  "name": "b4",
+  "spoken": "Before anything happens, you see exactly what you're agreeing to.",
+  "dur": 3.145,
+  "asr": [
+   {
+    "w": "Before",
+    "s": 0.0
+   },
+   {
+    "w": "anything",
+    "s": 0.32
+   },
+   {
+    "w": "happens,",
+    "s": 0.72
+   },
+   {
+    "w": "you",
+    "s": 1.2
+   },
+   {
+    "w": "see",
+    "s": 1.36
+   },
+   {
+    "w": "exactly",
+    "s": 1.6
+   },
+   {
+    "w": "what",
+    "s": 2.0
+   },
+   {
+    "w": "you're",
+    "s": 2.16
+   },
+   {
+    "w": "agreeing",
+    "s": 2.4
+   },
+   {
+    "w": "to.",
+    "s": 2.8
+   }
+  ]
+ },
+ {
+  "name": "b5",
+  "spoken": "Then you lock it with your own pin.",
+  "dur": 1.623,
+  "asr": [
+   {
+    "w": "Then",
+    "s": 0.0
+   },
+   {
+    "w": "you",
+    "s": 0.24
+   },
+   {
+    "w": "lock",
+    "s": 0.4
+   },
+   {
+    "w": "it",
+    "s": 0.64
+   },
+   {
+    "w": "with",
+    "s": 0.8
+   },
+   {
+    "w": "your",
+    "s": 0.88
+   },
+   {
+    "w": "own",
+    "s": 1.04
+   },
+   {
+    "w": "pin.",
+    "s": 1.2
+   }
+  ]
+ },
+ {
+  "name": "b6",
+  "spoken": "Your home screen holds your digital ID, ready to verify.",
+  "dur": 3.204,
+  "asr": [
+   {
+    "w": "Your",
+    "s": 0.0
+   },
+   {
+    "w": "home",
+    "s": 0.24
+   },
+   {
+    "w": "screen",
+    "s": 0.48
+   },
+   {
+    "w": "holds",
+    "s": 0.8
+   },
+   {
+    "w": "your",
+    "s": 1.04
+   },
+   {
+    "w": "digital",
+    "s": 1.2
+   },
+   {
+    "w": "id,",
+    "s": 1.6
+   },
+   {
+    "w": "ready",
+    "s": 2.08
+   },
+   {
+    "w": "to",
+    "s": 2.32
+   },
+   {
+    "w": "verify.",
+    "s": 2.48
+   }
+  ]
+ },
+ {
+  "name": "b7",
+  "spoken": "Documents are organized by category.",
+  "dur": 2.156,
+  "asr": [
+   {
+    "w": "Documents",
+    "s": 0.0
+   },
+   {
+    "w": "are",
+    "s": 0.56
+   },
+   {
+    "w": "organized",
+    "s": 0.72
+   },
+   {
+    "w": "by",
+    "s": 1.28
+   },
+   {
+    "w": "category.",
+    "s": 1.44
+   }
+  ]
+ },
+ {
+  "name": "b8",
+  "spoken": "Government IDs alone covers licenses, passports, green cards, work permits, and more.",
+  "dur": 5.251,
+  "asr": [
+   {
+    "w": "Government",
+    "s": 0.0
+   },
+   {
+    "w": "IDs",
+    "s": 0.48
+   },
+   {
+    "w": "alone",
+    "s": 1.04
+   },
+   {
+    "w": "cover",
+    "s": 1.36
+   },
+   {
+    "w": "licenses,",
+    "s": 1.76
+   },
+   {
+    "w": "passports,",
+    "s": 2.48
+   },
+   {
+    "w": "green",
+    "s": 3.12
+   },
+   {
+    "w": "cards,",
+    "s": 3.44
+   },
+   {
+    "w": "work",
+    "s": 3.76
+   },
+   {
+    "w": "permits,",
+    "s": 4.0
+   },
+   {
+    "w": "and",
+    "s": 4.64
+   },
+   {
+    "w": "more.",
+    "s": 4.8
+   }
+  ]
+ },
+ {
+  "name": "b9",
+  "spoken": "Pulling a license straight from the issuer is coming soon. For now, you upload a copy to your vault.",
+  "dur": 5.214,
+  "asr": [
+   {
+    "w": "Pulling",
+    "s": 0.0
+   },
+   {
+    "w": "a",
+    "s": 0.4
+   },
+   {
+    "w": "license",
+    "s": 0.56
+   },
+   {
+    "w": "straight",
+    "s": 1.04
+   },
+   {
+    "w": "from",
+    "s": 1.36
+   },
+   {
+    "w": "the",
+    "s": 1.52
+   },
+   {
+    "w": "issuer",
+    "s": 1.6
+   },
+   {
+    "w": "is",
+    "s": 2.16
+   },
+   {
+    "w": "coming",
+    "s": 2.32
+   },
+   {
+    "w": "soon.",
+    "s": 2.64
+   },
+   {
+    "w": "For",
+    "s": 3.12
+   },
+   {
+    "w": "now,",
+    "s": 3.28
+   },
+   {
+    "w": "you",
+    "s": 3.6
+   },
+   {
+    "w": "upload",
+    "s": 3.76
+   },
+   {
+    "w": "a",
+    "s": 4.16
+   },
+   {
+    "w": "copy",
+    "s": 4.24
+   },
+   {
+    "w": "to",
+    "s": 4.48
+   },
+   {
+    "w": "your",
+    "s": 4.64
+   },
+   {
+    "w": "vault.",
+    "s": 4.72
+   }
+  ]
+ },
+ {
+  "name": "c1",
+  "spoken": "One consent-based connection for government documents, verification, and eligibility.",
+  "dur": 4.97,
+  "asr": [
+   {
+    "w": "One",
+    "s": 0.0
+   },
+   {
+    "w": "consent-based",
+    "s": 0.4
+   },
+   {
+    "w": "connection",
+    "s": 1.12
+   },
+   {
+    "w": "for",
+    "s": 1.68
+   },
+   {
+    "w": "government",
+    "s": 1.84
+   },
+   {
+    "w": "documents,",
+    "s": 2.24
+   },
+   {
+    "w": "verification,",
+    "s": 2.96
+   },
+   {
+    "w": "and",
+    "s": 3.92
+   },
+   {
+    "w": "eligibility.",
+    "s": 4.16
+   }
+  ]
+ },
+ {
+  "name": "c2",
+  "spoken": "Digipay. Building toward Plaid for government. Follow the build.",
+  "dur": 3.372,
+  "asr": [
+   {
+    "w": "Digipay",
+    "s": 0.0
+   },
+   {
+    "w": "building",
+    "s": 0.64
+   },
+   {
+    "w": "toward",
+    "s": 0.96
+   },
+   {
+    "w": "plaid",
+    "s": 1.2
+   },
+   {
+    "w": "for",
+    "s": 1.68
+   },
+   {
+    "w": "government.",
+    "s": 1.84
+   },
+   {
+    "w": "Follow",
+    "s": 2.4
+   },
+   {
+    "w": "the",
+    "s": 2.72
+   },
+   {
+    "w": "build.",
+    "s": 2.96
+   }
+  ]
+ }
+]

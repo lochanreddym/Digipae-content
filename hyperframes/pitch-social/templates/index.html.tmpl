@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Regular.otf") format("opentype"); font-weight: 400; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Medium.otf") format("opentype"); font-weight: 500; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-SemiBold.otf") format("opentype"); font-weight: 600; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-Bold.otf") format("opentype"); font-weight: 700; }
+      @font-face { font-family: "Inter Display"; src: url("assets/fonts/InterDisplay-ExtraBold.otf") format("opentype"); font-weight: 800; }
+      :root {
+        --navy: #081522; --deep: #10263b; --line: #1d3a55; --cyan: #37d5e8; --gray: #a4b4c3; --white: #f4f8fb;
+        --violet: #6d5cff; --amber: #e9b44c; --amber-bg: rgba(233, 180, 76, 0.14);
+        --font: "Inter", sans-serif; --display: "Inter Display", "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--font); color: var(--white); background: var(--navy); }
+      .scene { position: absolute; inset: 0; opacity: 0; }
+      #bg { position: absolute; inset: 0; background: radial-gradient(90% 60% at 50% 42%, #12304a 0%, var(--navy) 62%, #050d17 100%); }
+      #grid { position: absolute; inset: 0; opacity: 0.55;
+              background-image: linear-gradient(rgba(55, 213, 232, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(55, 213, 232, 0.05) 1px, transparent 1px);
+              background-size: 72px 72px; }
+      #glow { position: absolute; left: 90px; top: 460px; width: 900px; height: 900px; border-radius: 50%; opacity: 0.5;
+              background: radial-gradient(circle, rgba(55, 213, 232, 0.22) 0%, rgba(109, 92, 255, 0.10) 40%, rgba(8, 21, 34, 0) 70%); }
+
+      .tag { position: absolute; left: 70px; top: 240px; padding: 10px 20px; border-radius: 24px; font-size: 28px; font-weight: 700; letter-spacing: 0.08em;
+             background: rgba(55, 213, 232, 0.12); color: var(--cyan); border: 1.5px solid rgba(55, 213, 232, 0.45); opacity: 0; white-space: nowrap; }
+      .brand { position: absolute; left: 70px; top: 166px; display: flex; align-items: center; gap: 14px; font-family: var(--display); font-weight: 800; font-size: 40px; opacity: 0; }
+      .brand img { width: 52px; height: 53px; }
+
+      /* A1 hook */
+      #hA1 { position: absolute; left: 70px; top: 560px; width: 860px; font-family: var(--display); font-weight: 800; font-size: 108px; line-height: 1.02; letter-spacing: -0.02em; }
+      #hA1 span { display: block; opacity: 0; }
+      #zero { color: var(--cyan); display: inline-block; }
+
+      /* A2 portals */
+      .portal { position: absolute; left: 70px; width: 830px; height: 250px; border-radius: 26px; background: rgba(16, 38, 59, 0.92); border: 1.5px solid var(--line);
+                padding: 28px 32px; opacity: 0; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35); }
+      .portal h4 { font-size: 34px; font-weight: 700; color: var(--white); }
+      .portal .acct { position: absolute; right: 30px; top: 28px; padding: 6px 16px; border-radius: 16px; font-size: 28px; font-weight: 600; color: var(--gray); border: 1.5px solid var(--line); opacity: 0; }
+      .portal .flds { position: absolute; left: 32px; right: 32px; bottom: 30px; display: flex; gap: 18px; }
+      .fld { flex: 1; height: 112px; border-radius: 16px; border: 2px solid var(--line); background: rgba(8, 21, 34, 0.6); padding: 12px 18px; }
+      .fld label { display: block; font-size: 28px; font-weight: 600; color: var(--gray); letter-spacing: 0.04em; }
+      .fld .v { display: block; margin-top: 8px; font-size: 32px; font-weight: 600; color: var(--white); opacity: 0; white-space: nowrap; }
+      #stamp { position: absolute; left: 540px; top: 1260px; padding: 14px 26px; border-radius: 18px; border: 3px solid var(--amber); color: var(--amber);
+               font-family: var(--display); font-size: 52px; font-weight: 800; opacity: 0; transform: rotate(-6deg); background: rgba(8, 21, 34, 0.85); }
+
+      /* A3 stat */
+      #stat { position: absolute; left: 70px; top: 470px; font-family: var(--display); font-weight: 800; font-size: 250px; letter-spacing: -0.03em; color: var(--cyan); opacity: 0; line-height: 1; }
+      #people { position: absolute; left: 70px; top: 800px; display: flex; gap: 44px; opacity: 0; }
+      .pp { width: 150px; height: 190px; position: relative; }
+      .pp i { position: absolute; left: 40px; top: 0; width: 70px; height: 70px; border-radius: 50%; background: var(--gray); }
+      .pp b { position: absolute; left: 10px; top: 86px; width: 130px; height: 104px; border-radius: 65px 65px 18px 18px; background: var(--gray); }
+      .pp.lost i, .pp.lost b { background: var(--amber); }
+      #statTxt { position: absolute; left: 70px; top: 1040px; width: 830px; font-size: 44px; font-weight: 600; line-height: 1.25; opacity: 0; }
+      #statTxt em { font-style: normal; color: var(--amber); }
+      #statSrc { position: absolute; left: 70px; top: 1250px; font-size: 28px; color: var(--gray); opacity: 0; }
+
+      /* A4 missing layer */
+      .rowlbl { position: absolute; left: 70px; font-size: 30px; font-weight: 700; letter-spacing: 0.08em; color: var(--gray); opacity: 0; }
+      .node { position: absolute; width: 230px; height: 120px; border-radius: 20px; display: flex; align-items: center; justify-content: center; text-align: center;
+              font-size: 30px; font-weight: 600; line-height: 1.2; background: rgba(16, 38, 59, 0.95); border: 2px solid var(--line); opacity: 0; padding: 0 14px; }
+      .node.hub { border-color: var(--cyan); color: var(--cyan); }
+      #gHub { border: 2.5px dashed #3a5672; color: #5d7790; font-size: 64px; font-weight: 700; }
+      #dpHub { position: absolute; left: 330px; top: 1000px; width: 310px; height: 140px; border-radius: 24px; background: linear-gradient(135deg, #3b5bff, #7a4dff);
+               display: flex; align-items: center; justify-content: center; gap: 14px; font-family: var(--display); font-size: 46px; font-weight: 800; opacity: 0;
+               box-shadow: 0 0 0 3px rgba(55, 213, 232, 0.6), 0 0 80px rgba(109, 92, 255, 0.55); }
+      #dpHub img { width: 60px; height: 61px; }
+      svg.wires { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+      #plaidChip { position: absolute; left: 70px; top: 1190px; padding: 16px 28px; border-radius: 22px; background: var(--white); color: var(--navy);
+                   font-family: var(--display); font-size: 48px; font-weight: 800; opacity: 0; }
+      #plaidFine { position: absolute; left: 74px; top: 1285px; font-size: 28px; color: var(--gray); opacity: 0; }
+
+      /* B phone */
+      #phone { position: absolute; left: 230px; top: 306px; width: 510px; height: 1104px; border-radius: 62px; background: #000; padding: 8px; opacity: 0;
+               box-shadow: 0 0 0 2px #2c4a66, 0 60px 120px rgba(0, 0, 0, 0.55), 0 0 160px rgba(55, 213, 232, 0.18); }
+      #screen { position: relative; width: 494px; height: 1088px; border-radius: 55px; overflow: hidden; background: #000; }
+      #demo { position: absolute; left: 0; top: 0; width: 494px; height: 1088px; object-fit: cover; }
+      .step { position: absolute; right: 180px; top: 240px; padding: 10px 20px; border-radius: 24px; font-size: 28px; font-weight: 700; background: var(--white); color: var(--navy);
+              opacity: 0; white-space: nowrap; }
+      .step.soon { background: var(--amber); }
+      .step b { font-weight: 700; color: #4d6478; margin-right: 6px; }
+      #vaultChip { position: absolute; left: 70px; top: 1200px; padding: 14px 22px; border-radius: 20px; font-size: 30px; font-weight: 600; background: rgba(8, 21, 34, 0.92);
+                   border: 2px solid var(--amber); color: var(--white); opacity: 0; white-space: nowrap; }
+
+      /* C platform */
+      .src, .org { position: absolute; width: 260px; height: 120px; border-radius: 20px; display: flex; align-items: center; justify-content: center; text-align: center;
+                   font-size: 28px; font-weight: 600; line-height: 1.2; padding: 0 14px; background: rgba(16, 38, 59, 0.95); border: 2px solid var(--line); opacity: 0; }
+      .org { border-color: rgba(55, 213, 232, 0.5); }
+      #cHub { position: absolute; left: 275px; top: 700px; width: 420px; height: 150px; border-radius: 26px; background: linear-gradient(135deg, #3b5bff, #7a4dff);
+              display: flex; align-items: center; justify-content: center; gap: 16px; font-family: var(--display); font-size: 56px; font-weight: 800; opacity: 0;
+              box-shadow: 0 0 0 3px rgba(55, 213, 232, 0.6), 0 0 90px rgba(109, 92, 255, 0.5); }
+      #cHub img { width: 70px; height: 71px; }
+      .cap3 { position: absolute; top: 880px; padding: 10px 20px; border-radius: 20px; font-size: 28px; font-weight: 700; background: #0d2c3d;
+              color: var(--cyan); border: 1.5px solid rgba(55, 213, 232, 0.5); opacity: 0; }
+      #cFine { position: absolute; left: 70px; top: 1250px; width: 830px; font-size: 28px; color: var(--gray); line-height: 1.35; opacity: 0; }
+
+      /* final */
+      #fMark { position: absolute; left: 395px; top: 470px; width: 180px; height: 183px; opacity: 0; }
+      #fWord { position: absolute; left: 0; width: 970px; top: 690px; text-align: center; font-family: var(--display); font-size: 120px; font-weight: 800; letter-spacing: -0.02em; opacity: 0; }
+      #fLine { position: absolute; left: 70px; width: 830px; top: 860px; text-align: center; font-size: 52px; font-weight: 700; line-height: 1.2; opacity: 0; }
+      #fLine em { font-style: normal; color: var(--cyan); }
+      #fCta { position: absolute; left: 285px; top: 1030px; width: 400px; padding: 20px 0; border-radius: 40px; text-align: center; font-size: 40px; font-weight: 700;
+              background: var(--cyan); color: var(--navy); opacity: 0; }
+      #fUrl { position: absolute; left: 0; width: 970px; top: 1140px; text-align: center; font-size: 34px; font-weight: 600; color: var(--gray); opacity: 0; }
+      #fDisc { position: absolute; left: 70px; width: 830px; top: 1300px; text-align: center; font-size: 28px; color: var(--gray); line-height: 1.35; opacity: 0; }
+
+      /* captions */
+      #captions { position: absolute; left: 70px; width: 830px; top: 0; height: 1480px; }
+      .scap { position: absolute; left: 0; bottom: 0; width: 830px; text-align: center; opacity: 0; }
+      .scap span { display: inline-block; padding: 12px 24px; border-radius: 18px; background: rgba(5, 13, 23, 0.86); font-size: 40px; font-weight: 700; line-height: 1.25;
+                   color: var(--white); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="__END__" data-width="1080" data-height="1920">
+      <div id="bg" data-layout-ignore><div id="grid"></div><div id="glow"></div></div>
+      <div class="brand" id="brand"><img src="assets/digipae-icon.png" alt="DigiPae logo" />DigiPae</div>
+
+      <!-- A1 · hook -->
+      <div class="scene" id="sA1">
+        <div class="tag" id="tA1">THE PROBLEM</div>
+        <div id="hA1"><span>Applying for a</span><span>public service</span><span>still means</span><span>starting from</span><span><i id="zero" style="font-style:normal">zero.</i></span></div>
+      </div>
+
+      <!-- A2 · three portals -->
+      <div class="scene" id="sA2">
+        <div class="tag" id="tA2">THE PROBLEM</div>
+        <div class="portal" id="pc1" style="top: 420px"><h4>Health coverage portal</h4><div class="acct">New account</div>
+          <div class="flds"><div class="fld"><label>IDENTITY</label><span class="v vi">Jordan Lee</span></div><div class="fld"><label>ADDRESS</label><span class="v va">12 Elm St</span></div><div class="fld"><label>INCOME</label><span class="v vn">$2,140/mo</span></div></div></div>
+        <div class="portal" id="pc2" style="top: 700px"><h4>Food assistance portal</h4><div class="acct">New account</div>
+          <div class="flds"><div class="fld"><label>IDENTITY</label><span class="v vi">Jordan Lee</span></div><div class="fld"><label>ADDRESS</label><span class="v va">12 Elm St</span></div><div class="fld"><label>INCOME</label><span class="v vn">$2,140/mo</span></div></div></div>
+        <div class="portal" id="pc3" style="top: 980px"><h4>Housing assistance portal</h4><div class="acct">New account</div>
+          <div class="flds"><div class="fld"><label>IDENTITY</label><span class="v vi">Jordan Lee</span></div><div class="fld"><label>ADDRESS</label><span class="v va">12 Elm St</span></div><div class="fld"><label>INCOME</label><span class="v vn">$2,140/mo</span></div></div></div>
+        <div id="stamp">Typed 3×</div>
+      </div>
+
+      <!-- A3 · stat -->
+      <div class="scene" id="sA3">
+        <div class="tag" id="tA3">WHY IT MATTERS</div>
+        <div id="stat">≈ 2 in 3</div>
+        <div id="people"><div class="pp" id="pp1"><i></i><b></b></div><div class="pp" id="pp2"><i></i><b></b></div><div class="pp" id="pp3"><i></i><b></b></div></div>
+        <div id="statTxt">Medicaid disenrollments in the final month of the 2023–24 unwinding were <em>procedural</em>: paperwork, not ineligibility.</div>
+        <div id="statSrc">Source: KFF, 2024</div>
+      </div>
+
+      <!-- A4 · the missing layer -->
+      <div class="scene" id="sA4">
+        <div class="tag" id="tA4">THE MISSING LAYER</div>
+        <svg class="wires" viewBox="0 0 1080 1920" data-layout-ignore>
+          <path id="fw1" d="M 320 600 L 330 600" stroke="#37d5e8" stroke-width="5" fill="none" />
+          <path id="fw2" d="M 640 600 L 650 600" stroke="#37d5e8" stroke-width="5" fill="none" />
+          <path id="gw1" d="M 320 1070 L 330 1070" stroke="#3a5672" stroke-width="4" stroke-dasharray="10 12" fill="none" />
+          <path id="gw2" d="M 640 1070 L 650 1070" stroke="#3a5672" stroke-width="4" stroke-dasharray="10 12" fill="none" />
+          <path id="dw1" d="M 320 1070 L 330 1070" stroke="#37d5e8" stroke-width="5" fill="none" />
+          <path id="dw2" d="M 640 1070 L 650 1070" stroke="#37d5e8" stroke-width="5" fill="none" />
+        </svg>
+        <div class="rowlbl" id="lFin" style="top: 430px">FINANCE</div>
+        <div class="node" id="nB" style="left: 70px; top: 540px">Banks</div>
+        <div class="node hub" id="nC" style="left: 370px; top: 540px">Connection layer</div>
+        <div class="node" id="nA" style="left: 670px; top: 540px">Apps</div>
+        <div class="rowlbl" id="lGov" style="top: 900px">GOVERNMENT SERVICES</div>
+        <div class="node" id="gR" style="left: 70px; top: 1010px">Records &amp; documents</div>
+        <div class="node" id="gHub" style="left: 370px; top: 1010px">?</div>
+        <div class="node" id="gO" style="left: 670px; top: 1010px">Organizations helping people</div>
+        <div id="dpHub"><img src="assets/digipae-icon.png" alt="" />DigiPae</div>
+        <div id="plaidChip">Plaid for government</div>
+        <div id="plaidFine">An analogy only. Not affiliated with Plaid.</div>
+      </div>
+
+      <!-- B · real app recording -->
+      <div class="scene" id="sB">
+        <div class="tag" id="tB">REAL APP · PREVIEW</div>
+        <div id="steps"></div>
+        <div id="phone"><div id="screen">
+          <video id="demo" class="clip" src="assets/demo.mp4" muted playsinline data-start="__B0__" data-duration="__BDUR__" data-track-index="2"></video>
+        </div></div>
+        <div id="vaultChip">Today: upload a copy to your Vault</div>
+      </div>
+
+      <!-- C · platform -->
+      <div class="scene" id="sC">
+        <div class="tag" id="tC">THE PLATFORM</div>
+        <svg class="wires" viewBox="0 0 1080 1920" data-layout-ignore>
+          <path class="cw" d="M 200 600 C 200 660, 420 640, 420 700" stroke="#37d5e8" stroke-width="4" fill="none" />
+          <path class="cw" d="M 485 600 L 485 700" stroke="#37d5e8" stroke-width="4" fill="none" />
+          <path class="cw" d="M 770 600 C 770 660, 550 640, 550 700" stroke="#37d5e8" stroke-width="4" fill="none" />
+          <path class="ow" d="M 420 850 C 420 1000, 200 960, 200 1060" stroke="#37d5e8" stroke-width="4" fill="none" />
+          <path class="ow" d="M 485 850 L 485 1060" stroke="#37d5e8" stroke-width="4" fill="none" />
+          <path class="ow" d="M 550 850 C 550 1000, 770 960, 770 1060" stroke="#37d5e8" stroke-width="4" fill="none" />
+        </svg>
+        <div class="src" style="left: 70px; top: 480px">Government records, where permitted</div>
+        <div class="src" style="left: 355px; top: 480px">Document issuers</div>
+        <div class="src" style="left: 640px; top: 480px">Identity verification</div>
+        <div id="cHub"><img src="assets/digipae-icon.png" alt="" />DigiPae</div>
+        <div class="cap3" id="k1" style="left: 120px">Documents</div>
+        <div class="cap3" id="k2" style="left: 370px">Verification</div>
+        <div class="cap3" id="k3" style="left: 630px">Eligibility</div>
+        <div class="org" style="left: 70px; top: 1060px">Benefits platforms</div>
+        <div class="org" style="left: 355px; top: 1060px">Nonprofits &amp; health centers</div>
+        <div class="org" style="left: 640px; top: 1060px">Apps &amp; workflows</div>
+        <div id="cFine">Only where access is legally permitted and an integration path exists. Consent alone does not grant access.</div>
+      </div>
+
+      <!-- final card -->
+      <div class="scene" id="sF">
+        <img id="fMark" src="assets/digipae-icon.png" alt="DigiPae logo" />
+        <div id="fWord">DigiPae</div>
+        <div id="fLine">Building toward <em>Plaid for government.</em></div>
+        <div id="fCta">Follow the build</div>
+        <div id="fUrl">digipae.com</div>
+        <div id="fDisc">An analogy only; not affiliated with Plaid. The app shown is a product preview, and some features are in development.</div>
+      </div>
+
+      <div id="captions"></div>
+      <audio id="mix" src="assets/mix.wav" data-start="0" data-duration="__END__" data-track-index="9"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const T = /*TIMING*/;
+      const S = T.scenes, BT = T.beats;
+      const tl = gsap.timeline({ paused: true });
+      const ease = "power3.out";
+      const fadeIn = (sel, t, d = 0.45, from = {}) => tl.fromTo(sel, { opacity: 0, ...from }, { opacity: 1, x: 0, y: 0, scale: 1, duration: d, ease, immediateRender: false }, t);
+      const fadeOut = (sel, t, d = 0.3) => tl.to(sel, { opacity: 0, duration: d, ease: "power2.in" }, t);
+      const draw = (sel, t, d) => document.querySelectorAll(sel).forEach((p) => {
+        const L = p.getTotalLength(); p.style.strokeDasharray = `${L} ${L}`;
+        tl.fromTo(p, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease: "power2.inOut", immediateRender: false }, t);
+        tl.set(p, { strokeDashoffset: L }, 0);
+      });
+      const line = (id, x1, x2, y) => document.getElementById(id).setAttribute("d", `M ${x1} ${y} L ${x2} ${y}`);
+      line("fw1", 300, 370, 600); line("fw2", 600, 670, 600); line("gw1", 300, 370, 1070); line("gw2", 600, 670, 1070);
+      line("dw1", 300, 330, 1070); line("dw2", 640, 670, 1070);
+
+      // ---------- A1 · hook (visible at frame 0) ----------
+      tl.set("#sA1, #brand", { opacity: 1 }, 0);
+      tl.set("#tA1", { opacity: 1 }, 0);
+      tl.set("#hA1 span", { opacity: 1 }, 0);
+      tl.fromTo("#hA1 span", { y: 40 }, { y: 0, duration: 0.5, ease, stagger: 0.12 }, 0);
+      tl.fromTo("#zero", { scale: 1 }, { scale: 1.12, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, BT.a1.zero);
+      fadeOut("#sA1", S.a2 - 0.05, 0.25);
+
+      // ---------- A2 · portals ----------
+      tl.set("#sA2", { opacity: 1 }, S.a2);
+      tl.set("#tA2", { opacity: 1 }, S.a2);
+      ["#pc1", "#pc2", "#pc3"].forEach((p, i) => fadeIn(p, BT.a2.p1 + i * 0.22, 0.4, { y: 50 }));
+      tl.fromTo(".portal .acct", { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.12, immediateRender: false }, BT.a2.acc);
+      [[".vi", BT.a2.id], [".va", BT.a2.addr], [".vn", BT.a2.inc]].forEach(([c, t]) => {
+        tl.fromTo(`.portal ${c}`, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.2, stagger: 0.1, immediateRender: false }, t);
+      });
+      tl.to(".fld", { borderColor: "#e9b44c", duration: 0.25 }, BT.a2.again);
+      fadeIn("#stamp", BT.a2.again, 0.3, { scale: 1.6 });
+      tl.fromTo("#pc1, #pc2, #pc3", { x: 0 }, { x: 8, duration: 0.06, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, BT.a2.again + 0.1);
+      fadeOut("#sA2", S.a3 - 0.05, 0.25);
+
+      // ---------- A3 · stat ----------
+      tl.set("#sA3", { opacity: 1 }, S.a3);
+      tl.set("#tA3", { opacity: 1 }, S.a3);
+      fadeIn("#people", S.a3 + 0.2, 0.4, { y: 30 });
+      fadeIn("#stat", BT.a3.stat, 0.45, { scale: 0.7 });
+      tl.set("#pp1, #pp2", { className: "pp lost" }, BT.a3.lost);
+      tl.set("#pp1, #pp2", { className: "pp" }, 0);
+      fadeIn("#statTxt", BT.a3.stat + 0.3, 0.4, { y: 24 });
+      fadeIn("#statSrc", BT.a3.paper, 0.4);
+      fadeOut("#sA3", S.a4 - 0.05, 0.25);
+
+      // ---------- A4 · missing layer ----------
+      tl.set("#sA4", { opacity: 1 }, S.a4);
+      tl.set("#tA4", { opacity: 1 }, S.a4);
+      fadeIn("#lFin, #nB, #nC, #nA", BT.a4.fin - 0.1, 0.4, { y: 24 });
+      draw("#fw1, #fw2", BT.a4.fin + 0.3, 0.45);
+      fadeIn("#lGov, #gR, #gHub, #gO", BT.a4.gov - 0.1, 0.4, { y: 24 });
+      draw("#gw1, #gw2", BT.a4.gov + 0.3, 0.45);
+      tl.to("#gHub", { opacity: 0, duration: 0.2 }, BT.a4.dp);
+      fadeIn("#dpHub", BT.a4.dp, 0.45, { scale: 0.6 });
+      draw("#dw1, #dw2", BT.a4.dp + 0.25, 0.45);
+      tl.to("#gR, #gO", { borderColor: "#37d5e8", duration: 0.3 }, BT.a4.dp + 0.6);
+      fadeIn("#plaidChip", BT.a4.think, 0.4, { y: 30 });
+      fadeIn("#plaidFine", BT.a4.think + 0.25, 0.4, { y: 16 });
+      fadeOut("#sA4", S.b - 0.3, 0.3);
+
+      // ---------- B · real app ----------
+      tl.set("#sB", { opacity: 1 }, S.b - 0.3);
+      fadeIn("#tB", S.b - 0.3, 0.3);
+      tl.fromTo("#phone", { opacity: 0, y: 90, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease, immediateRender: false }, S.b - 0.3);
+      const stepRoot = document.getElementById("steps");
+      T.segs.forEach((s, i) => {
+        const el = document.createElement("div");
+        el.className = "step" + (s.line === "b9" ? " soon" : "");
+        el.innerHTML = `<b>${String(i + 1).padStart(2, "0")}</b>${s.label}`;
+        stepRoot.appendChild(el);
+        tl.fromTo(el, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.2, immediateRender: false }, s.t);
+        tl.to(el, { opacity: 0, duration: 0.12 }, s.t + s.dur - 0.12);
+      });
+      const b9 = T.segs.find((s) => s.line === "b9");
+      tl.to("#phone", { scale: 1.05, y: 20, transformOrigin: "50% 40%", duration: 0.8, ease: "power2.inOut" }, BT.b9.soon);
+      tl.to("#phone", { scale: 1, y: 0, duration: 0.5, ease: "power2.inOut" }, b9.t + b9.dur - 0.3);
+      fadeIn("#vaultChip", BT.b9.vault, 0.35, { y: 20 });
+      fadeOut("#vaultChip", b9.t + b9.dur - 0.2, 0.2);
+      tl.to("#phone", { opacity: 0, y: 60, duration: 0.35, ease: "power2.in" }, S.c - 0.3);
+      fadeOut("#tB", S.c - 0.3, 0.3);
+
+      // ---------- C · platform ----------
+      tl.set("#sC", { opacity: 1 }, S.c);
+      fadeIn("#tC", S.c, 0.3);
+      fadeIn("#cHub", S.c + 0.1, 0.45, { scale: 0.7 });
+      tl.fromTo(".src", { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.1, ease, immediateRender: false }, S.c + 0.3);
+      draw(".cw", S.c + 0.6, 0.5);
+      fadeIn("#k1", BT.c1.docs, 0.3, { y: 16 });
+      fadeIn("#k2", BT.c1.ver, 0.3, { y: 16 });
+      fadeIn("#k3", BT.c1.elig, 0.3, { y: 16 });
+      draw(".ow", BT.c1.docs + 0.2, 0.6);
+      tl.fromTo(".org", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.1, ease, immediateRender: false }, BT.c1.docs + 0.5);
+      fadeIn("#cFine", S.c + 0.9, 0.4, { y: 16 });
+      fadeOut("#sC, #brand", S.fin, 0.35);
+
+      // ---------- final card ----------
+      tl.set("#sF", { opacity: 1 }, S.fin + 0.2);
+      fadeIn("#fMark", S.fin + 0.25, 0.6, { scale: 0.6 });
+      fadeIn("#fWord", BT.c2.word + 0.1, 0.45, { y: 30 });
+      fadeIn("#fLine", BT.c2.plaid, 0.45, { y: 24 });
+      fadeIn("#fCta", BT.c2.follow, 0.4, { scale: 0.85 });
+      fadeIn("#fUrl", BT.c2.follow + 0.25, 0.4, { y: 16 });
+      fadeIn("#fDisc", S.fin + 0.6, 0.4, { y: 16 });
+      tl.fromTo("#glow", { scale: 1, opacity: 0.5 }, { scale: 1.2, opacity: 0.8, duration: 1.4, ease: "sine.inOut", immediateRender: false }, BT.c2.follow);
+
+      // ---------- captions ----------
+      const capRoot = document.getElementById("captions");
+      T.captions.forEach((c, i) => {
+        const el = document.createElement("div");
+        el.className = "scap"; el.id = `cap${i}`;
+        const sp = document.createElement("span"); sp.textContent = c.text; el.appendChild(sp);
+        capRoot.appendChild(el);
+        tl.fromTo(el, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out", immediateRender: false }, c.s);
+        tl.to(el, { opacity: 0, duration: 0.12 }, c.e - 0.12);
+      });
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
